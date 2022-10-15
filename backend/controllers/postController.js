@@ -43,4 +43,17 @@ const deletePost = async (req, res) =>{
     res.status(StatusCodes.OK).json({msg: 'Post deleted successfully'})
 }
 
-module.exports = {getPosts, addPost, deletePosts, deletePost}
+const editPost = async (req,res) => {
+    const postDataToUpdate = req.body
+    const postID = req.params.postID
+    if(Object.keys(postDataToUpdate).length === 0){
+        throw new BadRequestError('U need to provide data to update')
+    }
+    const updatedPost = await User.findOneAndUpdate({_id: postID}, postDataToUpdate, {new:true, runValidators:true} )
+    if(!updatedPost) {
+        throw new NotFoundError('Post does not exist')
+    }
+    res.status(StatusCodes.OK).json({updatedPost})
+}
+
+module.exports = {getPosts, addPost, deletePosts, deletePost, editPost}

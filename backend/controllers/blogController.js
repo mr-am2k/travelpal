@@ -37,4 +37,17 @@ const deleteBlog = async (req, res) =>{
     res.status(StatusCodes.OK).json({msg: 'Blog deleted successfully'})
 }
 
-module.exports = {getBlogs, addBlog, deleteBlogs, deleteBlog}
+const editBlog = async (req,res) => {
+    const BlogDataToUpdate = req.body
+    const BlogID = req.params.BlogID
+    if(Object.keys(BlogDataToUpdate).length === 0){
+        throw new BadRequestError('U need to provide data to update')
+    }
+    const updatedBlog = await User.findOneAndUpdate({_id: BlogID}, BlogDataToUpdate, {new:true, runValidators:true} )
+    if(!updatedBlog) {
+        throw new NotFoundError('Blog does not exist')
+    }
+    res.status(StatusCodes.OK).json({updatedBlog})
+}
+
+module.exports = {getBlogs, addBlog, deleteBlogs, deleteBlog, editBlog}
