@@ -2,7 +2,6 @@ import React from "react";
 import Card from "./Card";
 import face1 from "../../images/Feed/feed1.png";
 import face2 from "../../images/Feed/feed2.png";
-import face3 from "../../images/Feed/feed3.png";
 import face4 from "../../images/Feed/feed4.png";
 import face5 from "../../images/Feed/feed5.png";
 const MainTravel = () => {
