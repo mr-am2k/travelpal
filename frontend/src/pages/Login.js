@@ -1,12 +1,61 @@
 import React from "react";
-import img from "../images/loginimage.png";
+import img from "../images//Login/loginimage.png";
+import logo from "../images/Login/logo.png";
+import { useState } from "react";
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    console.log(username);
+    console.log(password);
+  };
   return (
-    <div className="w-[100%] h-screen flex">
-      <div>LOGIN</div>
-      <div className="h-[100%]">
-        <img src={img} />
+    <div className="w-screen h-screen flex items-center justify-center">
+      <div className="w-[40%] h-[50%] flex flex-col items-center justify-around">
+        <img src={logo} className="w-[200px]" />
+        <h2 className="font-[24px]">Login</h2>
+
+        <form
+          className="w-[50%] h-[50%] flex flex-col items-center justify-around"
+          onSubmit={handleLogin}
+        >
+          <div className="flex flex-col w-[100%]">
+            <label className="text-[#1774FF]">Username</label>
+            <input
+              className="border-b-2 border-[#1774FF] bg-transparent"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+          </div>
+          <div className="flex flex-col w-[100%]">
+            <label className="text-[#1774FF]">Password</label>
+            <input
+              className="border-b-2 border-[#1774FF] bg-transparent"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              type="password"
+            />
+          </div>
+          <button className="w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl translate-y-[50px] text-[14px] font-bold text-[#1774FF]">
+            Log in
+          </button>
+        </form>
       </div>
+      <div
+        className="w-[60%] h-screen"
+        style={{
+          backgroundImage: `url(${img})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
     </div>
   );
 };
