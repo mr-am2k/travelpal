@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 const { nextTick } = require('process');
 
-let dateValidator = (value) =>{
-    return this.startDate <= value;
-}
-
 const PostSchema = new mongoose.Schema({
     userID: {
         type: mongoose.Types.ObjectId,
@@ -44,8 +40,7 @@ const PostSchema = new mongoose.Schema({
     endDate: {
         type: Date,
         min: new Date().toISOString().slice(0, 10),
-        default:new Date().toISOString().slice(0, 10),
-        validate: [dateValidator, 'Start Date must be less than End Date']
+        default:new Date().toISOString().slice(0, 10)
     },
     photos: [{
         type: String
