@@ -19,20 +19,27 @@ const PostSchema = new mongoose.Schema({
         required: true,
         maxLength: 30,
         minLength: 5,
+        default: null
 
     },
     description: {
         type: String,
+        default: ''
     },
     destination: {
         type: String,
-        required: true
+        required: [true, 'Please provide destination'],
+        default: null
     },
     startDate: {
-        type: Date
+        type: Date,
+        min: new Date().toISOString().slice(0, 10),
+        default: new Date().toISOString().slice(0, 10)
     },
     endDate: {
-        type: Date
+        type: Date,
+        min: new Date().toISOString().slice(0, 10),
+        default:new Date().toISOString().slice(0, 10)
     },
     photos: [{
         type: String

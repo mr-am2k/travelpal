@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-
 const BlogSchema = new mongoose.Schema ({
     userID: {
         type: mongoose.Types.ObjectId,
@@ -20,9 +19,10 @@ const BlogSchema = new mongoose.Schema ({
     content: {
         type: String
     },
-    numberOfLikes: {
-        type: Number
-    },
+    numberOfLikes:[{
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+    }],
     comments: [{
         userID: {
             type: mongoose.Types.ObjectId,
