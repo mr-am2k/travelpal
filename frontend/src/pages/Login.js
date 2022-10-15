@@ -9,19 +9,19 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     const response = await fetch("http://localhost:3000/api/v1/auth/login", {
-      Method: "POST",
-      Headers: {
-        Accept: "application.json",
+      method: "POST",
+      headers: {
         "Content-Type": "application/json",
       },
-      Body: { email: email, password: password },
+      body: JSON.stringify({ email: email, password: password }),
     });
+    console.log(await response.json());
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="w-[40%] h-[50%] flex flex-col items-center justify-around">
         <img src={logo} className="w-[200px]" />
-        <h2 className="font-[24px]">Login</h2>
+        <h2 className="text-[20px]">Login</h2>
 
         <form
           className="w-[50%] h-[50%] flex flex-col items-center justify-around"
