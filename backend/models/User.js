@@ -47,21 +47,27 @@ const UserSchema = new mongoose.Schema({
         ],
         unique: true
     },
-    age: {
-        type: Number,
-        required: [true, 'Please provide age'],
-        min: 18,
-        max: 100
+    dateOfBirth: {
+        type: Date,
+        required: [true, 'Please provide date of birth'],
+        min: '1930-01-01',
+        max: '2020-01-01'
     },
     country: {
         type: String,
         required: [true, 'Please provide country'],
     },
+    gender: {
+        type: String,
+        required: [true, 'Please provide gender']
+    },
     bio: {
-        type: String
+        type: String,
+        default: ''
     },
     profilePhoto: {
-        type:String
+        type:String,
+        default: ''
     },
     interests: [{
         type: String,
@@ -70,12 +76,14 @@ const UserSchema = new mongoose.Schema({
     averageTravelRating: {
         type: Number,
         min: 1,
-        max: 5
+        max: 5,
+        default: null 
     },
     averageHostRating: {
         type: Number,
         min: 1,
-        max: 5
+        max: 5,
+        default: null
     },
     reviews: [{
         userID: {
@@ -95,8 +103,8 @@ const UserSchema = new mongoose.Schema({
         },
         rating: {
             type: Number,
-            min: 1,
-            max: 5
+            min: [1, 'Rating value can not be under 1'],
+            max: [5, 'Rating value can not be over 5']
         }
     }]
 })

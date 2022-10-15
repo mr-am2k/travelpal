@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { nextTick } = require('process');
 
 const PostSchema = new mongoose.Schema({
     userID: {
@@ -17,22 +18,29 @@ const PostSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        maxLength: 30,
-        minLength: 5,
+        maxLength: [30, 'Title is too long'],
+        minLength: [5, 'Title is too short'],
+        default: null
 
     },
     description: {
         type: String,
+        default: ''
     },
     destination: {
         type: String,
-        required: true
+        required: [true, 'Please provide destination'],
+        default: null
     },
     startDate: {
-        type: Date
+        type: Date,
+        min: new Date().toISOString().slice(0, 10),
+        default: new Date().toISOString().slice(0, 10)
     },
     endDate: {
-        type: Date
+        type: Date,
+        min: new Date().toISOString().slice(0, 10),
+        default:new Date().toISOString().slice(0, 10)
     },
     photos: [{
         type: String
