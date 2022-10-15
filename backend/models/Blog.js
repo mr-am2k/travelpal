@@ -35,8 +35,7 @@ const BlogSchema = new mongoose.Schema ({
         }
     }],
     photos: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'Image'
+        type: String
     }]
 })
 

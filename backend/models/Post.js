@@ -32,7 +32,10 @@ const PostSchema = new mongoose.Schema({
     },
     endDate: {
         type: Date
-    }
+    },
+    photos: [{
+        type: String
+    }]
 })
 
 module.exports = mongoose.model('Post', PostSchema)

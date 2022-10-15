@@ -13,9 +13,8 @@ const addPost = async (req, res) =>{
     if(!req.body){
         res.status(StatusCodes.BAD_REQUEST).json({msg: 'Bad request'})
     }
-    const newPost = Post.create(req.body)
-    await newPost.save()
-    res.status(StatusCodes.OK).json({msg: 'Post saved successfully'})
+    const newPost = await Post.create(req.body)
+    res.status(StatusCodes.OK).json({msg: 'Post saved successfully', post: newPost})
 }
 
 module.exports = {getPosts, addPost}
