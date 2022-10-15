@@ -21,26 +21,30 @@ const Login = () => {
           className="w-[50%] h-[50%] flex flex-col items-center justify-around"
           onSubmit={handleLogin}
         >
-          <div className="flex flex-col w-[100%]">
+          <div className="flex flex-col w-[100%] justify-end">
             <label className="text-[#1774FF]">Username</label>
-            <input
-              className="border-b-2 border-[#1774FF] bg-transparent"
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
+            <div className="h-[40px] flex flex-col">
+              <input
+                className="border-b-2 outline-0 border-[#1774FF] bg-transparent h-[13px] text-[12px] focus:h-[30px] focus:text-[15px] w-[100%] transition-all"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
+            </div>
           </div>
           <div className="flex flex-col w-[100%]">
             <label className="text-[#1774FF]">Password</label>
-            <input
-              className="border-b-2 border-[#1774FF] bg-transparent"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              type="password"
-            />
+            <div className="h-[40px] flex flex-col">
+              <input
+                className="border-b-2 outline-0 border-[#1774FF] bg-transparent h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                type="password"
+              />
+            </div>
           </div>
           <button className="w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl translate-y-[50px] text-[14px] font-bold text-[#1774FF]">
             Log in

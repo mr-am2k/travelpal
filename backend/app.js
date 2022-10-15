@@ -5,7 +5,7 @@ const multer = require("multer");
 const upload = multer({dest: 'uploads/'})
 const app = express();
 const authRouter = require('./routes/authRoute')
-// const postsRouter = require('./routes/postsRoute')
+const postsRouter = require('./routes/postsRoute')
 const authMiddleware = require('./middleware/authentication')
 
 //connectDB
@@ -20,7 +20,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/v1/auth', upload.single("testImage"), authRouter)
-// app.use('/api/v1/posts', authMiddleware, postsRouter)
+app.use('/api/v1/posts', authMiddleware, postsRouter)
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
