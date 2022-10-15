@@ -57,6 +57,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please provide country'],
     },
+    gender: {
+        type: String,
+        required: [true, 'Please provide gender']
+    },
     bio: {
         type: String,
         default: ''
