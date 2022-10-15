@@ -6,7 +6,7 @@ import Information from "./Information";
 const Hero = () => {
   return (
     <div
-      className="w-full h-[690px] bg-red-300 flex items-center justify-center border-bl-[15px] border-br-[15px]"
+      className="w-full h-[690px] flex items-center justify-center border-bl-[15px] border-br-[15px]"
       style={{
         backgroundImage: `url(${heroImage})`,
         backgroundPosition: "center",
