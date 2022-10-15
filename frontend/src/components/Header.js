@@ -8,9 +8,9 @@ const Header = () => {
     <Navigate to="/" replace={true} />;
   };
   return (
-    <div className="h-[105px] w-full flex justify-around px-20">
+    <div className="h-[70px] w-full flex justify-around px-20 border-2">
       {/* Lijeva strana */}
-      <div className="w-[35%] h-full">
+      <div className="w-[35%] h-full flex items-center">
         {/* <Link to="/"> */}
         <img
           src={logo}
@@ -21,10 +21,10 @@ const Header = () => {
         {/* </Link> */}
       </div>
       {/* Desna strana */}
-      <div className="w-[65%] h-full flex justify-end">
+      <div className="w-[65%] h-full flex justify-end items-center">
         {/* Tabs (hidden on mobile) */}
         <div className="w-full h-full flex items-center justify-end gap-5">
-          <Link className="flex flex-col gap-1 items-center border-2" to="/">
+          <Link className="flex flex-col gap-1 items-center " to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -41,24 +41,18 @@ const Header = () => {
             </svg>
             <p className="font-[10px] font-normal leading-[12px]">Home</p>
           </Link>
-          <Link
-            className="flex flex-col gap-1 items-center border-2"
-            to="/travel"
-          >
+          <Link className="flex flex-col gap-1 items-center " to="/travel">
             <TbBooks className="w-7 h-7" />
             <p className="font-[10px] font-normal leading-[12px]">Travel</p>
           </Link>
-          <Link
-            className="flex flex-col gap-1 items-center border-2"
-            to="/login"
-          >
+          <Link className="flex flex-col gap-1 items-center " to="/login">
             <AiOutlineUser className="w-7 h-7" />
             <p className="font-[10px] font-normal leading-[12px]">Login</p>
           </Link>
         </div>
         {/* Join now button */}
-        <div className="w-1/2 ml-auto flex items-center justify-end">
-          <button className="w-[120px] h-[45px] font-bold border-[#1774FF] rounded-[25px] border-2 flex items-end justify-center font-[10px] leading-[12px] text-[#1774ff] px-2 py-4 hover:bg-[#1774FF] hover:text-white">
+        <div className="w-1/2 h-full ml-auto flex items-center justify-end">
+          <button className="w-[120px] font-bold border-[#1774FF] rounded-[25px] border-2 flex items-end justify-center font-[10px] leading-[12px] text-[#1774ff] px-2 py-4 hover:bg-[#1774FF] hover:text-white">
             <Link to="/login">Join now</Link>
           </button>
         </div>
