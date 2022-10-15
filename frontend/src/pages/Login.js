@@ -6,10 +6,19 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     console.log(username);
     console.log(password);
+    const response = await fetch("http://localhost:3000/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        Accept: "application.json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify( { email: username, password: password })
+    });
+     console.log(await response.json())
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center">
