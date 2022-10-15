@@ -103,8 +103,8 @@ const UserSchema = new mongoose.Schema({
         },
         rating: {
             type: Number,
-            min: 1,
-            max: 5
+            min: [1, 'Rating value can not be under 1'],
+            max: [5, 'Rating value can not be over 5']
         }
     }]
 })

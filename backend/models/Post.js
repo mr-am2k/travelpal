@@ -17,8 +17,8 @@ const PostSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        maxLength: 30,
-        minLength: 5,
+        maxLength: [30, 'Title is too long'],
+        minLength: [5, 'Title is too short'],
         default: null
 
     },
