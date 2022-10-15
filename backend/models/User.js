@@ -10,37 +10,37 @@ function arrayLimit(val) {
 const UserSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: true,
+        required: [true, 'Please provide first name'],
         minLength: 1,
         maxLength: 30
     },
     lastName: {
         type: String,
-        required: true,
+        required: [true, 'Please provide last name'],
         minLength: 1,
         maxLength: 30
     },
     username: {
         type: String,
-        required: true,
+        required: [true, 'Please provide username'],
         minLength: 4,
         maxLength: 30,
         unique: true
     },
     passwordHash: {
         type: String,
-        required: true,
+        required: [true, 'Please provide password'],
         minLength: 6
     },
     phoneNumber: {
         type: String,
-        required: true,
+        required: [true, 'Please provide phone number'],
         maxLength: 20,
         unique: true
     },
     email: {
         type: String,
-        required: true,
+        required: [true, 'Please provide email'],
         match: [
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             'Please provide valid email'
@@ -49,13 +49,13 @@ const UserSchema = new mongoose.Schema({
     },
     age: {
         type: Number,
-        required: true,
+        required: [true, 'Please provide age'],
         min: 18,
         max: 100
     },
     country: {
         type: String,
-        required: true
+        required: [true, 'Please provide country'],
     },
     bio: {
         type: String
