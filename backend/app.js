@@ -5,6 +5,7 @@ const cors = require('cors')
 const app = express();
 const authRouter = require('./routes/authRoute')
 const postRouter = require('./routes/postRoute')
+const userRouter = require('./routes/userRoute')
 const authMiddleware = require('./middleware/authentication')
 
 //connectDB
@@ -26,6 +27,8 @@ app.use(cors({
 // routes
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/posts', authMiddleware, postRouter)
+app.use('/api/v1/users', authMiddleware, userRouter)
+
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
