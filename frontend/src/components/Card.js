@@ -2,7 +2,6 @@ import React from "react";
 import { AiTwotoneStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const Card = (props) => {
-  console.log(props.imageUrl);
   return (
     <div
       className="flex flex-col w-[394px] h-[500px] gap-2 bg-white rounded-[20px] boxShadowC overflow-hidden"
