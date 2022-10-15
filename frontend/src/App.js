@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import UserFeed from "./pages/UserFeed";
+import TravelFeed from "./pages/TravelFeed";
 export const Context = createContext({
   loggedIn: false,
   setLoggedIn: (loggedIn) => {},
@@ -25,6 +26,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />
         <Route path="userfeed" element={<UserFeed />} />
+        <Route path="travelfeed" element={<TravelFeed />} />
       </Routes>
     </Context.Provider>
   );
