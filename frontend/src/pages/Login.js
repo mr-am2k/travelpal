@@ -3,13 +3,19 @@ import img from "../images//Login/loginimage.png";
 import logo from "../images/Login/logo.png";
 import { useState } from "react";
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    console.log(username);
-    console.log(password);
+    const response = await fetch("http://localhost:3000/api/v1/auth/login", {
+      Method: "POST",
+      Headers: {
+        Accept: "application.json",
+        "Content-Type": "application/json",
+      },
+      Body: { email: email, password: password },
+    });
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center">
@@ -21,26 +27,30 @@ const Login = () => {
           className="w-[50%] h-[50%] flex flex-col items-center justify-around"
           onSubmit={handleLogin}
         >
-          <div className="flex flex-col w-[100%]">
-            <label className="text-[#1774FF]">Username</label>
-            <input
-              className="border-b-2 border-[#1774FF] bg-transparent"
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
+          <div className="flex flex-col w-[100%] justify-end">
+            <label className="text-[#1774FF]">Email</label>
+            <div className="h-[40px] flex flex-col">
+              <input
+                className="border-b-2 outline-0 border-[#1774FF] bg-transparent h-[13px] text-[12px] focus:h-[30px] focus:text-[15px] w-[100%] transition-all"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </div>
           </div>
           <div className="flex flex-col w-[100%]">
             <label className="text-[#1774FF]">Password</label>
-            <input
-              className="border-b-2 border-[#1774FF] bg-transparent"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              type="password"
-            />
+            <div className="h-[40px] flex flex-col">
+              <input
+                className="border-b-2 outline-0 border-[#1774FF] bg-transparent h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                type="password"
+              />
+            </div>
           </div>
           <button className="w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl translate-y-[50px] text-[14px] font-bold text-[#1774FF]">
             Log in
