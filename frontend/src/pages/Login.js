@@ -1,21 +1,30 @@
 import React from "react";
 import img from "../images//Login/loginimage.png";
 import logo from "../images/Login/logo.png";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { MyContext } from "../context/context";
+import { useNavigate } from "react-router";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleLogin = async (event) => {
+  const cx = useContext(MyContext);
+  const navigate = useNavigate();
+  const handleLogin = (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:3000/api/v1/auth/login", {
+    fetch("http://localhost:3000/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email: email, password: password }),
+    }).then((res) => {
+      const data = res.json();
+      cx.setLoggedIn(true);
+      localStorage.setItem("token", data.token);
+      navigate("/userfeed");
     });
-    console.log(await response.json());
+
+    // console.log(await response.json());
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center">
