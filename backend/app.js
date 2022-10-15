@@ -2,7 +2,7 @@ require('dotenv').config();
 require('express-async-errors'); //instead of using unnecessary try and catch blocks
 const express = require('express');
 const app = express();
-const userRouter = require('./routes/userRoute')
+const authRouter = require('./routes/authRoute')
 
 //connectDB
 const connect = require('./db/connect')
@@ -15,7 +15,7 @@ app.use(express.json());
 // extra packages
 
 // routes
-app.use('/api/v1/auth', userRouter)
+app.use('/api/v1/auth', authRouter)
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
