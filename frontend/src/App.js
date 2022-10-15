@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
-
+import UserFeed from "./pages/UserFeed";
 export const Context = createContext({
   loggedIn: false,
   setLoggedIn: (loggedIn) => {},
@@ -24,6 +24,7 @@ function App() {
         <Route path="about" element={<p>ABOUT</p>} />
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />
+        <Route path="userfeed" element={<UserFeed />} />
       </Routes>
     </Context.Provider>
   );

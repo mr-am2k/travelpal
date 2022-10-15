@@ -1,7 +1,16 @@
 import Navbar from "../components/Navbar";
 import FeedPost from "../components/FeedPost";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { MyContext } from "../context/context";
+import { Navigate, useNavigate } from "react-router";
 const UserFeed = () => {
+  const navigate = useNavigate();
+  const ctx = useContext(MyContext);
+  //useEffect(() => {
+  //  if (!ctx.loggedIn) {
+  //    navigate("/login");
+  //  }
+  //});
   const [filterActive, setFilterActive] = useState(false);
   return (
     <>
