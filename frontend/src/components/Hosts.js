@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
+import hungary from "../images/Posts/hungary.png";
+import france from "../images/Posts/france.png";
+import norway from "../images/Posts/norway.png";
+import tokyo from "../images/Posts/tokyo.png";
+import phillipines from "../images/Posts/phillipines.png";
+import bih from "../images/Posts/bih.png";
 const Hosts = () => {
   const cardInfo = [
     {
@@ -13,6 +19,7 @@ const Hosts = () => {
       fade: "right",
       imageUrl:
         "https://clockyourskills.com/wp-content/uploads/2020/10/Black-and-White-Generic-Delivery-Back-to-Business-Landscape-Flyer-8.png",
+      image: hungary,
     },
 
     {
@@ -24,6 +31,7 @@ const Hosts = () => {
       fade: "up",
       imageUrl:
         "https://www.azamara.com/sites/default/files/heros/bordeaux-france.jpg",
+      image: france,
     },
     {
       id: 2,
@@ -35,6 +43,7 @@ const Hosts = () => {
       fade: "up",
       imageUrl:
         "https://images.ctfassets.net/ihlmn42cjuv0/6UWuOcdYWt9FB4yps4kpOm/b01b13eaf2ee4bd3dbc5c85767f70be0/building-6908494.jpg?fit=fill&w=1346&h=838&fm=jpg&q=93",
+      image: norway,
     },
     {
       id: 3,
@@ -46,6 +55,7 @@ const Hosts = () => {
       fade: "left",
       imageUrl:
         "https://content.r9cdn.net/rimg/dimg/ca/7e/9ae1c4b2-city-21033-16c1b1c620d.jpg?crop=true&width=1020&height=498",
+      image: tokyo,
     },
     {
       id: 4,
@@ -57,6 +67,7 @@ const Hosts = () => {
       fade: "up",
       imageUrl:
         "https://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2018/09/luzunish-fbaaaa.jpg",
+      image: phillipines,
     },
     {
       id: 5,
@@ -68,6 +79,7 @@ const Hosts = () => {
       fade: "left",
       imageUrl:
         "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/fd/28/41.jpg",
+      image: bih,
     },
   ];
   return (
@@ -86,13 +98,14 @@ const Hosts = () => {
               reviewStars={c.reviewStars}
               fade={c.fade}
               imageUrl={c.imageUrl}
+              image={c.image}
             />
           );
         })}
       </div>
       <Link
         to="/hosts"
-        className="uppercase border-[#1774FF] border-2 text-[16px] leading-[20px] font-bold w-[307px] h-[53px] rounded-[25px] flex items-center justify-center text-[#1774FF] mx-auto"
+        className="uppercase border-[#1774FF] border-2 text-[16px] leading-[20px] font-bold w-[307px] h-[53px] rounded-[25px] flex items-center justify-center text-[#1774FF] mx-auto hover:bg-[#1774ff] hover:text-white"
       >
         View full host list
       </Link>
