@@ -5,11 +5,11 @@ const BlogSchema = new mongoose.Schema ({
     userID: {
         type: mongoose.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: [true, 'Please provide UserId']
     },
     date: {
         type: Date,
-        required: true
+        required: [true, 'Please provide date']
     },
     title: {
         type: String,
