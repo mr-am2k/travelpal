@@ -1,8 +1,6 @@
 require('dotenv').config();
 require('express-async-errors'); //instead of using unnecessary try and catch blocks
 const express = require('express');
-const multer = require("multer");
-const upload = multer({ dest: 'uploads/' })
 const cors = require('cors')
 const app = express();
 const authRouter = require('./routes/authRoute')
@@ -19,18 +17,14 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 app.use(express.json());
 // extra packages
 app.use(cors({
-
   origin: "*",
   methods: '*',
   allowedHeaders: '*',
-
   credentials: true, //access-control-allow-credentials:true
-
   optionSuccessStatus: 200,
-
 }));
 // routes
-app.use('/api/v1/auth', upload.single("testImage"), authRouter)
+app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/posts', authMiddleware, postRouter)
 
 app.use(notFoundMiddleware);

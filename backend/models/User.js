@@ -61,8 +61,7 @@ const UserSchema = new mongoose.Schema({
         type: String
     },
     profilePhoto: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Image'
+        type:String
     },
     interests: [{
         type: String,
@@ -81,7 +80,8 @@ const UserSchema = new mongoose.Schema({
     reviews: [{
         userID: {
             type: mongoose.Types.ObjectId,
-            ref: 'user'
+            ref: 'user',
+            required: true
         },
         type: {
             type: String,
@@ -101,14 +101,14 @@ const UserSchema = new mongoose.Schema({
     }]
 })
 
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt(10)
     this.passwordHash = await bcrypt.hash(this.passwordHash, salt)
     next()
 })
 
 UserSchema.methods.createJWT = function () {
-    return jwt.sign({userId: this._id, name: this.username}, process.env.JWT_SECRET , {expiresIn: process.env.JWT_LIFETIME})
+    return jwt.sign({ userId: this._id, name: this.username }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME })
 }
 UserSchema.methods.comparePassword = async function (candidatePassword) {
     const isMatch = await bcrypt.compare(candidatePassword, this.passwordHash)
