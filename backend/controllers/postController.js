@@ -1,15 +1,25 @@
 const Post = require("../models/Post")
+const User = require('../models/User')
 const {StatusCodes} = require('http-status-codes')
 
 const getPosts =  async (req,res) => {
-    const posts = await Post.find()
+    let posts = await Post.find()
     if(!posts) {
         res.status(StatusCodes.NO_CONTENT).json({msg: 'No posts found'})
     }
-    posts.forEach(element =>{
+    const test = Promise.all(posts.map(async(element) => {
+        const userProfile = await User.findById(element.userID)
+        let ratingCount
+        let reviewStars
+        if(typeof userProfile.reviews === 'undefined') ratingCount = 0
+        else ratingCount = userProfile.reviews.length
+        if(typeof userProfile.averageHostRating === 'undefined') reviewStars = 0
+        else reviewStars = userProfile.averageHostRating
+        const returnPost = {...element._doc, ratingCount: ratingCount,reviewStars: reviewStars}
+        return returnPost
+    }))
 
-    })
-    res.status(StatusCodes.OK).json(posts)
+    test.then((response) => res.status(StatusCodes.OK).json({response}))
 }
 
 const addPost = async (req, res) =>{

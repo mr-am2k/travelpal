@@ -11,7 +11,8 @@ const PostSchema = new mongoose.Schema({
         enum: {
             values: ['travel', 'host'],
             message: '{VALUE} type does not exist!',
-        }
+        },
+        required: true
     },
     title: {
         type: String,

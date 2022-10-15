@@ -15,6 +15,7 @@ const Suggested = () => {
       imageUrl:
         "https://vicharkness.co.uk/wp-content/uploads/2019/03/aiface.png",
       image: face1,
+      fade: "right",
     },
     {
       id: 1,
@@ -24,6 +25,7 @@ const Suggested = () => {
       imageUrl:
         "https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
       image: face2,
+      fade: "left",
     },
     {
       id: 2,
@@ -33,6 +35,7 @@ const Suggested = () => {
       imageUrl:
         "http://www.faces-l.net/wp-content/uploads/2021/10/sedaguerses-1080x1080px-1024x1024.jpg",
       image: face3,
+      fade: "right",
     },
     {
       id: 3,
@@ -41,6 +44,7 @@ const Suggested = () => {
         "I spent one month with Jood and it was one of the funniest, most exciting and happiest I ever had. She welcomed me so very warmly and soon introduced...",
       imageUrl: "https://kottke.org/plus/misc/images/ai-faces-01.jpg",
       image: face4,
+      fade: "left",
     },
   ];
   return (

@@ -1,8 +1,18 @@
 import React from "react";
 import feed1 from "../images/Feed/feed1.png";
-const SuggestedCard = ({ fullName, description, id, imageUrl, image }) => {
+const SuggestedCard = ({
+  fullName,
+  description,
+  id,
+  imageUrl,
+  image,
+  fade,
+}) => {
   return (
-    <div className="w-[580px] h-[555px] rounded-[25px] border-[#AAA] border-2 relative flex flex-col gap-5">
+    <div
+      className="w-[580px] h-[555px] rounded-[25px] border-[#AAA] border-2 relative flex flex-col gap-5"
+      data-aos={`fade-${fade}`}
+    >
       {/* PICTURE */}
       <img
         src={image}

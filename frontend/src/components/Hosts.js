@@ -87,7 +87,11 @@ const Hosts = () => {
       <p className="text-center text-black text-[34px] leading-[59px] font-normal">
         Find your host
       </p>
-      <div className="grid grid-cols-3 gap-10 mx-auto">
+      <div
+        className="grid grid-cols-3 gap-10 mx-auto"
+        data-aos="fade-down"
+        data-aos-duration={700}
+      >
         {cardInfo.map((c) => {
           return (
             <Card

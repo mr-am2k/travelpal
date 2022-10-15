@@ -3,11 +3,7 @@ import { AiTwotoneStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const Card = (props) => {
   return (
-    <div
-      className="flex flex-col w-[394px] h-[500px] gap-2 bg-white rounded-[20px] boxShadowC overflow-hidden"
-      data-aos={`fade-${props.fade}`}
-      data-aos-duration="300"
-    >
+    <div className="flex flex-col w-[394px] h-[500px] gap-2 bg-white rounded-[20px] boxShadowC overflow-hidden">
       <div
         className="h-[317px] w-full "
         style={{
