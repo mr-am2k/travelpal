@@ -1,18 +1,13 @@
+const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
 
-const imgSchema = new mongoose.Schema({
-    name: String,
-    img: {
-        data: Buffer,
-        contentType: String,
-    },
-});
 
 function arrayLimit(val) {
     return val.length <= 10;
 }
 
-const userSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
@@ -29,7 +24,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minLength: 4,
-        maxLength: 30
+        maxLength: 30,
+        unique: true
     },
     passwordHash: {
         type: String,
@@ -39,7 +35,8 @@ const userSchema = new mongoose.Schema({
     phoneNumber: {
         type: String,
         required: true,
-        maxLength: 20
+        maxLength: 20,
+        unique: true
     },
     email: {
         type: String,
@@ -47,7 +44,8 @@ const userSchema = new mongoose.Schema({
         match: [
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             'Please provide valid email'
-        ]
+        ],
+        unique: true
     },
     age: {
         type: Number,
@@ -63,7 +61,8 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     profilePhoto: {
-        type: imgSchema
+        type: mongoose.Types.ObjectId,
+        ref: 'Image'
     },
     interests: [{
         type: String,
@@ -81,7 +80,7 @@ const userSchema = new mongoose.Schema({
     },
     reviews: [{
         userID: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Types.ObjectId,
             ref: 'user'
         },
         type: {
@@ -102,5 +101,18 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
+UserSchema.pre('save', async function(next) {
+    const salt = await bcrypt.genSalt(10)
+    this.passwordHash = await bcrypt.hash(this.passwordHash, salt)
+    next()
+})
 
-module.exports = {User: mongoose.model('User', userSchema), Image: mongoose.model('Image', imgSchema)}
+UserSchema.methods.createJWT = function () {
+    return jwt.sign({userId: this._id, name: this.username}, process.env.JWT_SECRET , {expiresIn: process.env.JWT_LIFETIME})
+}
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+    const isMatch = await bcrypt.compare(candidatePassword, this.passwordHash)
+    return isMatch
+}
+
+module.exports = mongoose.model('User', UserSchema)
