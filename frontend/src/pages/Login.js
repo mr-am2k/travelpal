@@ -11,25 +11,36 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/api/v1/auth/login", {
+    fetch("https://travelpall.onrender.com/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email: email, password: password }),
-    }).then((res) => {
-      const data = res.json();
-      cx.setLoggedIn(true);
-      localStorage.setItem("token", data.token);
-      navigate("/userfeed");
-    });
+    })
+      .then((res) => {
+        // const data =  res.json();
+        return res.json();
+        // console.log(data);
+        // cx.setLoggedIn(true);
+        // localStorage.setItem("token", data.token);
+        // navigate("/userfeed");
+      })
+      .then((data) => {
+        // console.log(data.token);
+        if (data.token) {
+          cx.setLoggedIn(true);
+          localStorage.setItem("token", data.token);
+          navigate("/userfeed");
+        }
+      });
 
     // console.log(await response.json());
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="w-[40%] h-[50%] flex flex-col items-center justify-around">
-        <img src={logo} className="w-[200px]" />
+        <img src={logo} className="w-[200px]" alt="#" />
         <h2 className="text-[20px]">Login</h2>
 
         <form

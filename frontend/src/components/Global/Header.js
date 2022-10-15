@@ -8,7 +8,7 @@ const Header = () => {
     <Navigate to="/" replace={true} />;
   };
   return (
-    <div className="h-[70px] w-full flex justify-around px-20 border-2">
+    <div className="h-[70px] w-full flex justify-around px-20 border-2 shadow-[0_0px_15px_10px_rgba(0,0,0,0.1)]">
       {/* Lijeva strana */}
       <div className="w-[35%] h-full flex items-center">
         {/* <Link to="/"> */}

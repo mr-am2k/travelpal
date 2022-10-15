@@ -12,7 +12,7 @@ const Navbar = () => {
         alt="#"
       />
       <div className="flex mr-[80px] min-w-[400px] justify-between items-center">
-        <Link to="/userfeed"></Link>
+        <Link to="/userfeed">Home</Link>
         <Link to="/travelfeed">Find travel pals</Link>
         <Link to="/messages">Messages</Link>
         <img src={profilePicture} width="40px" height="40px" alt="#" />

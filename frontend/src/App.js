@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import UserFeed from "./pages/UserFeed";
 import TravelFeed from "./pages/TravelFeed";
+import PrivateRoute from "./routes/PrivateRoute";
 export const Context = createContext({
   loggedIn: false,
   setLoggedIn: (loggedIn) => {},
@@ -22,11 +23,32 @@ function App() {
     <Context.Provider value={{ loggedIn, setLoggedIn }}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="about" element={<p>ABOUT</p>} />
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />
-        <Route path="userfeed" element={<UserFeed />} />
-        <Route path="travelfeed" element={<TravelFeed />} />
+        <Route
+          path="userfeed"
+          element={
+            <PrivateRoute>
+              <UserFeed />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="travelfeed"
+          element={
+            <PrivateRoute>
+              <TravelFeed />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <PrivateRoute>
+              <UserFeed />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Context.Provider>
   );
