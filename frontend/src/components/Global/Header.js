@@ -23,7 +23,7 @@ const Header = () => {
       {/* Desna strana */}
       <div className="w-[65%] h-full flex justify-end items-center">
         {/* Tabs (hidden on mobile) */}
-        <div className="w-full h-full flex items-center justify-end gap-5">
+        {/* <div className="w-full h-full flex items-center justify-end gap-5">
           <Link className="flex flex-col gap-1 items-center " to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -49,11 +49,14 @@ const Header = () => {
             <AiOutlineUser className="w-7 h-7" />
             <p className="font-[10px] font-normal leading-[12px]">Login</p>
           </Link>
-        </div>
+        </div> */}
         {/* Join now button */}
-        <div className="w-1/2 h-full ml-auto flex items-center justify-end">
+        <div className="w-1/2 h-full ml-auto flex items-center justify-end gap-6">
+          <button className="font-[10px] font-medium">
+            <Link to="/login">Login</Link>
+          </button>
           <button className="w-[120px] font-bold border-[#1774FF] rounded-[25px] border-2 flex items-end justify-center font-[10px] leading-[12px] text-[#1774ff] px-2 py-4 hover:bg-[#1774FF] hover:text-white">
-            <Link to="/login">Join now</Link>
+            <Link to="/registration">Join now</Link>
           </button>
         </div>
       </div>
