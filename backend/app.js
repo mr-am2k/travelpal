@@ -3,6 +3,7 @@ require('express-async-errors'); //instead of using unnecessary try and catch bl
 const express = require('express');
 const multer = require("multer");
 const upload = multer({dest: 'uploads/'})
+const cors = require('cors')
 const app = express();
 const authRouter = require('./routes/authRoute')
 const postsRouter = require('./routes/postsRoute')
@@ -17,7 +18,7 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 
 app.use(express.json());
 // extra packages
-
+app.use(cors())
 // routes
 app.use('/api/v1/auth', upload.single("testImage"), authRouter)
 app.use('/api/v1/posts', authMiddleware, postsRouter)
