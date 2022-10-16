@@ -4,6 +4,7 @@ import logo from "../images/Login/logo.png";
 import { useState, useContext } from "react";
 import { MyContext } from "../context/context";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,7 +40,10 @@ const Login = () => {
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center">
-      <div className="w-[40%] h-[50%] flex flex-col items-center justify-around">
+      <div
+        data-aos="fade-up"
+        className="w-[40%] h-[50%] flex flex-col items-center justify-around"
+      >
         <img src={logo} className="w-[200px]" alt="#" />
         <h2 className="text-[20px]">Login</h2>
 
@@ -72,12 +76,24 @@ const Login = () => {
               />
             </div>
           </div>
-          <button className="w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl translate-y-[50px] text-[14px] font-bold text-[#1774FF]">
+          <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[14px] font-bold">
             Log in
           </button>
         </form>
+        <div className="flex mt-[20px]">
+          <p className="text-[15px] text-[#757575] pr-[10px]">
+            Don’t have account?
+          </p>
+          <Link
+            to={{ pathname: "/registration" }}
+            className="text-[#1774FF] text-[15px] hover:text-[#1b5349]"
+          >
+            Create one
+          </Link>
+        </div>
       </div>
       <div
+        data-aos="fade-in"
         className="w-[60%] h-screen"
         style={{
           backgroundImage: `url(${img})`,

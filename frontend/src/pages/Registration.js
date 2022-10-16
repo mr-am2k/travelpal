@@ -12,6 +12,7 @@ const Registration = () => {
   const email = useRef();
   const age = useRef();
   const country = useRef();
+  const gender = useRef();
 
   const handleRegistration = async (event) => {
     event.preventDefault();
@@ -26,8 +27,9 @@ const Registration = () => {
       passwordHash: password.current.value,
       phoneNumber: phoneNumber.current.value,
       email: email.current.value,
-      age: age.current.value,
+      dateOfBirth: age.current.value,
       country: country.current.value,
+      //gender here
     };
     console.log(user);
     const response = await fetch("http://localhost:3000/api/v1/auth/register", {
@@ -67,7 +69,6 @@ const Registration = () => {
               />
             </div>
           </div>
-
           <div className="flex flex-col w-[100%]">
             <label className="text-[#1774FF]">Username</label>
             <div className="h-[40px] flex flex-col">
@@ -87,16 +88,6 @@ const Registration = () => {
               />
             </div>
           </div>
-
-          <div className="flex flex-col w-[100%]">
-            <label className="text-[#1774FF]">Number</label>
-            <div className="h-[40px] flex flex-col">
-              <input
-                ref={phoneNumber}
-                className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
-              />
-            </div>
-          </div>
           <div className="flex flex-col w-[100%]">
             <label className="text-[#1774FF]">Email</label>
             <div className="h-[40px] flex flex-col">
@@ -106,27 +97,54 @@ const Registration = () => {
               />
             </div>
           </div>
-
+          //unfinished
           <div className="flex flex-col w-[100%]">
-            <label className="text-[#1774FF]">Age</label>
+            <label className="text-[#1774FF]">Gender</label>
             <div className="h-[40px] flex flex-col">
               <input
+                type="checkbox"
+                ref={gender}
+                className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+              />
+              <input
+                type="checkbox"
+                id="vehicle1"
+                name="vehicle1"
+                value="Bike"
+              ></input>
+            </div>
+          </div>
+          <div className="flex w-[100%]">
+            <label className="text-[#1774FF]">Date of birth:</label>
+            <div className="h-[40px]">
+              <input
+                type="date"
                 ref={age}
-                className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+                className="text-[#1774FF] order-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[14px] pl-[20px]"
               />
             </div>
           </div>
-          <div className="flex flex-col w-[100%]">
-            <label className="text-[#1774FF]">Country</label>
-            <div className="h-[40px] flex flex-col">
-              <input
-                ref={country}
-                className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
-              />
+          <div className="flex w-[100%] justify-between">
+            <div className="flex flex-col w-[45%]">
+              <label className="text-[#1774FF]">Phone number</label>
+              <div className="h-[40px] flex flex-col">
+                <input
+                  ref={phoneNumber}
+                  className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col w-[45%]">
+              <label className="text-[#1774FF]">Country</label>
+              <div className="h-[40px] flex flex-col">
+                <input
+                  ref={country}
+                  className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+                />
+              </div>
             </div>
           </div>
-
-          <button className="hover:bg-[#1b5349] w-[150px] h-[40px] text-white rounded-3xl translate-y-[50px] text-[14px] font-bold text-[#1774FF] bg-[#1774FF]">
+          <button className="hover:bg-[#1b5349] w-[150px] h-[40px] text-white rounded-3xl translate-y-[50px] text-[14px] font-bold bg-[#1774FF]">
             Register
           </button>
         </form>
