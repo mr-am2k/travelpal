@@ -28,9 +28,9 @@ app.use(cors({
 }));
 // routes
 app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/posts', authMiddleware, postRouter)
+app.use('/api/v1/posts', postRouter)
 app.use('/api/v1/users', authMiddleware, userRouter)
-app.use('/api/v1/blogs', authMiddleware, blogRouter)
+app.use('/api/v1/blogs', blogRouter)
 app.use('/api/v1/comments', authMiddleware, commentRouter)
 
 app.use(notFoundMiddleware);
