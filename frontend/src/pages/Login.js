@@ -31,10 +31,10 @@ const Login = () => {
         // console.log(data.token);
         // console.log(cx.user);
         // console.log(data.returnObject);
-        // cx.setUser(data.returnObject);
         // console.log(cx.user);
         if (data.token) {
           cx.setLoggedIn(true);
+          cx.setUser(data.returnObject);
           localStorage.setItem("token", data.token);
           navigate("/userfeed");
         }
