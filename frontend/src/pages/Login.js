@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = (event) => {
     event.preventDefault();
-    fetch("https://travelpall.onrender.com/api/v1/auth/login", {
+    fetch("http://localhost:3000/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
