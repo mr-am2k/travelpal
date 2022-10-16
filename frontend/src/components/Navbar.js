@@ -15,16 +15,6 @@ const Navbar = () => {
   };
   return (
     <div className="w-[100%] h-[80px] flex justify-between items-center shadow-[0_0px_15px_10px_rgba(0,0,0,0.1)]">
-<<<<<<< HEAD
-      <img
-        src={logo}
-        width="136px"
-        height="72px"
-        className="ml-[80px]"
-        alt="#"
-      />
-      <div className="flex mr-[80px] min-w-[400px] justify-between items-center relative">
-=======
       <Link to="/userfeed">
         <img
           src={logo}
@@ -34,8 +24,7 @@ const Navbar = () => {
           alt="#"
         />
       </Link>
-      <div className="flex mr-[80px] min-w-[400px] justify-between items-center">
->>>>>>> 3c9c467164e656a4398d28de3deee3420b41f86a
+      <div className="flex mr-[80px] min-w-[400px] justify-between items-center relative">
         <Link to="/userfeed">Home</Link>
         <Link to="/travelfeed">Find travel pals</Link>
         <Link to="/messages">Messages</Link>
