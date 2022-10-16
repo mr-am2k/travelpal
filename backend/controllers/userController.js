@@ -25,7 +25,7 @@ const editUser = async (req,res) => {
     const userId = req.user.userId
     if(Object.keys(userDataToUpdate).length === 0){
         throw new BadRequestError('U need to provide data to update')
-    }
+    } 
     const updatedUser = await User.findOneAndUpdate({_id: userId}, userDataToUpdate, {new:true, runValidators:true} )
     if(!updatedUser) {
         throw new NotFoundError('User does not exist')
