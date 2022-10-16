@@ -45,6 +45,7 @@ const Registration = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div
+        data-aos="fade"
         className="w-[60%] h-screen"
         style={{
           backgroundImage: `url(${img})`,
@@ -53,7 +54,10 @@ const Registration = () => {
           backgroundPosition: "center",
         }}
       ></div>
-      <div className="w-[40%] h-[80%] flex flex-col items-center justify-around mb-[70px]">
+      <div
+        className="w-[40%] h-[80%] flex flex-col items-center justify-around mb-[70px]"
+        data-aos="fade"
+      >
         <img src={logo} className="w-[200px]" alt="#" />
         <h2 className="text-[20px] pb-[20px]">Registration</h2>
 
