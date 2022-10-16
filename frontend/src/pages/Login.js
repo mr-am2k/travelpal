@@ -29,6 +29,10 @@ const Login = () => {
       })
       .then((data) => {
         // console.log(data.token);
+        // console.log(cx.user);
+        // console.log(data.returnObject);
+        // cx.setUser(data.returnObject);
+        // console.log(cx.user);
         if (data.token) {
           cx.setLoggedIn(true);
           localStorage.setItem("token", data.token);
