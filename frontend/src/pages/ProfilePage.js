@@ -16,10 +16,15 @@ const ProfilePage = (props) => {
       <div className="flex">
         <div className="w-[40%] h-[500px] flex flex-col items-center justify-around mt-[50px] border-r-2">
           <div className="flex flex-col items-center">
-            <img
-              src={ctx.user.profilePhoto}
+            <div
+              style={{
+                backgroundImage: `url(${ctx.user.profilePhoto})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
               className="w-[286px] h-[286px] rounded-full"
-            />
+            ></div>
             <h2 className="mt-[20px] font-bold">
               {ctx.user.firstName} {ctx.user.lastName}
             </h2>

@@ -11,6 +11,8 @@ const Login = () => {
   const cx = useContext(MyContext);
   const navigate = useNavigate();
   const handleLogin = (event) => {
+    setEmail("");
+    setPassword("");
     event.preventDefault();
     fetch("http://localhost:3000/api/v1/auth/login", {
       method: "POST",

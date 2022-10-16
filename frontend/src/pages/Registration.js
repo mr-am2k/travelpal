@@ -2,6 +2,7 @@ import React from "react";
 import img from "../images//Login/loginimage.png";
 import logo from "../images/Login/logo.png";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 const Registration = () => {
   const name = useRef();
 
@@ -97,15 +98,17 @@ const Registration = () => {
               />
             </div>
           </div>
-          //unfinished
-          <div className="flex flex-col w-[100%]">
+
+          <div className="flex w-[100%]">
             <label className="text-[#1774FF]">Gender</label>
-            <div className="h-[40px] flex flex-col">
+            <div className="h-[40px] flex pb-[12px] pl-[20px] items-center">
+              <p className="pr-[5px] text-[#1774FF]">Male</p>
               <input
                 type="checkbox"
                 ref={gender}
                 className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
               />
+              <p className="pl-[10px] pr-[5px] text-[#1774FF]">Female</p>
               <input
                 type="checkbox"
                 id="vehicle1"
@@ -144,9 +147,20 @@ const Registration = () => {
               </div>
             </div>
           </div>
-          <button className="hover:bg-[#1b5349] w-[150px] h-[40px] text-white rounded-3xl translate-y-[50px] text-[14px] font-bold bg-[#1774FF]">
+          <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[14px] font-bold">
             Register
           </button>
+          <div className="flex mt-[20px]">
+            <p className="text-[15px] text-[#757575] pr-[10px]">
+              Already have account?
+            </p>
+            <Link
+              to={{ pathname: "/login" }}
+              className="text-[#1774FF] text-[15px] hover:text-[#1b5349]"
+            >
+              Log in
+            </Link>
+          </div>
         </form>
       </div>
     </div>
