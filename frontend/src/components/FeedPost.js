@@ -4,23 +4,23 @@ import star from "../images/feedPostImages/star.png";
 import higlightedStar from "../images/feedPostImages/higlightedStar.png";
 
 import { useState } from "react";
-const FeedPost = () => {
+const FeedPost = (props) => {
   const [postStared, setPostStared] = useState(false);
   return (
     <div className="w-[700px] shadow-[0_2px_10px_5px_rgba(0,0,0,0.1)] rounded-md mt-[30px]">
       <div className="flex items-center mt-[20px]">
         <img
-          src={profilePicture}
+          src={props.profilePicture}
           width="40px"
           height="40px"
-          className="mr-[10px] ml-[20px]"
+          className="mr-[10px] ml-[20px] rounded-full w-[40px] h-[40px]"
         />
-        <h2 className="text-[14px] font-bold">Melika Houssi</h2>
+        <h2 className="text-[14px] font-bold">{props.name}</h2>
       </div>
       <div
         className="w-[100%] h-[400px] mt-[20px]"
         style={{
-          backgroundImage: `url(${postImage1})`,
+          backgroundImage: `url(${props.postImage})`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}

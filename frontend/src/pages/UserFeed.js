@@ -52,10 +52,27 @@ const UserFeed = () => {
               )}
             </div>
           </div>
-          <FeedPost />
-          <FeedPost />
-          <FeedPost />
-          <FeedPost />
+
+          <FeedPost
+            name="John Wick"
+            postImage="https://img.traveltriangle.com/blog/wp-content/uploads/2014/11/cover-for-Places-To-Visit-In-August-In-The-World.jpg"
+            profilePicture="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+          />
+          <FeedPost
+            name="John Wick"
+            postImage="https://blog.thomascook.in/wp-content/uploads/2020/08/humayun-tomb-delhi-banner.jpg"
+            profilePicture="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+          />
+          <FeedPost
+            name="John Wick"
+            postImage="https://cdn.thecrazytourist.com/wp-content/uploads/2015/03/shutterstock_1218765286.jpg"
+            profilePicture="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+          />
+          <FeedPost
+            name="John Wick"
+            postImage="https://www.revv.co.in/blogs/wp-content/uploads/2020/03/places-to-visit-in-west-india.jpg"
+            profilePicture="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+          />
         </div>
         <div className="w-[200px] flex flex-col items-center">
           <h2 className="text-[16px] font-bold pt-[50px] pb-[50px]">

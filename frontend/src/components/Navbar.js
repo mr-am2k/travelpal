@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
 import { MyContext } from "../context/context";
+
 const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
   const ctx = useContext(MyContext);
@@ -13,6 +14,7 @@ const Navbar = () => {
   const logoutFunction = () => {
     ctx.setLoggedIn(false);
   };
+  console.log(ctx.user);
   return (
     <div className="w-[100%] h-[80px] flex justify-between items-center shadow-[0_0px_15px_10px_rgba(0,0,0,0.1)]">
       <Link to="/userfeed">
@@ -29,8 +31,8 @@ const Navbar = () => {
         <Link to="/travelfeed">Find travel pals</Link>
         <Link to="/messages">Messages</Link>
         <img
-          className="cursor-pointer"
-          src={profilePicture}
+          className="cursor-pointer rounded-full w-[40px] h-[40px]"
+          src={ctx.user.profilePhoto}
           width="40px"
           height="40px"
           alt="#"
