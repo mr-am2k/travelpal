@@ -50,4 +50,22 @@ const editBlog = async (req,res) => {
     res.status(StatusCodes.OK).json({updatedBlog})
 }
 
-module.exports = {getBlogs, addBlog, deleteBlogs, deleteBlog, editBlog}
+const likeBlog = async (req, res) =>{
+    const userID = req.user.userId
+    const blogID = req.params.blogID
+    let exists = false
+
+    const blogToUpdate = await Blog.findById(blogID)
+    blogToUpdate.numberOfLikes.forEach((element, index) =>{
+        if(element.userID == userID) {
+            blogToUpdate.numberOfLikes.splice(index, 1)
+            exists = true
+        }
+    })
+    if(!exists) blogToUpdate.numberOfLikes.push({userID: userID})
+    await Blog.findOneAndUpdate({_id: blogID}, blogToUpdate, {new: true, runValidators: true})
+    console.log(blogToUpdate);
+    res.status(StatusCodes.OK).json({msg: 'Blog like updated'})
+}
+
+module.exports = {getBlogs, addBlog, deleteBlogs, deleteBlog, editBlog, likeBlog}
