@@ -101,7 +101,7 @@ const Main = (props) => {
           </div>
           {/* COMMENTS */}
           <div className="flex flex-col gap-7 mt-10 px-7 h-[400px] overflow-y-scroll">
-            <h3 className="text-[20px] font-semibold">Comments</h3>
+            <h3 className="text-[20px] font-semibold pt-4">Comments</h3>
             <div className="flex flex-col gap-5">
               {CommentsData.map((c) => {
                 return (
