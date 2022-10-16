@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import personImage from "../../images/Feed/feed6.png";
 import star from "../../images/feedPostImages/star.png";
 import SimpleImageSlider from "react-simple-image-slider";
 import Comment from "./Comment";
-import Footer from "../../components/Global/Footer";
 const images = [
   {
     url: "https://i.natgeofe.com/n/45610619-0806-45f7-94c2-9f366df60aac/old-town-bascarsija-sarajevo.jpg",
@@ -15,7 +14,36 @@ const images = [
     url: "https://www.back-packer.org/wp-content/uploads/sehensw%C3%BCrdigkeiten-in-sarajevo-reisef%C3%BChrer.jpg",
   },
 ];
+
 const Main = (props) => {
+  const commentRef = useRef();
+  const [CommentsData, setCommentsData] = useState([
+    {
+      userId: 0,
+      userName: "Yvonne Holq",
+      comment:
+        "Wow! What a story. Looking to visit Sarajevo as soon as possible",
+    },
+    {
+      userId: 1,
+      userName: "Zina Youanni",
+      comment:
+        "Wow! What a story. Looking to visit Sarajevo as soon as possible. Btw. bread looks delicious",
+    },
+    {
+      userId: 2,
+      userName: "Yvonne Holq",
+      comment:
+        "Wow! What a story. Looking to visit Sarajevo as soon as possible",
+    },
+    {
+      userId: 3,
+      userName: "Zina Youanni",
+      comment:
+        "Wow! What a story. Looking to visit Sarajevo as soon as possible. Btw. bread looks delicious",
+    },
+  ]);
+
   return (
     <div>
       <div className="w-[1100px] border-2 border-gray flex flex-col gap-5 shadow-[0_0px_15px_rgba(0,0,0,0.1)] rounded-[10px]">
@@ -72,19 +100,48 @@ const Main = (props) => {
             </div>
           </div>
           {/* COMMENTS */}
-          <div className="flex flex-col gap-7 mt-10 px-7 h-[400px] overflow-scroll">
+          <div className="flex flex-col gap-7 mt-10 px-7 h-[400px] overflow-y-scroll">
             <h3 className="text-[20px] font-semibold">Comments</h3>
             <div className="flex flex-col gap-5">
-              <Comment />
-              <Comment />
-              <Comment />
-              <Comment />
+              {CommentsData.map((c) => {
+                return (
+                  <Comment
+                    key={c.userId}
+                    userId={c.userId}
+                    userName={c.userName}
+                    comment={c.comment}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
-      <div className="h-[200px] w-full border-2 border-black">
+      <div className="h-[100px] w-full shadow-[0_0px_15px_rgba(0,0,0,0.1)] flex gap-4 items-center px-5">
         {/* ADD COMMENT */}
+        <div className="w-[900px] h-[70px] border-2">
+          <input
+            type="text"
+            className="w-full h-full outline-none pl-4"
+            placeholder="Write a comment"
+            ref={commentRef}
+          />
+        </div>
+        <button
+          className="mx-auto bg-transparent border-none focus:border-none outline-none text-[#1774ff] text-[12px] font-bold leading-[15px]"
+          onClick={() => {
+            setCommentsData((data) => [
+              ...data,
+              {
+                userId: CommentsData.length + 1,
+                userName: "Test",
+                comment: commentRef.current.value,
+              },
+            ]);
+          }}
+        >
+          POST
+        </button>
       </div>
     </div>
   );
