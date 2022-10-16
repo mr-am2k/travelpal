@@ -37,9 +37,9 @@ const ProfilePage = (props) => {
         </div>
         <div className="w-[60%] flex justify-center mt-[100px]">
           <div className="w-[70%]">
-            <h2 className="font-bold text-[20px] border-b-2">About</h2>
-            <div className="w-[100%] flex flex-wrap">
-              <div className="w-[50%] h-[100px] py-[10px] text-[14px]">
+            <h2 className="font-bold text-[20px] border-b-2 pb-[10px]">About</h2>
+            <div className="w-[100%] flex flex-wrap pt-[20px]">
+              <div className="w-[50%] h-[100px] py-[10px] text-[14px] ">
                 <p>
                   <span className="font-bold">Name:</span> {ctx.user.firstName}{" "}
                   {ctx.user.lastName}
