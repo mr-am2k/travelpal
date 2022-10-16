@@ -7,7 +7,7 @@ import Suggested from "../components/Suggested";
 import Footer from "../components/Global/Footer";
 import { MyContext } from "../context/context";
 import { useContext } from "react";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 const Home = () => {
   const cx = useContext(MyContext);
   const navigate = useNavigate();
