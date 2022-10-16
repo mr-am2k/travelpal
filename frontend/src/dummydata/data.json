@@ -1,0 +1,30 @@
+{
+  "resources": [
+    {
+      "fullName": "Bojan Lovšin",
+      "title": "Founder & CEO",
+      "imageUrl": "/People/person-1.png"
+    },
+    {
+      "fullName": "Tijana Đukić",
+      "title": "Business Development Manager",
+      "imageUrl": "/People/person-2.png"
+    },
+    {
+      "fullName": "Sanja Martić",
+      "title": "Graphic Designer",
+      "imageUrl": "/People/person-3.png"
+    },
+
+    {
+      "fullName": "Ivana Trkulja",
+      "title": "UX/UI Designer",
+      "imageUrl": "/People/person-4.png"
+    },
+    {
+      "fullName": "Nikola Jeličić",
+      "title": "Website Developer",
+      "imageUrl": "/People/person-5.png"
+    }
+  ]
+}

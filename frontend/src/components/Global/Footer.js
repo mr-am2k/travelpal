@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FiFacebook, FiTwitter, FiInstagram } from "react-icons/fi";
 const Footer = () => {
   return (
-    <div className="h-[300px] w-full flex gap-10 px-20 items-center bg-[#0d1b31] text-white">
+    <div className="h-[300px] w-full flex gap-10 px-20 items-center bg-[#0d1b31] text-white py-4">
       <div className="flex justify-between w-[60%]">
         <div className="flex flex-col gap-5">
           <h3 className="text-[20px] font-bold leading-[24px]">Travelpal</h3>

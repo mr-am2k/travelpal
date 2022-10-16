@@ -5,7 +5,7 @@ import MainTravel from "../components/TravelFeed/MainTravel";
 import Footer from "../components/Global/Footer";
 const TravelFeed = () => {
   return (
-    <div className="w-full h-[1000px] flex flex-col">
+    <div className="w-full flex flex-col">
       <Navbar />
       <HeroTravel />
       <div className="w-[80%] mx-auto my-10 text-[20px] leading-[24px] font-normal text-center">

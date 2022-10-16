@@ -88,9 +88,9 @@ const MainTravel = () => {
     },
   ];
   return (
-    <div className="w-[80%] flex gap-10 h-screen max-h-full mx-auto">
+    <div className="w-[80%] flex gap-10 max-h-full mx-auto my-10">
       {/* LEFT SIDE */}
-      <div className="w-[360px] h-[570px] bg-white flex items-center justify-center rounded-[15px]">
+      <div className="w-[360px] h-[570px] bg-white flex items-center justify-center rounded-[15px] border-2 border-gray shadow-[0_4px_15px_3px_rgba(0,0,0,0.15)]">
         <form className="w-[95%] h-[95%] flex flex-col gap-4">
           <input
             type="text"
@@ -174,7 +174,7 @@ const MainTravel = () => {
         </form>
       </div>
       {/* RIGHT SIDE */}
-      <div className="flex flex-col gap-10 overflow-scroll">
+      <div className="flex flex-col gap-10">
         {travelData.map((d) => {
           return (
             <Card

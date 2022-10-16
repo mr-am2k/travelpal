@@ -3,7 +3,7 @@ import { BsMap, BsCalendarDate, BsInfoCircle } from "react-icons/bs";
 
 const Card = ({ id, fullName, description, age, destination, date, image }) => {
   return (
-    <div className="w-[775px] h-[290px] flex gap-3 shadow-[0_4px_15px_3px_rgba(0,0,0,0.15)] rounded-[10px] cursor-pointer">
+    <div className="w-[775px] h-[240px] flex gap-3 shadow-[0_4px_15px_3px_rgba(0,0,0,0.15)] rounded-[10px] cursor-pointer border-2 border-gray">
       {/* PICTURE */}
       <div className="w-[15%] h-[90%] flex justify-center my-auto ">
         <img src={image} alt="#" className="w-[95px] h-[95px]" />

@@ -9,6 +9,7 @@ import Registration from "./pages/Registration";
 import UserFeed from "./pages/UserFeed";
 import TravelFeed from "./pages/TravelFeed";
 import PrivateRoute from "./routes/PrivateRoute";
+import Post from "./pages/Post";
 export const Context = createContext({
   loggedIn: false,
   setLoggedIn: (loggedIn) => {},
@@ -34,11 +35,19 @@ function App() {
           }
         />
         <Route
+          path="post/:id"
+          element={
+            // <PrivateRoute>
+            <Post />
+            // </PrivateRoute>
+          }
+        />
+        <Route
           path="travelfeed"
           element={
-            <PrivateRoute>
-              <TravelFeed />
-            </PrivateRoute>
+            // <PrivateRoute>
+            <TravelFeed />
+            // </PrivateRoute>
           }
         />
         <Route
