@@ -7,6 +7,7 @@ const authRouter = require('./routes/authRoute')
 const postRouter = require('./routes/postRoute')
 const userRouter = require('./routes/userRoute')
 const blogRouter = require('./routes/blogRoute')
+const commentRouter = require('./routes/commentsRoute')
 const authMiddleware = require('./middleware/authentication')
 
 //connectDB
@@ -30,6 +31,8 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/posts', authMiddleware, postRouter)
 app.use('/api/v1/users', authMiddleware, userRouter)
 app.use('/api/v1/blogs', authMiddleware, blogRouter)
+app.use('/api/v1/comments', authMiddleware, commentRouter)
+
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
