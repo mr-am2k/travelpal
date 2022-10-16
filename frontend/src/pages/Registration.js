@@ -53,7 +53,7 @@ const Registration = () => {
         }}
       ></div>
       <div className="w-[40%] h-[80%] flex flex-col items-center justify-around mb-[70px]">
-        <img src={logo} className="w-[200px]" />
+        <img src={logo} className="w-[200px]" alt="#" />
         <h2 className="text-[20px] pb-[20px]">Registration</h2>
 
         <form
