@@ -10,6 +10,7 @@ import UserFeed from "./pages/UserFeed";
 import TravelFeed from "./pages/TravelFeed";
 import PrivateRoute from "./routes/PrivateRoute";
 import Post from "./pages/Post";
+import ProfilePage from "./pages/ProfilePage";
 export const Context = createContext({
   loggedIn: false,
   setLoggedIn: (loggedIn) => {},
@@ -56,6 +57,14 @@ function App() {
             <PrivateRoute>
               <UserFeed />
             </PrivateRoute>
+          }
+        />
+        <Route
+          path="profilepage"
+          element={
+            // <PrivateRoute>
+            <ProfilePage />
+            // </PrivateRoute>
           }
         />
       </Routes>

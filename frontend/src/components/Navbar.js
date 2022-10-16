@@ -1,7 +1,18 @@
 import logo from "../images/Login/logo.png";
 import profilePicture from "../images/UserFeed/profilePicture.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useContext } from "react";
+import { MyContext } from "../context/context";
 const Navbar = () => {
+  const [dropdown, setDropdown] = useState(false);
+  const ctx = useContext(MyContext);
+  const toggleDropdown = () => {
+    setDropdown(!dropdown);
+  };
+  const logoutFunction = () => {
+    ctx.setLoggedIn(false);
+  };
   return (
     <div className="w-[100%] h-[80px] flex justify-between items-center shadow-[0_0px_15px_10px_rgba(0,0,0,0.1)]">
       <img
@@ -11,11 +22,42 @@ const Navbar = () => {
         className="ml-[80px]"
         alt="#"
       />
-      <div className="flex mr-[80px] min-w-[400px] justify-between items-center">
+      <div className="flex mr-[80px] min-w-[400px] justify-between items-center relative">
         <Link to="/userfeed">Home</Link>
         <Link to="/travelfeed">Find travel pals</Link>
         <Link to="/messages">Messages</Link>
-        <img src={profilePicture} width="40px" height="40px" alt="#" />
+        <img
+          className="cursor-pointer"
+          src={profilePicture}
+          width="40px"
+          height="40px"
+          alt="#"
+          onClick={toggleDropdown}
+        />
+        {dropdown ? (
+          <div className="flex flex-col absolute right-0 top-[60px] bg-white px-[50px] drop-shadow-md">
+            <h2 className="border-b-2 border-black py-[10px]">Zina Youanni</h2>
+            <Link
+              to={{ pathname: "/profilepage" }}
+              className="py-[10px] text-[14px] cursor-pointer"
+            >
+              Your profile
+            </Link>
+            <p className="py-[10px] text-[14px] cursor-pointer">Settings</p>
+            <p className="py-[10px] text-[14px] cursor-pointer">
+              Terms and conditions
+            </p>
+            <Link
+              to={{ pathname: "/logout" }}
+              className="py-[10px] text-[14px] cursor-pointer"
+              onClick={logoutFunction}
+            >
+              Log out
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

@@ -3,6 +3,11 @@ import FeedPost from "../components/FeedPost";
 import { useState, useContext, useEffect } from "react";
 import { MyContext } from "../context/context";
 import { Navigate, useNavigate } from "react-router";
+import UserProfileIcons from "../components/UserProfileIcons";
+import profilePic1 from "../images/Feed/feed1.png";
+import profilePic2 from "../images/Feed/feed2.png";
+import profilePic3 from "../images/Feed/feed3.png";
+import profilePic4 from "../images/Feed/feed4.png";
 const UserFeed = () => {
   const navigate = useNavigate();
   const ctx = useContext(MyContext);
@@ -15,7 +20,7 @@ const UserFeed = () => {
   return (
     <>
       <Navbar />
-      <div>
+      <div className="flex">
         <div className="flex flex-col w-[75%] items-center">
           <div className="w-[700px] flex justify-between pt-[50px]">
             <h2 className="text-[20px] font-bold">User feed</h2>
@@ -51,6 +56,63 @@ const UserFeed = () => {
           <FeedPost />
           <FeedPost />
           <FeedPost />
+        </div>
+        <div className="w-[200px] flex flex-col items-center">
+          <h2 className="text-[16px] font-bold pt-[50px] pb-[50px]">
+            Connect with travelers
+          </h2>
+          <div className="w-[150px] flex flex-wrap justify-between">
+            <UserProfileIcons
+              name="Don John"
+              country="Spain"
+              image={profilePic1}
+            />
+            <UserProfileIcons
+              name="Olive Yew"
+              country="UK"
+              image={profilePic2}
+            />
+            <UserProfileIcons
+              name="Zara You"
+              country="Algeria"
+              image={profilePic3}
+            />
+            <UserProfileIcons
+              name="Don John"
+              country="Spain"
+              image={profilePic4}
+            />
+            <UserProfileIcons
+              name="Kim Martini"
+              country="Spain"
+              image={profilePic3}
+            />
+            <UserProfileIcons
+              name="Don John"
+              country="Spain"
+              image={profilePic1}
+            />
+            <UserProfileIcons
+              name="Olive Yew"
+              country="UK"
+              image={profilePic2}
+            />
+            <UserProfileIcons
+              name="Zara You"
+              country="Algeria"
+              image={profilePic3}
+            />
+            <UserProfileIcons
+              name="Don John"
+              country="Spain"
+              image={profilePic4}
+            />
+            <UserProfileIcons
+              name="Kim Martini"
+              country="Spain"
+              image={profilePic3}
+            />
+          </div>
         </div>
       </div>
     </>
