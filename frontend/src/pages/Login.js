@@ -48,13 +48,13 @@ const Login = () => {
     <div className="w-screen h-screen flex items-center justify-center">
       <div
         data-aos="fade-up"
-        className="w-[40%] h-[50%] flex flex-col items-center justify-around"
+        className="md:w-[40%] w-[80%] h-[50%] flex flex-col items-center justify-around"
       >
         <img src={logo} className="w-[200px]" alt="#" />
-        <h2 className="text-[20px]">Login</h2>
+        <h2 className="text-[18px] md:text-[20px] pb-[20px]">Login</h2>
 
         <form
-          className="w-[50%] h-[50%] flex flex-col items-center justify-around"
+          className="w-[60%] md:w-[50%] h-[80%] md:h-[50%] flex flex-col items-center justify-around"
           onSubmit={handleLogin}
         >
           <div className="flex flex-col w-[100%] justify-end">
@@ -100,7 +100,7 @@ const Login = () => {
       </div>
       <div
         data-aos="fade-in"
-        className="w-[60%] h-screen"
+        className="w-[60%] h-screen md:block hidden"
         style={{
           backgroundImage: `url(${img})`,
           backgroundRepeat: "no-repeat",

@@ -46,7 +46,7 @@ const Registration = () => {
     <div className="w-screen h-screen flex items-center justify-center">
       <div
         data-aos="fade"
-        className="w-[60%] h-screen"
+        className="w-[60%] md:block hidden h-screen"
         style={{
           backgroundImage: `url(${img})`,
           backgroundRepeat: "no-repeat",
@@ -55,14 +55,14 @@ const Registration = () => {
         }}
       ></div>
       <div
-        className="w-[40%] h-[80%] flex flex-col items-center justify-around mb-[70px]"
+        className="md:w-[40%] w-[80%] h-[80%] flex flex-col items-center justify-around mb-[70px]"
         data-aos="fade"
       >
         <img src={logo} className="w-[200px]" alt="#" />
         <h2 className="text-[20px] pb-[20px]">Registration</h2>
 
         <form
-          className="w-[60%]  flex flex-col items-center justify-around"
+          className="md:w-[60%] sm:w-[70%] w-[90%] flex flex-col items-center justify-around"
           onSubmit={handleRegistration}
         >
           <div className="flex flex-col w-[100%]">
@@ -103,37 +103,26 @@ const Registration = () => {
             </div>
           </div>
 
-          <div className="flex w-[100%]">
-            <label className="text-[#1774FF]">Gender</label>
-            <div className="h-[40px] flex pb-[12px] pl-[20px] items-center">
-              <p className="pr-[5px] text-[#1774FF]">Male</p>
-              <input
-                type="checkbox"
-                ref={gender}
-                className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
-              />
-              <p className="pl-[10px] pr-[5px] text-[#1774FF]">Female</p>
-              <input
-                type="checkbox"
-                id="vehicle1"
-                name="vehicle1"
-                value="Bike"
-              ></input>
-            </div>
+          <div className="flex w-[100%] items-center justify-between pb-[10px]">
+            <input type="date" ref={age} className="text-[#1774FF] w-[140px]" />
+
+            <select
+              ref={gender}
+              name="Gender"
+              required
+              className="p-0 m-0 w-[30%]"
+            >
+              <option value="none" selected disabled hidden>
+                GN
+              </option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
           </div>
-          <div className="flex w-[100%]">
-            <label className="text-[#1774FF]">Date of birth:</label>
-            <div className="h-[40px]">
-              <input
-                type="date"
-                ref={age}
-                className="text-[#1774FF] order-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[14px] pl-[20px]"
-              />
-            </div>
-          </div>
+
           <div className="flex w-[100%] justify-between">
             <div className="flex flex-col w-[45%]">
-              <label className="text-[#1774FF]">Phone number</label>
+              <label className="text-[#1774FF]">Phone</label>
               <div className="h-[40px] flex flex-col">
                 <input
                   ref={phoneNumber}
