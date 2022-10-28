@@ -11,9 +11,9 @@ const Card = (props) => {
     emptyF.push(<AiOutlineStar className="w-5 h-5" key={i} />);
   }
   return (
-    <div className="flex flex-col w-[394px] h-[500px] gap-2 bg-white rounded-[20px] boxShadowC overflow-hidden">
+    <div className="snap-center mx-[10px] flex flex-col w-[394px] h-[500px] gap-2 bg-white boxShadowC">
       <div
-        className="h-[317px] w-full "
+        className="h-[317px] w-[380px] rounded-t-[20px]"
         style={{
           backgroundImage: `url(${props.imageUrl})`,
           backgroundPosition: "center",

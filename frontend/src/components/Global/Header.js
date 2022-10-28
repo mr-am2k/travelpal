@@ -8,13 +8,13 @@ const Header = () => {
     <Navigate to="/" replace={true} />;
   };
   return (
-    <div className="h-[70px] w-full flex justify-around px-20 border-2 shadow-[0_0px_15px_10px_rgba(0,0,0,0.1)]">
+    <div className="h-[70px] w-full flex justify-around sm: px-2 md:px-10 lg:px-20 border-2 shadow-[0_0px_15px_10px_rgba(0,0,0,0.1)]">
       {/* Lijeva strana */}
       <div className="w-[35%] h-full flex items-center">
         {/* <Link to="/"> */}
         <img
           src={logo}
-          className="w-[166px] h-[90px] cursor-pointer"
+          className="w-[100px] lg:w-[166px] h-[53px] lg:h-[90px] cursor-pointer"
           alt="TravelPal"
           onClick={goHome}
         />
@@ -51,7 +51,7 @@ const Header = () => {
           </Link>
         </div> */}
         {/* Join now button */}
-        <div className="w-1/2 h-full ml-auto flex items-center justify-end gap-6">
+        <div className="h-full ml-auto flex items-center justify-end gap-6">
           <button className="font-[10px] font-medium">
             <Link to="/login">Login</Link>
           </button>

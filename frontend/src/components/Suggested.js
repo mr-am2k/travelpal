@@ -48,11 +48,11 @@ const Suggested = () => {
     },
   ];
   return (
-    <div className="w-full h-[1500px] flex flex-col gap-20 mt-10">
-      <p className="text-center text-black text-[34px] leading-[59px] font-normal">
+    <div className="w-full h-auto flex flex-col gap-20 mt-10">
+      <p className="text-center text-black text-[34px] leading-[59px] xl:mb-[-50px] font-normal">
         Suggested feed
       </p>
-      <div className="grid grid-cols-2 gap-[100px] mx-auto">
+      <div className="no-scrollbar overflow-x-scroll xl:overflow-visible snap-x flex items-end min-h-[640px] xl:flex-wrap xl:justify-around">
         {feedUsers.map((user) => {
           return (
             <SuggestedCard

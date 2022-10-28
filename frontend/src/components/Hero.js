@@ -6,7 +6,7 @@ import Information from "./Information";
 const Hero = () => {
   return (
     <div
-      className="w-full h-[690px] flex items-center justify-center border-bl-[15px] border-br-[15px]"
+      className="w-full h-auto md:h-[690px] flex items-center justify-center border-bl-[15px] border-br-[15px]"
       style={{
         backgroundImage: `url(${heroImage})`,
         backgroundPosition: "center",
@@ -15,16 +15,16 @@ const Hero = () => {
       }}
     >
       <div
-        className="w-[930px] h-[400px] flex flex-col gap-7"
+        className="w-screen max-w-[930px] h-[400px] flex flex-col justify-center gap-7"
         data-aos="fade-up"
         data-aos-duration="1000"
       >
         {/* TOP TEXT */}
-        <p className="text-[64px] font-bold leading-[78px] text-center text-white">
+        <p className="text-[30px] sm:text-[45px] md:text-[64px] font-bold leading-[78px] text-center text-white">
           Connect differently
         </p>
         {/* MIDDLE TEXT */}
-        <p className="text-[36px] font-normal leading-[44px] text-center text-white">
+        <p className="text-[18px] sm:text-[29px] md:text-[36px] font-normal leading-[44px] text-center text-white">
           Community for breaking barriers and meeting new cultures
         </p>
         {/* INFORMATIONS */}

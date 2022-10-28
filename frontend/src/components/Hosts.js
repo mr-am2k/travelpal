@@ -13,12 +13,12 @@ const Hosts = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-10 w-full h-[1300px] pt-10">
-      <p className="text-center text-black text-[34px] leading-[59px] font-normal">
+    <div className="flex flex-col gap-10 w-full pt-10">
+      <p className="text-center text-black text-[25px] md:text-[34px] leading-[59px] font-normal">
         Find your host
       </p>
       <div
-        className="grid grid-cols-3 gap-10 mx-auto"
+        className="no-scrollbar overflow-x-auto snap-x flex lg:flex-wrap lg:justify-around"
         data-aos="fade-down"
         data-aos-duration={700}
       >
