@@ -22,7 +22,7 @@ const UserFeed = () => {
       <Navbar />
       <div className="flex lg:flex-row flex-col flex-col-reverse items-center lg:items-start w-[100%]">
         <div className="flex flex-col w-[100%] md:w-[75%] items-center">
-          <div className="w-[700px] flex justify-between pt-[50px]">
+          <div className="w-[90%] md:w-[700px] flex justify-between pt-[50px]">
             <h2 className="text-[20px] font-bold">User feed</h2>
             <div className="text-[11px] font-medium pl-[14px] pr-[14px] rounded-3xl shadow-[0_0px_10px_5px_rgba(0,0,0,0.1)] flex items-center">
               {filterActive ? (
@@ -78,7 +78,7 @@ const UserFeed = () => {
           <h2 className="text-[16px] font-bold pt-[50px] pb-[50px]">
             Connect with travelers
           </h2>
-          <div className="lg:w-[150px] w-[100%] no-scrollbar overflow-x-auto flex lg:flex-wrap gap-2 justify-center lg:justify-between">
+          <div className="lg:w-[150px] w-[90%] no-scrollbar overflow-x-auto flex lg:flex-wrap gap-2 justify-between">
             <UserProfileIcons
               name="Don John"
               country="Spain"
