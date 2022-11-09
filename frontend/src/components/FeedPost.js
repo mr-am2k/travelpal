@@ -7,7 +7,7 @@ import { useState } from "react";
 const FeedPost = (props) => {
   const [postStared, setPostStared] = useState(false);
   return (
-    <div className="w-[700px] shadow-[0_2px_10px_5px_rgba(0,0,0,0.1)] rounded-md mt-[30px]">
+    <div className="w-[90%] md:w-[700px] shadow-[0_2px_10px_5px_rgba(0,0,0,0.1)] rounded-md mt-[30px]">
       <div className="flex items-center mt-[20px]">
         <img
           src={props.profilePicture}
@@ -18,13 +18,16 @@ const FeedPost = (props) => {
         <h2 className="text-[14px] font-bold">{props.name}</h2>
       </div>
       <div
-        className="w-[100%] h-[400px] mt-[20px]"
+        className="w-[100%] h-auto mt-[20px] bg-gray-200"
         style={{
+          backgroundSize: "contain",
           backgroundImage: `url(${props.postImage})`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
-      ></div>
+      >
+        <img src={props.postImage} className="invisible" />
+      </div>
       <div className="w-[100%] mt-[10px] mb-[10px] flex items-center justify-between">
         <div className="flex ml-[20px]">
           <div

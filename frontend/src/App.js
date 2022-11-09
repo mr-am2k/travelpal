@@ -13,7 +13,7 @@ import Post from "./pages/Post";
 import ProfilePage from "./pages/ProfilePage";
 export const Context = createContext({
   loggedIn: false,
-  setLoggedIn: (loggedIn) => { },
+  setLoggedIn: (loggedIn) => {},
 });
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -30,9 +30,9 @@ function App() {
         <Route
           path="userfeed"
           element={
-            <PrivateRoute>
-              <UserFeed />
-            </PrivateRoute>
+            //<PrivateRoute>
+            <UserFeed />
+            //</PrivateRoute>
           }
         />
         <Route
