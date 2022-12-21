@@ -62,9 +62,9 @@ function App() {
         <Route
           path="profilepage"
           element={
-            <PrivateRoute>
-              <ProfilePage />
-            </PrivateRoute>
+            //<PrivateRoute>
+            <ProfilePage />
+            // </PrivateRoute>
           }
         />
       </Routes>
