@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 
-export const usePost = (url, body) => {
+export const useHttp = (url, method, body) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const postData = async () => {
+    const fetchData = async () => {
       try {
         const response = await fetch(url, {
-          method: "POST",
-          body: JSON.stringify(body),
+          method,
+          body: method !== "GET" ? JSON.stringify(body) : null,
           headers: {
             "Content-Type": "application/json",
           },
@@ -23,11 +23,8 @@ export const usePost = (url, body) => {
         setLoading(false);
       }
     };
-    postData();
-  }, [url, body]);
+    fetchData();
+  }, [url, method, body]);
 
   return { data, loading, error };
 };
-
-//HOW TO USE
-//const { data, loading, error } = usePost('https://my-api.com/data', { name });
