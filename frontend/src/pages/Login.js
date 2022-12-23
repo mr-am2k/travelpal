@@ -3,6 +3,7 @@ import img from "../images//Login/loginimage.png";
 import logo from "../images/Login/logo.png";
 import { Link } from "react-router-dom";
 import { LoginForm } from "../components/authForms/LoginForm";
+
 const Login = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center">
