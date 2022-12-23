@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useHttp } from "../../customHooks/useHttp";
 export const RegisterForm = () => {
   const [responseMsg, setResponseMsg] = useState("");
   const [user, setUser] = useState({
@@ -8,6 +9,10 @@ export const RegisterForm = () => {
     password: "",
     email: "",
   });
+  const { data, loading, error, fetchData } = useHttp(
+    "http://localhost:8080/api/v1/auth/register",
+    "POST"
+  );
   const setName = (e) => {
     setResponseMsg("");
     setUser((prevState) => ({ ...prevState, name: e.target.value }));
@@ -35,16 +40,8 @@ export const RegisterForm = () => {
       email: user.email,
       role: "ROLE_USER",
     };
-    console.log(requestUser);
-    const response = await fetch("http://localhost:8080/api/v1/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestUser),
-    });
-    const responseData = await response.json();
-    setResponseMsg(responseData.message);
+    fetchData(requestUser);
+    setResponseMsg(data.message);
   };
 
   return (
