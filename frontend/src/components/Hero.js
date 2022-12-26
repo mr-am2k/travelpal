@@ -20,11 +20,11 @@ const Hero = () => {
         data-aos-duration="1000"
       >
         {/* TOP TEXT */}
-        <p className="text-[30px] sm:text-[45px] md:text-[64px] font-bold leading-[78px] text-center text-white">
+        <p className="text-[28px] sm:text-[40px] md:text-[50px] font-bold leading-[75px] text-center text-white">
           Connect differently
         </p>
         {/* MIDDLE TEXT */}
-        <p className="text-[18px] sm:text-[29px] md:text-[36px] font-normal leading-[44px] text-center text-white">
+        <p className="text-[17px] sm:text-[20px] md:text-[30px] font-normal leading-[42px] text-center text-white">
           Community for breaking barriers and meeting new cultures
         </p>
         {/* INFORMATIONS */}

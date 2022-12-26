@@ -44,7 +44,7 @@ export const LoginForm = () => {
         </h2>
       )}
       <form
-        className="w-[60%] md:w-[50%] h-[80%] md:h-[50%] flex flex-col items-center justify-around"
+        className="w-[90%] sm:w-[70%] h-[80%] md:h-[50%] flex flex-col items-center justify-around"
         onSubmit={handleLogin}
       >
         <div className="flex flex-col w-[100%] justify-end">

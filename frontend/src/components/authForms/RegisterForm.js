@@ -54,7 +54,7 @@ export const RegisterForm = () => {
         </h2>
       )}
       <form
-        className="md:w-[60%] sm:w-[70%] w-[90%] flex flex-col items-center justify-around"
+        className="w-[90%] sm:w-[70%] flex flex-col items-center justify-around"
         onSubmit={handleRegister}
       >
         <div className="flex flex-col w-[100%]">

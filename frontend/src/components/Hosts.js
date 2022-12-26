@@ -14,7 +14,7 @@ const Hosts = () => {
 
   return (
     <div className="flex flex-col gap-10 w-full pt-10">
-      <p className="text-center text-black text-[25px] md:text-[34px] leading-[59px] font-normal">
+      <p className="text-center text-black text-[22px] md:text-[31px] leading-[55px] font-normal">
         Find your host
       </p>
       <div
@@ -41,7 +41,7 @@ const Hosts = () => {
       </div>
       <Link
         to="/hosts"
-        className="uppercase border-[#1774FF] border-2 text-[16px] leading-[20px] font-bold w-[307px] h-[53px] rounded-[25px] flex items-center justify-center text-[#1774FF] mx-auto hover:bg-[#1774ff] hover:text-white"
+        className="uppercase border-[#1774FF] border-2 text-[14px] leading-[20px] font-bold w-[307px] h-[53px] rounded-[25px] flex items-center justify-center text-[#1774FF] mx-auto hover:bg-[#1774ff] hover:text-white"
       >
         View full host list
       </Link>
