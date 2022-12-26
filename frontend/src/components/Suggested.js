@@ -49,7 +49,7 @@ const Suggested = () => {
   ];
   return (
     <div className="w-full h-auto flex flex-col gap-20 mt-10">
-      <p className="text-center text-black text-[34px] leading-[59px] xl:mb-[-50px] font-normal">
+      <p className="text-center text-black text-[31px] leading-[56px] xl:mb-[-50px] font-normal">
         Suggested feed
       </p>
       <div className="no-scrollbar overflow-x-scroll xl:overflow-visible snap-x flex items-end min-h-[640px] xl:flex-wrap xl:justify-around">
@@ -68,7 +68,7 @@ const Suggested = () => {
       </div>
       <Link
         to="/feed"
-        className="uppercase border-[#1774FF] border-2 text-[16px] leading-[20px] font-bold w-[307px] h-[53px] rounded-[25px] flex items-center justify-center text-[#1774FF] mx-auto hover:bg-[#1774ff] hover:text-white"
+        className="uppercase border-[#1774FF] border-2 text-[14px] leading-[20px] font-bold w-[307px] h-[53px] rounded-[25px] flex items-center justify-center text-[#1774FF] mx-auto hover:bg-[#1774ff] hover:text-white"
       >
         View more from travel feed
       </Link>
