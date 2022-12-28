@@ -34,12 +34,5 @@ public class BlogEntity {
     public BlogEntity(String title,String description){
         this.title=title;
         this.description=description;
-
     }
-    public void addComment(CommentEntity comment ){
-        this.comments.add(comment);
-    }
-    /*public void addImage(ImageEntity image){
-        this.images.add(image);
-    }*/
 }

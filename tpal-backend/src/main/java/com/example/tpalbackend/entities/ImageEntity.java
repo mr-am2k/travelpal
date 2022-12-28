@@ -18,10 +18,4 @@ public class ImageEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String imageUrl;
-   /* @ManyToOne
-    @JsonIgnore
-    private BlogEntity blog;*/
-    public ImageEntity(String imageUrl){
-        this.imageUrl=imageUrl;
-    }
 }

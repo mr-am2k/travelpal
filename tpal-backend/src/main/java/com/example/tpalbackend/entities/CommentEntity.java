@@ -24,8 +24,4 @@ public class CommentEntity {
     private BlogEntity blog;
     @ManyToOne
     private UserEntity user;
-    public CommentEntity(String comment){
-        this.comment=comment;
-
-    }
 }
