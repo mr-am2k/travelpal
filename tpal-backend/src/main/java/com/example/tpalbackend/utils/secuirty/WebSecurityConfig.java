@@ -75,7 +75,7 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeRequests().antMatchers(SWAGGER_WHITELIST).permitAll()
                 .antMatchers("/api/v1/auth/**").permitAll()
-                .antMatchers("/api/v1/**").permitAll()
+                /*.antMatchers("/api/v1/**").permitAll()*/
                 .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());

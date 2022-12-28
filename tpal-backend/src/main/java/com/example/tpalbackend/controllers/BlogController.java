@@ -15,6 +15,7 @@ import java.util.Optional;
 public class BlogController {
     private final BlogService _blogService;
     @GetMapping
+    /*Pagination,filtering missing*/
     public ResponseEntity<GlobalResponse> GetAll(){
         var response = new GlobalResponse();
         try{
