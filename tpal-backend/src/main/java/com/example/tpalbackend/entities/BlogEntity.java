@@ -31,7 +31,7 @@ public class BlogEntity {
     @JsonIgnore
     private UserEntity user;
 
-    public BlogEntity(String title,String description){
+    public BlogEntity(String title,String description,UserEntity user){
         this.title=title;
         this.description=description;
     }
