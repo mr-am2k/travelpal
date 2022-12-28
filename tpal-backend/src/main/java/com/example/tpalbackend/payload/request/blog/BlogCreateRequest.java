@@ -1,4 +1,4 @@
-package com.example.tpalbackend.payload.request;
+package com.example.tpalbackend.payload.request.blog;
 
 import lombok.Data;
 

@@ -1,5 +1,5 @@
 package com.example.tpalbackend.controllers;
-import com.example.tpalbackend.payload.request.BlogCreateRequest;
+import com.example.tpalbackend.payload.request.blog.BlogCreateRequest;
 import com.example.tpalbackend.payload.response.GlobalResponse;
 import com.example.tpalbackend.services.blog.BlogService;
 import lombok.RequiredArgsConstructor;

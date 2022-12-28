@@ -1,7 +1,7 @@
 package com.example.tpalbackend.services.blog;
 
 import com.example.tpalbackend.entities.BlogEntity;
-import com.example.tpalbackend.payload.request.BlogCreateRequest;
+import com.example.tpalbackend.payload.request.blog.BlogCreateRequest;
 
 import java.util.List;
 
