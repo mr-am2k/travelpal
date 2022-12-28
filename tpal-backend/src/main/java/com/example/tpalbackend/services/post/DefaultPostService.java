@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class DefaultPostService implements PostService{
@@ -24,5 +26,9 @@ public class DefaultPostService implements PostService{
         var createdPost = new PostEntity(post.getTitle(),post.getDescription(),post.getPlaceOfDeparture(),post.getDestination(),post.getDepartureDate(),post.getReturnDate(),appUser);
         return this._postRepository.save(createdPost);
 
+    }
+    @Override
+    public List<PostEntity> getAll() {
+        return this._postRepository.findAll();
     }
 }

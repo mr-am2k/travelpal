@@ -5,10 +5,7 @@ import com.example.tpalbackend.payload.response.GlobalResponse;
 import com.example.tpalbackend.services.post.DefaultPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -29,5 +26,11 @@ public class PostController {
             response.setMessage(ex.getMessage().describeConstable());
             return ResponseEntity.badRequest().body(response);
         }
+    }
+    @GetMapping
+    public ResponseEntity<?> GetAll(){
+        var response = new GlobalResponse();
+        response.setData(Optional.ofNullable(this._postService.getAll()));
+        return ResponseEntity.ok().body(response);
     }
 }
