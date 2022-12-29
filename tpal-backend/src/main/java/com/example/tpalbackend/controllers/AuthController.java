@@ -2,8 +2,8 @@ package com.example.tpalbackend.controllers;
 
 import com.example.tpalbackend.entities.UserEntity;
 import com.example.tpalbackend.payload.models.AuthResponse;
-import com.example.tpalbackend.payload.request.UserLoginRequest;
-import com.example.tpalbackend.payload.request.UserRegisterRequest;
+import com.example.tpalbackend.payload.request.user.UserLoginRequest;
+import com.example.tpalbackend.payload.request.user.UserRegisterRequest;
 import com.example.tpalbackend.services.user.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -8,13 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -56,13 +52,18 @@ public class UserEntity {
     @Column(name = "rating", nullable = false)
     private Float rating;
 
-    @Column(name = "iamge_url", nullable = false)
+    @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
     @Column(name = "role", nullable = false)
     private UserRole role = UserRole.ROLE_USER;
-
-
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<BlogEntity> blogs;
     public User toDomainModel() {
         User user = new User();
 
