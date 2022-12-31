@@ -40,8 +40,8 @@ public class DefaultUserService implements UserService {
 
     private final UserJpaRepository userJpaRepository;
 
-    @Value("${app.jwt_refresh_expiration_ms}")
-    private int jwtRefreshExpirationMs;
+    private final String AUTHORIZATION_HEADER = "Authorization";
+    private final String BEARER = "Bearer";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUserService.class);
 
@@ -109,17 +109,17 @@ public class DefaultUserService implements UserService {
 
     @Override
     public AuthResponse refresh(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
+        final String requestTokenHeader = request.getHeader(AUTHORIZATION_HEADER);
+        String token = null;
 
-        if(cookies[0].getName().equalsIgnoreCase("refreshToken")){
-            String username = jwtUtils.getUserNameFromJwtToken(cookies[0].getValue());
-            UserEntity user = userJpaRepository.findByUsername(username);
-
-            String token = jwtUtils.generateJwtTokenWithUsername(user.getUsername());
-
-            return new AuthResponse(token);
+        if (requestTokenHeader != null && requestTokenHeader.startsWith(BEARER)) {
+            token = requestTokenHeader.substring(BEARER.length());
         }
+        String username = jwtUtils.getUserNameFromJwtToken(token);
+        UserEntity user = userJpaRepository.findByUsername(username);
 
-        return null;
+        String jwt = jwtUtils.generateJwtTokenWithUsername(user.getUsername());
+
+        return new AuthResponse(token);
     }
 }
