@@ -16,6 +16,7 @@ import com.example.tpalbackend.utils.secuirty.services.DefaultUserDetails;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -50,22 +51,10 @@ public class DefaultUserService implements UserService {
 
         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        return new AuthResponse(
-                jwt,
-                userDetails.getId(),
-                userDetails.getFirstName(),
-                userDetails.getLastName(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                userDetails.getCountry(),
-                userDetails.getDateOfBirth(),
-                userDetails.getGender(),
-                userDetails.getRating(),
-                userDetails.getImageUrl(),
-                roles);
+        return new AuthResponse(jwt);
     }
 
     @Override
@@ -99,12 +88,8 @@ public class DefaultUserService implements UserService {
             user.setImageUrl("https://images.assetsdelivery.com/compings_v2/thesomeday123/thesomeday1231712/thesomeday123171200008.jpg");
         }
 
-        user.setRating(userRegisterRequest.getRating());
         user.setPasswordHash(encoder.encode(userRegisterRequest.getPassword()));
-
-        if (userRegisterRequest.getRole().equalsIgnoreCase(UserRole.ROLE_ADMIN.getValue())) {
-            user.setRole(UserRole.ROLE_ADMIN);
-        }
+        user.setRole(UserRole.ROLE_USER);
 
         return userJpaRepository.save(user);
     }

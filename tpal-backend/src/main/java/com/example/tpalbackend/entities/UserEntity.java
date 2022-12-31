@@ -53,7 +53,7 @@ public class UserEntity {
     @Column(name = "gender", nullable = false)
     private UserGender gender;
 
-    @Column(name = "rating", nullable = false)
+    @Column(name = "rating")
     private Float rating;
 
     @Column(name = "iamge_url", nullable = false)
