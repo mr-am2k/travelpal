@@ -5,6 +5,7 @@ import com.example.tpalbackend.middleware.exceptions.EmailNotValidException;
 import com.example.tpalbackend.middleware.exceptions.PasswordNotValidException;
 import com.example.tpalbackend.middleware.exceptions.UserAlreadyExistsException;
 import com.example.tpalbackend.payload.models.AuthResponse;
+import com.example.tpalbackend.payload.models.LoginResponse;
 import com.example.tpalbackend.payload.request.user.UserLoginRequest;
 import com.example.tpalbackend.payload.request.user.UserRegisterRequest;
 import com.example.tpalbackend.repositories.user.UserJpaRepository;
@@ -13,6 +14,9 @@ import com.example.tpalbackend.utils.UserGender;
 import com.example.tpalbackend.utils.UserRole;
 import com.example.tpalbackend.utils.secuirty.jwt.JwtUtils;
 import com.example.tpalbackend.utils.secuirty.services.DefaultUserDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +25,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +40,12 @@ public class DefaultUserService implements UserService {
 
     private final UserJpaRepository userJpaRepository;
 
+    @Value("${app.jwt_refresh_expiration_ms}")
+    private int jwtRefreshExpirationMs;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUserService.class);
+
+
     public DefaultUserService(AuthenticationManager authenticationManager, PasswordEncoder encoder, JwtUtils jwtUtils, UserJpaRepository userJpaRepository) {
         this.authenticationManager = authenticationManager;
         this.encoder = encoder;
@@ -42,19 +54,27 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public AuthResponse login(UserLoginRequest userLoginRequest) {
+    public LoginResponse login(UserLoginRequest userLoginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userLoginRequest.getUsername(), userLoginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
+        String accessToken = jwtUtils.generateJwtToken(authentication);
+        String refreshToken = jwtUtils.generateJwtRefreshToken(authentication);
+
+        Cookie refreshCookie = new Cookie("refreshToken", refreshToken);
+        refreshCookie.setSecure(true);
+        refreshCookie.setMaxAge(jwtRefreshExpirationMs);
+        refreshCookie.setHttpOnly(true);
+        refreshCookie.setPath("/api/v1/auth/refresh");
+
 
         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        return new AuthResponse(jwt);
+        return new LoginResponse(accessToken,refreshCookie);
     }
 
     @Override
@@ -92,5 +112,21 @@ public class DefaultUserService implements UserService {
         user.setRole(UserRole.ROLE_USER);
 
         return userJpaRepository.save(user);
+    }
+
+    @Override
+    public AuthResponse refresh(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+
+        if(cookies[0].getName().equalsIgnoreCase("refreshToken")){
+            String username = jwtUtils.getUserNameFromJwtToken(cookies[0].getValue());
+            UserEntity user = userJpaRepository.findByUsername(username);
+
+            String token = jwtUtils.generateJwtTokenWithUsername(user.getUsername());
+
+            return new AuthResponse(token);
+        }
+
+        return null;
     }
 }
