@@ -12,11 +12,11 @@ import javax.servlet.http.Cookie;
 public class LoginResponse {
     private String accessToken;
 
-    private Cookie refreshToken;
+    private String refreshToken;
 
     private String type = "Bearer";
 
-    public LoginResponse(String accessToken, Cookie refreshToken) {
+    public LoginResponse(String accessToken, String refreshToken) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
     }

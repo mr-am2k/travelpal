@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/v1/auth")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true")
 @Tag(name = "Auth")
 public class AuthController {
     private final UserService userService;
@@ -29,11 +29,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody UserLoginRequest loginRequest, HttpServletResponse response) {
-        LoginResponse loginResponse = userService.login(loginRequest);
-        response.addCookie(loginResponse.getRefreshToken());
-        AuthResponse authResponse = new AuthResponse(loginResponse.getAccessToken());
-        return authResponse;
+    public LoginResponse login(@RequestBody UserLoginRequest loginRequest) {
+        return userService.login(loginRequest);
     }
 
     @PostMapping("/register")

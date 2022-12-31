@@ -62,19 +62,12 @@ public class DefaultUserService implements UserService {
         String accessToken = jwtUtils.generateJwtToken(authentication);
         String refreshToken = jwtUtils.generateJwtRefreshToken(authentication);
 
-        Cookie refreshCookie = new Cookie("refreshToken", refreshToken);
-        refreshCookie.setSecure(true);
-        refreshCookie.setMaxAge(jwtRefreshExpirationMs);
-        refreshCookie.setHttpOnly(true);
-        refreshCookie.setPath("/api/v1/auth/refresh");
-
-
         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        return new LoginResponse(accessToken,refreshCookie);
+        return new LoginResponse(accessToken,refreshToken);
     }
 
     @Override
