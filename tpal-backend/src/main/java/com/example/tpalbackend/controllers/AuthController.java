@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -28,8 +29,11 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody UserLoginRequest loginRequest) {
-        return userService.login(loginRequest);
+    public AuthResponse login(@RequestBody UserLoginRequest loginRequest, HttpServletResponse response) {
+        LoginResponse loginResponse = userService.login(loginRequest);
+        response.addCookie(loginResponse.getRefreshToken());
+        AuthResponse authResponse = new AuthResponse(loginResponse.getAccessToken());
+        return authResponse;
     }
 
     @PostMapping("/register")
