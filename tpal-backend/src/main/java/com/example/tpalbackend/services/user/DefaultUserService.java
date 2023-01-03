@@ -40,8 +40,8 @@ public class DefaultUserService implements UserService {
 
     private final UserJpaRepository userJpaRepository;
 
-    private final String AUTHORIZATION_HEADER = "Authorization";
-    private final String BEARER = "Bearer";
+    private final String AUTHORIZATION_HEADER_REFRESH = "AuthorizationRefresh";
+    private final String REFRESH = "Refresh";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUserService.class);
 
@@ -59,8 +59,11 @@ public class DefaultUserService implements UserService {
                 new UsernamePasswordAuthenticationToken(userLoginRequest.getUsername(), userLoginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String accessToken = jwtUtils.generateJwtToken(authentication);
-        String refreshToken = jwtUtils.generateJwtRefreshToken(authentication);
+
+        final DefaultUserDetails userPrincipal = (DefaultUserDetails) authentication.getPrincipal();
+
+        String accessToken = jwtUtils.generateJwtAccessToken(userPrincipal.getUsername());
+        String refreshToken = jwtUtils.generateJwtRefreshToken(userPrincipal.getUsername());
 
         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
@@ -109,16 +112,16 @@ public class DefaultUserService implements UserService {
 
     @Override
     public AuthResponse refresh(HttpServletRequest request) {
-        final String requestTokenHeader = request.getHeader(AUTHORIZATION_HEADER);
+        final String requestTokenHeader = request.getHeader(AUTHORIZATION_HEADER_REFRESH);
         String token = null;
 
-        if (requestTokenHeader != null && requestTokenHeader.startsWith(BEARER)) {
-            token = requestTokenHeader.substring(BEARER.length());
+        if (requestTokenHeader != null && requestTokenHeader.startsWith(REFRESH)) {
+            token = requestTokenHeader.substring(REFRESH.length());
         }
-        String username = jwtUtils.getUserNameFromJwtToken(token);
+        String username = jwtUtils.getUserNameFromJwtToken(token, false);
         UserEntity user = userJpaRepository.findByUsername(username);
 
-        String jwt = jwtUtils.generateJwtTokenWithUsername(user.getUsername());
+        String jwt = jwtUtils.generateJwtAccessToken(user.getUsername());
 
         return new AuthResponse(token);
     }
