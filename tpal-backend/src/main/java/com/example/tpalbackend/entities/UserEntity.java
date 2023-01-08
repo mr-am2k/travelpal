@@ -70,6 +70,7 @@ public class UserEntity {
         user.setId(this.id);
         user.setFirstName(this.firstName);
         user.setLastName(this.lastName);
+        user.setUsername(this.username);
         user.setEmail(this.email);
         user.setCountry(this.country);
         user.setDateOfBirth(this.dateOfBirth);

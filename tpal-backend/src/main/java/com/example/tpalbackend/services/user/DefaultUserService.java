@@ -6,6 +6,7 @@ import com.example.tpalbackend.middleware.exceptions.PasswordNotValidException;
 import com.example.tpalbackend.middleware.exceptions.UserAlreadyExistsException;
 import com.example.tpalbackend.payload.models.AuthResponse;
 import com.example.tpalbackend.payload.models.LoginResponse;
+import com.example.tpalbackend.payload.models.User;
 import com.example.tpalbackend.payload.request.user.UserLoginRequest;
 import com.example.tpalbackend.payload.request.user.UserRegisterRequest;
 import com.example.tpalbackend.repositories.user.UserJpaRepository;
@@ -124,5 +125,12 @@ public class DefaultUserService implements UserService {
         String jwt = jwtUtils.generateJwtAccessToken(user.getUsername());
 
         return new AuthResponse(token);
+    }
+
+    @Override
+    public User getUser(String username) {
+        UserEntity user = userJpaRepository.findByUsername(username);
+
+        return user.toDomainModel();
     }
 }
