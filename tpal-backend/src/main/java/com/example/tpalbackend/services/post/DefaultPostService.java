@@ -18,25 +18,25 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class DefaultPostService implements PostService{
-    private final PostJpaRepository _postRepository;
-    private final UserJpaRepository _userRepository;
+    private final PostJpaRepository postRepository;
+    private final UserJpaRepository userRepository;
     @Override
     public PostEntity createPost(PostCreateRequest post) {
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity appUser = this._userRepository.findByUsername(auth);
+        UserEntity appUser = this.userRepository.findByUsername(auth);
         if(appUser == null) throw new UserNotFoundByIdException("User not found.");
         var createdPost = new PostEntity(post.getTitle(),post.getDescription(),post.getPlaceOfDeparture(),post.getDestination(),post.getDepartureDate(),post.getReturnDate(),appUser);
-        return this._postRepository.save(createdPost);
+        return this.postRepository.save(createdPost);
 
     }
     @Override
     public List<PostEntity> getAll() {
-        return this._postRepository.findAll();
+        return this.postRepository.findAll();
     }
 
     @Override
     public PostEntity getSingle(UUID id) {
-        var post = this._postRepository.findById(id).get();
+        var post = this.postRepository.findById(id).get();
         if(post == null) throw new PostByIdNotFound("Post not found.");
         return post;
     }
