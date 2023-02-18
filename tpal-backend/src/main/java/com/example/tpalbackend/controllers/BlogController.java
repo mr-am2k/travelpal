@@ -13,13 +13,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/blog")
 public class BlogController {
-    private final BlogService _blogService;
+    private final BlogService blogService;
     @GetMapping
     /*Pagination,filtering missing*/
     public ResponseEntity<GlobalResponse> GetAll(){
         var response = new GlobalResponse();
+
         try{
-            response.setData(Optional.ofNullable(this._blogService.getAll()));
+            response.setData(Optional.ofNullable(this.blogService.getAll()));
             return ResponseEntity.ok().body(response);
         }catch(Exception ex){
             response.setSuccess(false);
@@ -31,15 +32,16 @@ public class BlogController {
     @PostMapping
     public ResponseEntity<GlobalResponse> Post(@RequestBody BlogCreateRequest blog){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/blogs").toUriString());
+
         var response = new GlobalResponse();
+
         try{
-            response.setItem(Optional.ofNullable(this._blogService.create(blog)));
+            response.setItem(Optional.ofNullable(this.blogService.create(blog)));
             return ResponseEntity.created(uri).body(response);
         }catch(Exception ex){
             response.setSuccess(false);
             response.setMessage(ex.getMessage().describeConstable());
             return ResponseEntity.badRequest().body(response);
         }
-
     }
 }
