@@ -10,25 +10,21 @@ import UserFeed from "./pages/UserFeed";
 import TravelFeed from "./pages/TravelFeed";
 import PrivateRoute from "./routes/PrivateRoute";
 import Post from "./pages/Post";
+import Messages from "./pages/Messages";
 import ProfilePage from "./pages/ProfilePage";
 import { refreshAccessToken } from "./functions/refreshToken";
-import { MyContext } from "./context/context";
+import ContextProvider, { MyContext } from "./context/context";
 
 import axios from "axios";
-export const Context = createContext({
-  loggedIn: false,
-  setLoggedIn: (loggedIn) => {},
-});
+
 function App() {
   const cx = useContext(MyContext);
-  const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     AOS.init();
     AOS.refresh();
   }, []);
   const getUserData = async () => {
     const access_token = localStorage.getItem("access_token");
-
     if (access_token) {
       try {
         const response = await axios.get(
@@ -39,10 +35,10 @@ function App() {
             },
           }
         );
+        cx.loggedIn = true;
         cx.user = response.data;
-        cx.loggedIn(true);
       } catch (e) {
-        console.log(e.response.data.message);
+        console.log(e);
       }
     }
   };
@@ -52,11 +48,12 @@ function App() {
 
     refreshAccessToken();
     getUserData();
+    console.log("run");
     setInterval(refreshAccessToken, minute * 4);
   }, []);
 
   return (
-    <Context.Provider value={{ loggedIn, setLoggedIn }}>
+    <ContextProvider>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
@@ -86,6 +83,14 @@ function App() {
           }
         />
         <Route
+          path="messages"
+          element={
+            <PrivateRoute>
+              <Messages />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="*"
           element={
             <PrivateRoute>
@@ -102,7 +107,7 @@ function App() {
           }
         />
       </Routes>
-    </Context.Provider>
+    </ContextProvider>
   );
 }
 

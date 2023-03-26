@@ -20,7 +20,6 @@ export const LoginForm = () => {
           password: password,
         }
       );
-      console.log(response.data);
       localStorage.setItem("refresh_token", response.data.refreshToken);
       localStorage.setItem("access_token", response.data.accessToken);
     } catch (e) {
@@ -39,7 +38,7 @@ export const LoginForm = () => {
       );
       cx.user = response.data;
       cx.loggedIn = true;
-      navigate("/travelfeed");
+      navigate("/userfeed");
     } catch (e) {
       console.log(e.response.data.message);
     }
