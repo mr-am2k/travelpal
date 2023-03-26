@@ -1,46 +1,57 @@
 import { useState, useContext } from "react";
 import { MyContext } from "../../context/context";
 import { useNavigate } from "react-router";
-import { useHttp } from "../../customHooks/useHttp";
+import axios from "axios";
 export const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { data, loading, error, fetchData } = useHttp(
-    "http://localhost:8080/api/v1/auth/login",
-    "POST"
-  );
+  const [responseMsg, setResponseMsg] = useState(null);
   const cx = useContext(MyContext);
   const navigate = useNavigate();
+
   const handleLogin = async (event) => {
     event.preventDefault();
-    fetchData({ username, password });
+    const access_token = localStorage.getItem("access_token");
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/api/v1/auth/login`,
+        {
+          username: username,
+          password: password,
+        }
+      );
+      console.log(response.data);
+      localStorage.setItem("refresh_token", response.data.refreshToken);
+      localStorage.setItem("access_token", response.data.accessToken);
+    } catch (e) {
+      setResponseMsg(e.response.data.message);
+      console.log(e.response.data.message);
+    }
 
-    // const data =  res.json();
-
-    // console.log(data);
-    // cx.setLoggedIn(true);
-    // localStorage.setItem("token", data.token);
-    // navigate("/userfeed");
-
-    // console.log(data.token);
-    // console.log(cx.user);
-    // console.log(data.returnObject);
-    // console.log(cx.user);
-    //if (data.token) {
-    //  cx.setLoggedIn(true);
-    //  cx.setUser(data.returnObject);
-    //  localStorage.setItem("token", data.token);
-    //  navigate("/userfeed");
-    //}
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/v1/users/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      cx.user = response.data;
+      cx.loggedIn = true;
+      navigate("/travelfeed");
+    } catch (e) {
+      console.log(e.response.data.message);
+    }
   };
 
   return (
     <>
-      {!data ? (
+      {!responseMsg ? (
         <div className="h-[10px]"></div>
       ) : (
         <h2 className="h-[10px] text-[11px] text-orange-600 font-bold">
-          {data.message}
+          {responseMsg}
         </h2>
       )}
       <form

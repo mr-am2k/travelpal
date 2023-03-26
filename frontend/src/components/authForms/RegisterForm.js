@@ -8,6 +8,9 @@ export const RegisterForm = () => {
     username: "",
     password: "",
     email: "",
+    country: "",
+    dateOfBirth: "",
+    gender: "",
   });
   const { data, loading, error, fetchData } = useHttp(
     "http://localhost:8080/api/v1/auth/register",
@@ -29,18 +32,34 @@ export const RegisterForm = () => {
     setResponseMsg("");
     setUser((prevState) => ({ ...prevState, email: e.target.value }));
   };
+  const setCountry = (e) => {
+    setResponseMsg("");
+    setUser((prevState) => ({ ...prevState, country: e.target.value }));
+  };
+  const setBirth = (e) => {
+    setResponseMsg("");
+    setUser((prevState) => ({ ...prevState, dateOfBirth: e.target.value }));
+  };
+  const setGender = (e) => {
+    setResponseMsg("");
+    setUser((prevState) => ({ ...prevState, gender: e.target.value }));
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     const requestUser = {
       firstName: user.name.split(" ")[0],
       lastName: user.name.split(" ")[1],
       username: user.username,
       password: user.password,
       email: user.email,
-      role: "ROLE_USER",
+      dateOfBirth: user.dateOfBirth,
+      gender: 0,
+      country: user.country,
     };
     fetchData(requestUser);
+
     setResponseMsg(data.message);
   };
 
@@ -100,9 +119,18 @@ export const RegisterForm = () => {
         </div>
 
         <div className="flex w-[100%] items-center justify-between pb-[10px]">
-          <input type="date" className="text-[#1774FF] w-[140px]" />
+          <input
+            type="date"
+            className="text-[#1774FF] w-[140px]"
+            onChange={setBirth}
+          />
 
-          <select name="Gender" required className="p-0 m-0 w-[30%]">
+          <select
+            name="Gender"
+            required
+            className="p-0 m-0 w-[30%]"
+            onChange={setGender}
+          >
             <option value="none" selected disabled hidden>
               GN
             </option>
@@ -111,18 +139,14 @@ export const RegisterForm = () => {
           </select>
         </div>
 
-        <div className="flex w-[100%] justify-between">
-          <div className="flex flex-col w-[45%]">
-            <label className="text-[#1774FF]">Phone</label>
-            <div className="h-[40px] flex flex-col">
-              <input className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all" />
-            </div>
-          </div>
-          <div className="flex flex-col w-[45%]">
-            <label className="text-[#1774FF]">Country</label>
-            <div className="h-[40px] flex flex-col">
-              <input className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all" />
-            </div>
+        <div className="flex flex-col w-[100%]">
+          <label className="text-[#1774FF]">Country</label>
+          <div className="h-[40px] flex flex-col">
+            <input
+              required
+              onChange={setCountry}
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+            />
           </div>
         </div>
         <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[14px] font-bold">

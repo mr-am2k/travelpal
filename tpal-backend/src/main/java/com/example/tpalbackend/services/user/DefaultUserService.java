@@ -124,7 +124,7 @@ public class DefaultUserService implements UserService {
 
         String jwt = jwtUtils.generateJwtAccessToken(user.getUsername());
 
-        return new AuthResponse(token);
+        return new AuthResponse(jwt);
     }
 
     @Override
