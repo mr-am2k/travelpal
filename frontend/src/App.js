@@ -50,6 +50,7 @@ function App() {
     getUserData();
     console.log("run");
     setInterval(refreshAccessToken, minute * 4);
+    // eslint-disable-next-line
   }, []);
 
   return (
