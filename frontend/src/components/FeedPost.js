@@ -1,5 +1,3 @@
-import profilePicture from "../images/UserFeed/profilePicture.png";
-import postImage1 from "../images/feedPostImages/postImage1.png";
 import star from "../images/feedPostImages/star.png";
 import higlightedStar from "../images/feedPostImages/higlightedStar.png";
 
@@ -14,6 +12,7 @@ const FeedPost = (props) => {
           width="40px"
           height="40px"
           className="mr-[10px] ml-[20px] rounded-full w-[40px] h-[40px]"
+          alt="profile"
         />
         <h2 className="text-[14px] font-bold">{props.name}</h2>
       </div>
@@ -26,7 +25,7 @@ const FeedPost = (props) => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <img src={props.postImage} className="invisible" />
+        <img src={props.postImage} className="invisible" alt="post" />
       </div>
       <div className="w-[100%] mt-[10px] mb-[10px] flex items-center justify-between">
         <div className="flex ml-[20px]">
@@ -41,6 +40,7 @@ const FeedPost = (props) => {
                 width="22px"
                 height="22px"
                 className="mr-[10px] cursor-pointer"
+                alt="star"
               />
             ) : (
               <img
@@ -48,6 +48,7 @@ const FeedPost = (props) => {
                 width="22px"
                 height="22px"
                 className="mr-[10px] cursor-pointer"
+                alt="star"
               />
             )}
           </div>

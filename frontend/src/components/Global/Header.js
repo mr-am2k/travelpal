@@ -1,8 +1,6 @@
 import React from "react";
 import logo from "../../images/logo.png";
 import { Link, Navigate } from "react-router-dom";
-import { TbBooks } from "react-icons/tb";
-import { AiOutlineUser } from "react-icons/ai";
 const Header = () => {
   const goHome = () => {
     <Navigate to="/" replace={true} />;

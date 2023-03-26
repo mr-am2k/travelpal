@@ -17,7 +17,7 @@ import { MyContext } from "./context/context";
 import axios from "axios";
 export const Context = createContext({
   loggedIn: false,
-  setLoggedIn: (loggedIn) => {},
+  setLoggedIn: () => {},
 });
 function App() {
   const cx = useContext(MyContext);
@@ -53,6 +53,7 @@ function App() {
     refreshAccessToken();
     getUserData();
     setInterval(refreshAccessToken, minute * 4);
+    // eslint-disable-next-line
   }, []);
 
   return (

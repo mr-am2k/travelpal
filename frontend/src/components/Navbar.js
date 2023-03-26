@@ -1,5 +1,4 @@
 import logo from "../images/Login/logo.png";
-import profilePicture from "../images/UserFeed/profilePicture.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
