@@ -1,26 +1,17 @@
 import Navbar from "../components/Navbar";
 import FeedPost from "../components/FeedPost";
-import { useState, useContext, useEffect } from "react";
-import { MyContext } from "../context/context";
-import { Navigate, useNavigate } from "react-router";
+import { useState } from "react";
 import UserProfileIcons from "../components/UserProfileIcons";
 import profilePic1 from "../images/Feed/feed1.png";
 import profilePic2 from "../images/Feed/feed2.png";
 import profilePic3 from "../images/Feed/feed3.png";
 import profilePic4 from "../images/Feed/feed4.png";
 const UserFeed = () => {
-  const navigate = useNavigate();
-  const ctx = useContext(MyContext);
-  //useEffect(() => {
-  //  if (!ctx.loggedIn) {
-  //    navigate("/login");
-  //  }
-  //});
   const [filterActive, setFilterActive] = useState(false);
   return (
     <>
       <Navbar />
-      <div className="flex lg:flex-row flex-col flex-col-reverse items-center lg:items-start w-[100%]">
+      <div className="flex lg:flex-row flex-col items-center lg:items-start w-[100%]">
         <div className="flex flex-col w-[100%] md:w-[75%] items-center">
           <div className="w-[90%] md:w-[700px] flex justify-between pt-[50px]">
             <h2 className="text-[20px] font-bold">User feed</h2>

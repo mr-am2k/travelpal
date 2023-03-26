@@ -1,4 +1,3 @@
-import profilePic1 from "../images/Feed/feed1.png";
 import Navbar from "../components/Navbar";
 import Stars from "../images/Stars.png";
 import UserProfileIcons from "../components/UserProfileIcons";
@@ -61,7 +60,7 @@ const ProfilePage = (props) => {
                 <p>
                   <span className="font-bold">Rating:</span>
                 </p>
-                <img src={Stars} width="100px" />
+                <img src={Stars} width="100px" alt="star" />
               </div>
               <div className="flex flex-col w-[50%] h-[100px] py-[10px] text-[14px]">
                 <h2 className="text-[18px] font-bold">Languages</h2>
