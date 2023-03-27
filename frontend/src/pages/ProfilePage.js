@@ -1,4 +1,3 @@
-import profilePic1 from "../images/Feed/feed1.png";
 import Navbar from "../components/Navbar";
 import Stars from "../images/Stars.png";
 import UserProfileIcons from "../components/UserProfileIcons";
@@ -18,7 +17,7 @@ const ProfilePage = (props) => {
           <div className="flex flex-col items-center">
             <div
               style={{
-                backgroundImage: `url(${ctx.user.profilePhoto})`,
+                backgroundImage: `url(${ctx.user.imageUrl})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -37,7 +36,9 @@ const ProfilePage = (props) => {
         </div>
         <div className="w-[60%] flex justify-center mt-[100px]">
           <div className="w-[70%]">
-            <h2 className="font-bold text-[20px] border-b-2 pb-[10px]">About</h2>
+            <h2 className="font-bold text-[20px] border-b-2 pb-[10px]">
+              About
+            </h2>
             <div className="w-[100%] flex flex-wrap pt-[20px]">
               <div className="w-[50%] h-[100px] py-[10px] text-[14px] ">
                 <p>
@@ -59,7 +60,7 @@ const ProfilePage = (props) => {
                 <p>
                   <span className="font-bold">Rating:</span>
                 </p>
-                <img src={Stars} width="100px" />
+                <img src={Stars} width="100px" alt="star" />
               </div>
               <div className="flex flex-col w-[50%] h-[100px] py-[10px] text-[14px]">
                 <h2 className="text-[18px] font-bold">Languages</h2>

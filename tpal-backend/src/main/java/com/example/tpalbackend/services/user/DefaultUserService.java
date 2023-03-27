@@ -5,6 +5,8 @@ import com.example.tpalbackend.middleware.exceptions.EmailNotValidException;
 import com.example.tpalbackend.middleware.exceptions.PasswordNotValidException;
 import com.example.tpalbackend.middleware.exceptions.UserAlreadyExistsException;
 import com.example.tpalbackend.payload.models.AuthResponse;
+import com.example.tpalbackend.payload.models.LoginResponse;
+import com.example.tpalbackend.payload.models.User;
 import com.example.tpalbackend.payload.request.user.UserLoginRequest;
 import com.example.tpalbackend.payload.request.user.UserRegisterRequest;
 import com.example.tpalbackend.repositories.user.UserJpaRepository;
@@ -13,13 +15,19 @@ import com.example.tpalbackend.utils.UserGender;
 import com.example.tpalbackend.utils.UserRole;
 import com.example.tpalbackend.utils.secuirty.jwt.JwtUtils;
 import com.example.tpalbackend.utils.secuirty.services.DefaultUserDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +41,12 @@ public class DefaultUserService implements UserService {
 
     private final UserJpaRepository userJpaRepository;
 
+    private final String AUTHORIZATION_HEADER_REFRESH = "AuthorizationRefresh";
+    private final String REFRESH = "Refresh";
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUserService.class);
+
+
     public DefaultUserService(AuthenticationManager authenticationManager, PasswordEncoder encoder, JwtUtils jwtUtils, UserJpaRepository userJpaRepository) {
         this.authenticationManager = authenticationManager;
         this.encoder = encoder;
@@ -41,31 +55,23 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public AuthResponse login(UserLoginRequest userLoginRequest) {
+    public LoginResponse login(UserLoginRequest userLoginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userLoginRequest.getUsername(), userLoginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        final DefaultUserDetails userPrincipal = (DefaultUserDetails) authentication.getPrincipal();
+
+        String accessToken = jwtUtils.generateJwtAccessToken(userPrincipal.getUsername());
+        String refreshToken = jwtUtils.generateJwtRefreshToken(userPrincipal.getUsername());
 
         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        return new AuthResponse(
-                jwt,
-                userDetails.getId(),
-                userDetails.getFirstName(),
-                userDetails.getLastName(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                userDetails.getCountry(),
-                userDetails.getDateOfBirth(),
-                userDetails.getGender(),
-                userDetails.getRating(),
-                userDetails.getImageUrl(),
-                roles);
+        return new LoginResponse(accessToken,refreshToken);
     }
 
     @Override
@@ -99,13 +105,32 @@ public class DefaultUserService implements UserService {
             user.setImageUrl("https://images.assetsdelivery.com/compings_v2/thesomeday123/thesomeday1231712/thesomeday123171200008.jpg");
         }
 
-        user.setRating(userRegisterRequest.getRating());
         user.setPasswordHash(encoder.encode(userRegisterRequest.getPassword()));
-
-        if (userRegisterRequest.getRole().equalsIgnoreCase(UserRole.ROLE_ADMIN.getValue())) {
-            user.setRole(UserRole.ROLE_ADMIN);
-        }
+        user.setRole(UserRole.ROLE_USER);
 
         return userJpaRepository.save(user);
+    }
+
+    @Override
+    public AuthResponse refresh(HttpServletRequest request) {
+        final String requestTokenHeader = request.getHeader(AUTHORIZATION_HEADER_REFRESH);
+        String token = null;
+
+        if (requestTokenHeader != null && requestTokenHeader.startsWith(REFRESH)) {
+            token = requestTokenHeader.substring(REFRESH.length());
+        }
+        String username = jwtUtils.getUserNameFromJwtToken(token, false);
+        UserEntity user = userJpaRepository.findByUsername(username);
+
+        String jwt = jwtUtils.generateJwtAccessToken(user.getUsername());
+
+        return new AuthResponse(jwt);
+    }
+
+    @Override
+    public User getUser(String username) {
+        UserEntity user = userJpaRepository.findByUsername(username);
+
+        return user.toDomainModel();
     }
 }

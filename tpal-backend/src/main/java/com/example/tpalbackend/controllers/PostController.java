@@ -16,12 +16,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/post")
 public class PostController {
-    private final DefaultPostService _postService;
+    private final DefaultPostService postService;
     @PostMapping
     public ResponseEntity<?> Post(@Valid @RequestBody PostCreateRequest post){
         var response = new GlobalResponse();
+
         try{
-            response.setItem(Optional.ofNullable(this._postService.createPost(post)));
+            response.setItem(Optional.ofNullable(this.postService.createPost(post)));
             return ResponseEntity.ok().body(response);
         }catch(Exception ex){
             response.setSuccess(false);
@@ -32,14 +33,17 @@ public class PostController {
     @GetMapping
     public ResponseEntity<?> GetAll(){
         var response = new GlobalResponse();
-        response.setData(Optional.ofNullable(this._postService.getAll()));
+
+        response.setData(Optional.ofNullable(this.postService.getAll()));
+
         return ResponseEntity.ok().body(response);
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> GetSingle(@PathVariable UUID id){
         var response = new GlobalResponse();
+
         try{
-            response.setItem(Optional.ofNullable(this._postService.getSingle(id)));
+            response.setItem(Optional.ofNullable(this.postService.getSingle(id)));
             return ResponseEntity.ok().body(response);
         }catch(Exception ex){
             return ResponseEntity.notFound().build();

@@ -1,5 +1,4 @@
 import logo from "../images/Login/logo.png";
-import profilePicture from "../images/UserFeed/profilePicture.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
@@ -12,9 +11,12 @@ const Navbar = () => {
     setDropdown(!dropdown);
   };
   const logoutFunction = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
     ctx.setLoggedIn(false);
+    ctx.user({});
   };
-  console.log(ctx.user);
+
   return (
     <div className="w-[100%] h-[80px] flex justify-between items-center shadow-[0_0px_15px_10px_rgba(0,0,0,0.1)]">
       <Link to="/userfeed">
@@ -38,7 +40,7 @@ const Navbar = () => {
         </Link>
         <img
           className="cursor-pointer rounded-full w-[40px] h-[40px]"
-          src={ctx.user.profilePhoto}
+          src={ctx.user.imageUrl}
           width="40px"
           height="40px"
           alt="#"
@@ -46,7 +48,9 @@ const Navbar = () => {
         />
         {dropdown ? (
           <div className="flex w-[300px] flex-col absolute right-0 top-[60px] bg-white px-[50px] drop-shadow-md">
-            <h2 className="border-b-2 border-black py-[10px]">Zina Youanni</h2>
+            <h2 className="border-b-2 border-black py-[10px]">
+              {ctx.user.firstName + " " + ctx.user.lastName}
+            </h2>
             {/* navbartext moved to dropdown on mobile */}
             <Link
               to="/userfeed"

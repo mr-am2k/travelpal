@@ -16,20 +16,19 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DefaultBlogService implements BlogService{
-    private final BlogJpaRepository _blogRepository;
-    private final UserJpaRepository _userRepository;
+    private final BlogJpaRepository blogRepository;
+    private final UserJpaRepository userRepository;
     @Override
     public List<BlogEntity> getAll() {
-        return this._blogRepository.findAll();
+        return this.blogRepository.findAll();
     }
 
     @Override
-    public BlogEntity create(BlogCreateRequest blog) throws UserNotFoundByIdException {
-        if(SecurityContextHolder.getContext().getAuthentication() == null) throw new UserNotFoundByIdException("User not found.");
+    public BlogEntity create(BlogCreateRequest blog) {
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity appUser = this._userRepository.findByUsername(auth);
+        UserEntity appUser = this.userRepository.findByUsername(auth);
         if(appUser == null) throw new UserNotFoundByIdException("User not found.");
         var createdBlog = new BlogEntity(blog.getTitle(),blog.getDescription(),appUser);
-       return this._blogRepository.save(createdBlog);
+        return this.blogRepository.save(createdBlog);
     }
 }

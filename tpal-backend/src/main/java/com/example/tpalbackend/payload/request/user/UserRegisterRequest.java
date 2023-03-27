@@ -19,8 +19,6 @@ public class UserRegisterRequest {
     @NotBlank
     private String email;
 
-    @NotBlank
-    private String role;
 
     @NotBlank
     private String password;
@@ -33,9 +31,6 @@ public class UserRegisterRequest {
 
     @NotBlank
     private Integer gender;
-
-    @NotBlank
-    private Float rating;
 }
 
 

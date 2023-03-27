@@ -35,6 +35,11 @@ public class WebSecurityConfig {
             "/swagger-ui/**"
     };
 
+    private final String[] ALLOWED_ORIGINS = {
+            "http://localhost:8080",
+            "http://localhost:3000"
+    };
+
     public WebSecurityConfig(DefaultUserDetailsService userDetailsService, AuthEntryPointJwt unauthorizedHandler) {
         this.userDetailsService = userDetailsService;
         this.unauthorizedHandler = unauthorizedHandler;
@@ -90,10 +95,11 @@ public class WebSecurityConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("*")
+                registry.addMapping("http://*")
+                        .allowedOrigins(ALLOWED_ORIGINS)
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials");
+                        .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
+                        .allowCredentials(true);
             }
         };
     }

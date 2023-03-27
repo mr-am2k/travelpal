@@ -20,31 +20,46 @@ public class JwtUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtUtils.class);
 
     @Value("${app.jwt_secret}")
-    private String jwtSecret;
+    private String accessTokenSecret;
 
     @Value("${app.jwt_expiration_ms}")
-    private int jwtExpirationMs;
+    private Integer accessTokenExpiration;
 
-    public String generateJwtToken(Authentication authentication) {
+    @Value("${app.jwt_refresh_secret}")
+    private String refreshTokenSecret;
 
-        DefaultUserDetails userPrincipal;
-        userPrincipal = (DefaultUserDetails) authentication.getPrincipal();
+    @Value("${app.jwt_refresh_expiration_ms}")
+    private Integer refreshTokenExpiration;
 
+
+    public String generateJwtAccessToken(String username) {
+        return generateJwtTokenFromUsername(username, accessTokenExpiration, accessTokenSecret);
+    }
+
+    public String generateJwtRefreshToken(String username) {
+        return generateJwtTokenFromUsername(username, refreshTokenExpiration, refreshTokenSecret);
+    }
+
+    public String generateJwtTokenFromUsername(String username, Integer expiration, String secret) {
         return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
+                .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .setExpiration(new Date((new Date()).getTime() + expiration))
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
 
-    public String getUserNameFromJwtToken(String token) {
-        return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+    public String getUserNameFromJwtToken(String token, boolean accessToken) {
+        if(accessToken){
+            return Jwts.parser().setSigningKey(accessTokenSecret).parseClaimsJws(token).getBody().getSubject();
+        }
+
+        return Jwts.parser().setSigningKey(refreshTokenSecret).parseClaimsJws(token).getBody().getSubject();
     }
 
     public boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Jwts.parser().setSigningKey(accessTokenSecret).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
             LOGGER.error("Invalid JWT signature: {}", e.getMessage());

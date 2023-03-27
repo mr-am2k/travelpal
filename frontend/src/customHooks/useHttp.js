@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const useHttp = (url, method) => {
   const [data, setData] = useState(null);
@@ -17,6 +17,7 @@ export const useHttp = (url, method) => {
       const data = await response.json();
       setData(data);
       setLoading(false);
+      return { data, loading, error, fetchData };
     } catch (error) {
       setError(error);
       setLoading(false);

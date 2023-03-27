@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { Navigate } from "react-router";
 const PrivateRoute = ({ children }) => {
   const ctx = useContext(MyContext);
-  const token = localStorage.getItem("token");
-  return !ctx.loggedIn || !token ? <Navigate to="/login" /> : children;
+  console.log(ctx.loggedIn);
+  return !ctx.loggedIn ? <Navigate to="/login" /> : children;
 };
 
 export default PrivateRoute;

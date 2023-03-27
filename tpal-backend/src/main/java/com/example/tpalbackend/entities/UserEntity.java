@@ -49,7 +49,7 @@ public class UserEntity {
     @Column(name = "gender", nullable = false)
     private UserGender gender;
 
-    @Column(name = "rating", nullable = false)
+    @Column(name = "rating")
     private Float rating;
 
     @Column(name = "image_url", nullable = false)
@@ -70,6 +70,7 @@ public class UserEntity {
         user.setId(this.id);
         user.setFirstName(this.firstName);
         user.setLastName(this.lastName);
+        user.setUsername(this.username);
         user.setEmail(this.email);
         user.setCountry(this.country);
         user.setDateOfBirth(this.dateOfBirth);

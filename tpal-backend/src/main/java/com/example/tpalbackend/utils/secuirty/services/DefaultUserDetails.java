@@ -9,7 +9,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -30,16 +29,6 @@ public class DefaultUserDetails implements UserDetails {
 
     private String email;
 
-    private String country;
-
-    private LocalDate dateOfBirth;
-
-    private String gender;
-
-    private Float rating;
-
-    private String imageUrl;
-
     @JsonIgnore
     private String password;
 
@@ -55,11 +44,6 @@ public class DefaultUserDetails implements UserDetails {
                 user.getLastName(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getCountry(),
-                user.getDateOfBirth(),
-                user.getGender().getValue(),
-                user.getRating(),
-                user.getImageUrl(),
                 user.getPasswordHash(),
                 authorities);
     }

@@ -1,7 +1,6 @@
 import React from "react";
 import img from "../images//Login/loginimage.png";
 import logo from "../images/Login/logo.png";
-import { Link } from "react-router-dom";
 import { RegisterForm } from "../components/authForms/RegisterForm";
 const Registration = () => {
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import feed1 from "../images/Feed/feed1.png";
 const SuggestedCard = ({
   fullName,
   description,
