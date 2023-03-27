@@ -24,11 +24,12 @@ public class DefaultBlogService implements BlogService{
     }
 
     @Override
-    public BlogEntity create(BlogCreateRequest blog) {
+    public BlogEntity create(BlogCreateRequest blog) throws UserNotFoundByIdException {
+        if(SecurityContextHolder.getContext().getAuthentication() == null) throw new UserNotFoundByIdException("User not found.");
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity appUser = this._userRepository.findByUsername(auth);
         if(appUser == null) throw new UserNotFoundByIdException("User not found.");
         var createdBlog = new BlogEntity(blog.getTitle(),blog.getDescription(),appUser);
-        return this._blogRepository.save(createdBlog);
+       return this._blogRepository.save(createdBlog);
     }
 }
