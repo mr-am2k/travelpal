@@ -1,4 +1,4 @@
-package com.example.tpalbackend;
+package com.example.tpalbackend.test;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
