@@ -82,7 +82,7 @@ export const RegisterForm = () => {
             <input
               required
               onChange={setName}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
             />
           </div>
         </div>
@@ -92,7 +92,7 @@ export const RegisterForm = () => {
             <input
               required
               onChange={setUsername}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
             />
           </div>
         </div>
@@ -102,7 +102,7 @@ export const RegisterForm = () => {
             <input
               required
               onChange={setPassword}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
               type="password"
             />
           </div>
@@ -113,7 +113,7 @@ export const RegisterForm = () => {
             <input
               required
               onChange={setEmail}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
             />
           </div>
         </div>
@@ -145,7 +145,7 @@ export const RegisterForm = () => {
             <input
               required
               onChange={setCountry}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
             />
           </div>
         </div>

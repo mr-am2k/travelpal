@@ -6,7 +6,7 @@ const Registration = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div
-        data-aos="fade"
+        data-aos="fade-right"
         className="w-[60%] md:block hidden h-screen"
         style={{
           backgroundImage: `url(${img})`,

@@ -8,7 +8,17 @@ const Login = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div
-        data-aos="fade-up"
+        data-aos="fade-right"
+        className="w-[60%] h-screen md:block hidden"
+        style={{
+          backgroundImage: `url(${img})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <div
+        data-aos="fade"
         className="md:w-[40%] w-[80%] h-[50%] flex flex-col items-center justify-around"
       >
         <img src={logo} className="w-[200px]" alt="#" />
@@ -27,16 +37,6 @@ const Login = () => {
           </Link>
         </div>
       </div>
-      <div
-        data-aos="fade-in"
-        className="w-[60%] h-screen md:block hidden"
-        style={{
-          backgroundImage: `url(${img})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      ></div>
     </div>
   );
 };

@@ -61,7 +61,8 @@ export const LoginForm = () => {
           <label className="text-[#1774FF]">Username</label>
           <div className="h-[40px] flex flex-col">
             <input
-              className="border-b-2 outline-0 border-[#1774FF] bg-transparent h-[13px] text-[12px] focus:h-[30px] focus:text-[15px] w-[100%] transition-all"
+              required
+              className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] text-[15px] focus:text-[15px] w-[100%] transition-all"
               value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -73,7 +74,8 @@ export const LoginForm = () => {
           <label className="text-[#1774FF]">Password</label>
           <div className="h-[40px] flex flex-col">
             <input
-              className="border-b-2 outline-0 border-[#1774FF] bg-transparent h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+              required
+              className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
