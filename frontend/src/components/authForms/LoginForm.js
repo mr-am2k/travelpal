@@ -46,12 +46,12 @@ export const LoginForm = () => {
 
   return (
     <>
-      {!responseMsg ? (
-        <div className="h-[10px]"></div>
-      ) : (
-        <h2 className="h-[10px] text-[11px] text-orange-600 font-bold">
+      {responseMsg ? (
+        <h2 className="text-[12px] text-orange-600 font-bold mt-[-5px]">
           {responseMsg}
         </h2>
+      ) : (
+        ""
       )}
       <form
         className="w-[90%] sm:w-[70%] h-[80%] md:h-[50%] flex flex-col items-center justify-around"
