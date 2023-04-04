@@ -58,11 +58,11 @@ export const LoginForm = () => {
         onSubmit={handleLogin}
       >
         <div className="flex flex-col w-[100%] justify-end">
-          <label className="text-[#1774FF]">Username</label>
+          <label className="text-[#1774FF] text-[18px]">Username</label>
           <div className="h-[40px] flex flex-col">
             <input
               required
-              className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] text-[15px] focus:text-[15px] w-[100%] transition-all"
+              className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] w-[100%] transition-all"
               value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -71,11 +71,11 @@ export const LoginForm = () => {
           </div>
         </div>
         <div className="flex flex-col w-[100%]">
-          <label className="text-[#1774FF]">Password</label>
+          <label className="text-[#1774FF] text-[18px]">Password</label>
           <div className="h-[40px] flex flex-col">
             <input
               required
-              className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
+              className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] transition-all"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -84,7 +84,7 @@ export const LoginForm = () => {
             />
           </div>
         </div>
-        <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[14px] font-bold">
+        <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[16px] font-bold">
           Log in
         </button>
       </form>

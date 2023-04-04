@@ -20,7 +20,7 @@ const Registration = () => {
         data-aos="fade"
       >
         <img src={logo} className="w-[200px]" alt="#" />
-        <h2 className="text-[20px] mt-[20px]">Registration</h2>
+        <h2 className="text-[20px] md:text-[25px]">Registration</h2>
 
         <RegisterForm />
       </div>

@@ -77,43 +77,43 @@ export const RegisterForm = () => {
         onSubmit={handleRegister}
       >
         <div className="flex flex-col w-[100%]">
-          <label className="text-[#1774FF]">Full name</label>
+          <label className="text-[#1774FF] text-[18px]">Full name</label>
           <div className="h-[40px] flex flex-col">
             <input
               required
               onChange={setName}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] transition-all"
             />
           </div>
         </div>
         <div className="flex flex-col w-[100%]">
-          <label className="text-[#1774FF]">Username</label>
+          <label className="text-[#1774FF] text-[18px]">Username</label>
           <div className="h-[40px] flex flex-col">
             <input
               required
               onChange={setUsername}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 h-[13px] invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] transition-all"
             />
           </div>
         </div>
         <div className="flex flex-col w-[100%]">
-          <label className="text-[#1774FF]">Password</label>
+          <label className="text-[#1774FF] text-[18px]">Password</label>
           <div className="h-[40px] flex flex-col">
             <input
               required
               onChange={setPassword}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] transition-all"
               type="password"
             />
           </div>
         </div>
         <div className="flex flex-col w-[100%]">
-          <label className="text-[#1774FF]">Email</label>
+          <label className="text-[#1774FF] text-[18px]">Email</label>
           <div className="h-[40px] flex flex-col">
             <input
               required
               onChange={setEmail}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] transition-all"
             />
           </div>
         </div>
@@ -121,14 +121,14 @@ export const RegisterForm = () => {
         <div className="flex w-[100%] items-center justify-between pb-[10px]">
           <input
             type="date"
-            className="text-[#1774FF] w-[140px]"
+            className="text-[#1774FF] w-[140px] text-[18px]"
             onChange={setBirth}
           />
 
           <select
             name="Gender"
             required
-            className="p-0 m-0 w-[30%]"
+            className="p-0 m-0 w-[30%] text-[#1774FF]"
             onChange={setGender}
           >
             <option value="none" selected disabled hidden>
@@ -140,25 +140,25 @@ export const RegisterForm = () => {
         </div>
 
         <div className="flex flex-col w-[100%]">
-          <label className="text-[#1774FF]">Country</label>
+          <label className="text-[#1774FF] text-[18px]">Country</label>
           <div className="h-[40px] flex flex-col">
             <input
               required
               onChange={setCountry}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[13px] invalid:text-[12px] h-[25px] focus:h-[25px] focus:text-[15px] text-[15px] transition-all"
+              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] transition-all"
             />
           </div>
         </div>
-        <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[14px] font-bold">
+        <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[17px] font-bold">
           Register
         </button>
         <div className="flex mt-[20px]">
-          <p className="text-[15px] text-[#757575] pr-[10px]">
+          <p className="text-[17px] text-[#757575] pr-[10px]">
             Already have account?
           </p>
           <Link
             to={{ pathname: "/login" }}
-            className="text-[#1774FF] text-[15px] hover:text-[#1b5349]"
+            className="text-[#1774FF] text-[17px] hover:text-[#1b5349]"
           >
             Log in
           </Link>
