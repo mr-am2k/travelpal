@@ -2,34 +2,18 @@ import React, { createContext, useState } from "react";
 
 export const MyContext = createContext({
   loggedIn: false,
-  setLoggedIn: (loggedIn) => {},
-  theme: "light",
+  setLoggedIn: () => {},
   user: {},
-  setUser: (user) => {},
-  setTheme: (theme) => {},
-  typeOfNavbar: "wide(default)",
-  setTypeOfNavbar: (navbar) => {},
+  setUser: () => {},
 });
 
 const ContextProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [theme, setTheme] = useState("light");
-  const [typeOfNavbar, setTypeOfNavbar] = useState("wide(default)");
   const [user, setUser] = useState({});
+  console.log(loggedIn, "context");
 
   return (
-    <MyContext.Provider
-      value={{
-        loggedIn,
-        setLoggedIn,
-        theme,
-        setTheme,
-        typeOfNavbar,
-        setTypeOfNavbar,
-        user,
-        setUser,
-      }}
-    >
+    <MyContext.Provider value={{ loggedIn, setLoggedIn, user, setUser }}>
       {children}
     </MyContext.Provider>
   );
