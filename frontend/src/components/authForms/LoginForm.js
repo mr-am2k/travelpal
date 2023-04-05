@@ -46,22 +46,23 @@ export const LoginForm = () => {
 
   return (
     <>
-      {!responseMsg ? (
-        <div className="h-[10px]"></div>
-      ) : (
-        <h2 className="h-[10px] text-[11px] text-orange-600 font-bold">
+      {responseMsg ? (
+        <h2 className="text-[12px] text-orange-600 font-bold mt-[-5px]">
           {responseMsg}
         </h2>
+      ) : (
+        ""
       )}
       <form
         className="w-[90%] sm:w-[70%] h-[80%] md:h-[50%] flex flex-col items-center justify-around"
         onSubmit={handleLogin}
       >
         <div className="flex flex-col w-[100%] justify-end">
-          <label className="text-[#1774FF]">Username</label>
+          <label className="text-[#1774FF] text-[18px]">Username</label>
           <div className="h-[40px] flex flex-col">
             <input
-              className="border-b-2 outline-0 border-[#1774FF] bg-transparent h-[13px] text-[12px] focus:h-[30px] focus:text-[15px] w-[100%] transition-all"
+              required
+              className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] w-[100%] transition-all"
               value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -70,10 +71,11 @@ export const LoginForm = () => {
           </div>
         </div>
         <div className="flex flex-col w-[100%]">
-          <label className="text-[#1774FF]">Password</label>
+          <label className="text-[#1774FF] text-[18px]">Password</label>
           <div className="h-[40px] flex flex-col">
             <input
-              className="border-b-2 outline-0 border-[#1774FF] bg-transparent h-[13px] focus:h-[20px] text-[12px] focus:h-[30px] focus:text-[15px] transition-all"
+              required
+              className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] transition-all"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -82,7 +84,7 @@ export const LoginForm = () => {
             />
           </div>
         </div>
-        <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[14px] font-bold">
+        <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[16px] font-bold">
           Log in
         </button>
       </form>
