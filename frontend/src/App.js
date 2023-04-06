@@ -1,8 +1,11 @@
 import "./App.css";
-import { useEffect, useState, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useEffect, useState, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import { MyContext } from "./context/context";
+import axios from "axios";
+import { refreshAccessToken } from "./functions/refreshToken";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
@@ -12,9 +15,6 @@ import PrivateRoute from "./routes/PrivateRoute";
 import Post from "./pages/Post";
 import Messages from "./pages/Messages";
 import ProfilePage from "./pages/ProfilePage";
-import { refreshAccessToken } from "./functions/refreshToken";
-import { MyContext } from "./context/context";
-import axios from "axios";
 import { Loading } from "./components/Global/Loading";
 
 function App() {
@@ -33,7 +33,6 @@ function App() {
             },
           }
         );
-        console.log(response.data);
         cx.setUser(response.data);
         cx.setLoggedIn(true);
       } catch (e) {
