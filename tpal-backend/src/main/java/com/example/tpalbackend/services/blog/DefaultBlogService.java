@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -30,5 +31,9 @@ public class DefaultBlogService implements BlogService{
         if(appUser == null) throw new UserNotFoundByIdException("User not found.");
         var createdBlog = new BlogEntity(blog.getTitle(),blog.getDescription(),appUser);
         return this.blogRepository.save(createdBlog);
+    }
+    @Override
+    public BlogEntity findSingle(UUID blogID) {
+        return this.blogRepository.findById(blogID).get();
     }
 }

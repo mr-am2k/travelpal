@@ -4,6 +4,7 @@ import com.example.tpalbackend.entities.UserEntity;
 import com.example.tpalbackend.middleware.exceptions.EmailNotValidException;
 import com.example.tpalbackend.middleware.exceptions.PasswordNotValidException;
 import com.example.tpalbackend.middleware.exceptions.UserAlreadyExistsException;
+import com.example.tpalbackend.middleware.exceptions.UserNotFoundByIdException;
 import com.example.tpalbackend.payload.models.AuthResponse;
 import com.example.tpalbackend.payload.models.LoginResponse;
 import com.example.tpalbackend.payload.models.User;
@@ -132,5 +133,12 @@ public class DefaultUserService implements UserService {
         UserEntity user = userJpaRepository.findByUsername(username);
 
         return user.toDomainModel();
+    }
+
+    @Override
+    public UserEntity getUserEntity(String username) throws UserNotFoundByIdException{
+        var userEntity = this.userJpaRepository.findByUsername(username);
+        if(userEntity == null) throw new UserNotFoundByIdException("User not found.");
+        return userEntity;
     }
 }

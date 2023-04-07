@@ -1,27 +1,28 @@
 package com.example.tpalbackend.controllers;
-import com.example.tpalbackend.payload.request.blog.BlogCreateRequest;
+
+import com.example.tpalbackend.payload.request.comment.CommentCreateRequest;
+import com.example.tpalbackend.payload.request.post.PostCreateRequest;
 import com.example.tpalbackend.payload.response.GlobalResponse;
-import com.example.tpalbackend.services.blog.BlogService;
+import com.example.tpalbackend.services.comment.CommentService;
+import com.example.tpalbackend.services.post.DefaultPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import java.net.URI;
+
+import javax.validation.Valid;
 import java.util.Optional;
 import java.util.UUID;
 
-@RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/blog")
-public class BlogController {
-    private final BlogService blogService;
-    @GetMapping
-    /*Pagination,filtering missing*/
-    public ResponseEntity<GlobalResponse> GetAll(){
+@RequiredArgsConstructor
+@RequestMapping("/api/v1/comment")
+public class CommentController {
+    private final CommentService commentService;
+    @PostMapping
+    public ResponseEntity<?> Post(@Valid @RequestBody CommentCreateRequest request){
         var response = new GlobalResponse();
-
         try{
-            response.setData(Optional.ofNullable(this.blogService.getAll()));
+            response.setItem(Optional.ofNullable(this.commentService.createComment(request)));
             return ResponseEntity.ok().body(response);
         }catch(Exception ex){
             response.setSuccess(false);
@@ -29,12 +30,13 @@ public class BlogController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
     @GetMapping
     @RequestMapping("/{blogId}")
-    public ResponseEntity<GlobalResponse> getSingle(@PathVariable UUID blogId){
+    public ResponseEntity<?> GetCommentsForBlog(@PathVariable UUID blogId){
         var response = new GlobalResponse();
         try{
-            response.setItem(Optional.ofNullable(this.blogService.findSingle(blogId)));
+            response.setItem(Optional.ofNullable(this.commentService.getCommentsForBlog(blogId)));
             return ResponseEntity.ok().body(response);
         }catch(Exception ex){
             response.setSuccess(false);
@@ -42,19 +44,19 @@ public class BlogController {
             return ResponseEntity.badRequest().body(response);
         }
     }
-    @PostMapping
-    public ResponseEntity<GlobalResponse> Post(@RequestBody BlogCreateRequest blog){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/blogs").toUriString());
 
+    @GetMapping
+    @RequestMapping("/get-for-user/{username}")
+    public ResponseEntity<?> GetCommentsForUser(@PathVariable String username){
         var response = new GlobalResponse();
-
         try{
-            response.setItem(Optional.ofNullable(this.blogService.create(blog)));
-            return ResponseEntity.created(uri).body(response);
+            response.setItem(Optional.ofNullable(this.commentService.getCommentsOfUser(username)));
+            return ResponseEntity.ok().body(response);
         }catch(Exception ex){
             response.setSuccess(false);
             response.setMessage(ex.getMessage().describeConstable());
             return ResponseEntity.badRequest().body(response);
         }
     }
+
 }

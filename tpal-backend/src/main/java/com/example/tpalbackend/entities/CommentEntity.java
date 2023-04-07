@@ -24,4 +24,10 @@ public class CommentEntity {
     private BlogEntity blog;
     @ManyToOne
     private UserEntity user;
+
+    public CommentEntity(String comment, BlogEntity blog, UserEntity user){
+        this.comment = comment;
+        this.blog = blog;
+        this.user = user;
+    }
 }

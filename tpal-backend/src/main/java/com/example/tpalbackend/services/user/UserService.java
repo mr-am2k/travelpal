@@ -17,4 +17,6 @@ public interface UserService {
     AuthResponse refresh(HttpServletRequest request);
 
     User getUser(String username);
+
+    UserEntity getUserEntity(String username);
 }

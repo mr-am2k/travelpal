@@ -37,7 +37,7 @@ public class DefaultPostService implements PostService{
     @Override
     public PostEntity getSingle(UUID id) {
         if(id == null) throw new NullPointerException("ID cannot be null.");
-        var post = this._postRepository.findById(id).get();
+        var post = this.postRepository.findById(id).get();
         if(post == null) throw new PostByIdNotFound("Post not found.");
         return post;
     }
