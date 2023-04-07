@@ -1,6 +1,7 @@
 package com.example.tpalbackend.controllers;
 
 import com.example.tpalbackend.payload.request.comment.CommentCreateRequest;
+import com.example.tpalbackend.payload.request.comment.CommentUpdateRequest;
 import com.example.tpalbackend.payload.request.post.PostCreateRequest;
 import com.example.tpalbackend.payload.response.GlobalResponse;
 import com.example.tpalbackend.services.comment.CommentService;
@@ -22,7 +23,7 @@ public class CommentController {
     public ResponseEntity<?> Post(@Valid @RequestBody CommentCreateRequest request){
         var response = new GlobalResponse();
         try{
-            response.setItem(Optional.ofNullable(this.commentService.createComment(request)));
+            response.setItem(Optional.ofNullable(this.commentService.create(request)));
             return ResponseEntity.ok().body(response);
         }catch(Exception ex){
             response.setSuccess(false);
@@ -58,5 +59,33 @@ public class CommentController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+    @DeleteMapping
+    @RequestMapping("/delete/{commentId}")
+    public ResponseEntity<?> Delete(@PathVariable UUID commentId){
+        var response = new GlobalResponse();
+        try{
+            response.setMessage("Comment deleted successfully".describeConstable());
+            response.setItem(Optional.ofNullable(this.commentService.delete(commentId)));
+            return ResponseEntity.ok().body(response);
+        }catch(Exception ex){
+            response.setSuccess(false);
+            response.setMessage(ex.getMessage().describeConstable());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
 
+    @PutMapping
+    @RequestMapping("/update/{commentId}")
+    public ResponseEntity<?> Update(@PathVariable UUID commentId,@Valid @RequestBody CommentUpdateRequest req){
+        var response = new GlobalResponse();
+        try{
+            response.setMessage("Comment updated successfully".describeConstable());
+            response.setItem(Optional.ofNullable(this.commentService.update(commentId,req)));
+            return ResponseEntity.ok().body(response);
+        }catch(Exception ex){
+            response.setSuccess(false);
+            response.setMessage(ex.getMessage().describeConstable());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
 }

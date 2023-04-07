@@ -13,4 +13,6 @@ public interface CommentJpaRepository extends JpaRepository<CommentEntity, UUID>
 
     @Query("SELECT ce from CommentEntity ce WHERE ce.user = :user")
     List<CommentEntity> findCommentsByUser(UserEntity user);
+
+    void deleteById(UUID id);
 }

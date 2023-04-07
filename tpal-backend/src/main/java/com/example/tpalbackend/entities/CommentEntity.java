@@ -19,7 +19,7 @@ public class CommentEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String comment;
-    @ManyToOne
+    @ManyToOne()
     @JsonIgnore
     private BlogEntity blog;
     @ManyToOne

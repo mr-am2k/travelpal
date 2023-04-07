@@ -5,6 +5,7 @@ import com.example.tpalbackend.entities.UserEntity;
 import com.example.tpalbackend.middleware.exceptions.ApiException;
 import com.example.tpalbackend.middleware.exceptions.UserNotFoundByIdException;
 import com.example.tpalbackend.payload.request.comment.CommentCreateRequest;
+import com.example.tpalbackend.payload.request.comment.CommentUpdateRequest;
 import com.example.tpalbackend.payload.response.CommentResponse;
 import com.example.tpalbackend.repositories.blog.BlogJpaRepository;
 import com.example.tpalbackend.repositories.comment.CommentJpaRepository;
@@ -26,7 +27,7 @@ public class DefaultCommentService implements CommentService{
     private final BlogJpaRepository blogRepository;
     private final UserService userService;
     @Override
-    public CommentResponse createComment(CommentCreateRequest request) {
+    public CommentResponse create(CommentCreateRequest request) {
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();
         var appUser = this.userService.getUserEntity(auth);
         var blogToAttachComment = this.blogRepository.findById(request.getBlogId());
@@ -51,5 +52,22 @@ public class DefaultCommentService implements CommentService{
         return commentRepository.findCommentsByUser(user);
         }
         throw new Exception("You cant access comments for user without ADMIN role!");
+    }
+
+    @Override
+    public CommentEntity delete(UUID commentId) {
+        var foundComment = this.commentRepository.findById(commentId).get();
+        var findBlog= this.blogRepository.findById(foundComment.getBlog().getId()).get();
+        findBlog.getComments().remove(foundComment);
+        this.commentRepository.deleteById(commentId);
+        return foundComment;
+    }
+
+    @Override
+    public CommentEntity update(UUID commentId, CommentUpdateRequest commentUpdateRequest) {
+        var commentToUpdate = this.commentRepository.findById(commentId).get();
+        commentToUpdate.setComment(commentUpdateRequest.getComment());
+        var updatedComment = this.commentRepository.save(commentToUpdate);
+        return updatedComment;
     }
 }
