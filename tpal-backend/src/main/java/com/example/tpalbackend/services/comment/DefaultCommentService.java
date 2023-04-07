@@ -22,7 +22,6 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class DefaultCommentService implements CommentService{
-    private final UserJpaRepository userRepository;
     private final CommentJpaRepository commentRepository;
     private final BlogJpaRepository blogRepository;
     private final UserService userService;
