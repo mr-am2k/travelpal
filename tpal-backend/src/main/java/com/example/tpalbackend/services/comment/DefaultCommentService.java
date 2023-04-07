@@ -38,8 +38,7 @@ public class DefaultCommentService implements CommentService{
 
     @Override
     public List<CommentEntity> getCommentsForBlog(UUID blogID)  {
-        var blog = this.blogRepository.findById(blogID);
-        return blog.get().getComments();
+        return this.blogRepository.findById(blogID).get().getComments();
     }
 
     @Override
