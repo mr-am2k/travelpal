@@ -13,7 +13,7 @@ export async function refreshAccessToken() {
     );
 
     if (response.status === 200) {
-      console.log(response.data.accessToken);
+      console.log(response.data);
       localStorage.setItem("access_token", response.data.accessToken);
     }
   } catch (error) {

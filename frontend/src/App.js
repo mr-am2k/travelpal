@@ -1,8 +1,11 @@
 import "./App.css";
-import { useEffect, createContext, useState, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useEffect, useState, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import { MyContext } from "./context/context";
+import axios from "axios";
+import { refreshAccessToken } from "./functions/refreshToken";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
@@ -12,17 +15,12 @@ import PrivateRoute from "./routes/PrivateRoute";
 import Post from "./pages/Post";
 import Messages from "./pages/Messages";
 import ProfilePage from "./pages/ProfilePage";
-import { refreshAccessToken } from "./functions/refreshToken";
-import ContextProvider, { MyContext } from "./context/context";
-
-import axios from "axios";
+import { Loading } from "./components/Global/Loading";
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const cx = useContext(MyContext);
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
+
   const getUserData = async () => {
     const access_token = localStorage.getItem("access_token");
     if (access_token) {
@@ -35,80 +33,79 @@ function App() {
             },
           }
         );
-        cx.loggedIn = true;
-        cx.user = response.data;
+        cx.setUser(response.data);
+        cx.setLoggedIn(true);
       } catch (e) {
         console.log(e);
       }
     }
+    setLoading(false);
   };
-
   useEffect(() => {
-    const minute = 60000;
+    AOS.init();
+    AOS.refresh();
 
+    const minute = 60000;
     refreshAccessToken();
     getUserData();
-    console.log("run");
     setInterval(refreshAccessToken, minute * 4);
-    // eslint-disable-next-line
   }, []);
 
+  if (loading) return <Loading />;
   return (
-    <ContextProvider>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="registration" element={<Registration />} />
-        <Route
-          path="userfeed"
-          element={
-            <PrivateRoute>
-              <UserFeed />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="post/:id"
-          element={
-            <PrivateRoute>
-              <Post />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="travelfeed"
-          element={
-            <PrivateRoute>
-              <TravelFeed />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="messages"
-          element={
-            <PrivateRoute>
-              <Messages />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <PrivateRoute>
-              <UserFeed />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="profilepage"
-          element={
-            <PrivateRoute>
-              <ProfilePage />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-    </ContextProvider>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="login" element={<Login />} />
+      <Route path="registration" element={<Registration />} />
+      <Route
+        path="userfeed"
+        element={
+          <PrivateRoute>
+            <UserFeed />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="post/:id"
+        element={
+          <PrivateRoute>
+            <Post />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="travelfeed"
+        element={
+          <PrivateRoute>
+            <TravelFeed />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="messages"
+        element={
+          <PrivateRoute>
+            <Messages />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <PrivateRoute>
+            <UserFeed />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="profilepage"
+        element={
+          <PrivateRoute>
+            <ProfilePage />
+          </PrivateRoute>
+        }
+      />
+    </Routes>
   );
 }
 

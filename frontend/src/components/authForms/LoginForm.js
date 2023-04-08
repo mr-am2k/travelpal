@@ -36,8 +36,8 @@ export const LoginForm = () => {
           },
         }
       );
-      cx.user = response.data;
-      cx.loggedIn = true;
+      cx.setUser(response.data);
+      cx.setLoggedIn(true);
       navigate("/userfeed");
     } catch (e) {
       console.log(e.response.data.message);
