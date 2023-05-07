@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "./Card";
 import face1 from "../../images/Feed/feed1.png";
 import face2 from "../../images/Feed/feed2.png";
@@ -88,67 +87,67 @@ const MainTravel = () => {
     },
   ];
   return (
-    <div className="w-[80%] flex gap-10 max-h-full mx-auto my-10">
+    <div className="w-[90%] max-w-[1980px] flex flex-col md:flex-row justify-around items-center md:items-start max-h-full mx-auto my-10">
       {/* LEFT SIDE */}
-      <div className="w-[360px] h-[570px] bg-white flex items-center justify-center rounded-[15px] border-2 border-gray shadow-[0_4px_15px_3px_rgba(0,0,0,0.15)]">
+      <div className="flex w-[80%] md:w-[300px] lg:w-[320px] xl:[380px] h-[570px] bg-white items-center justify-center rounded-[15px] border-2 border-gray shadow-[0_4px_15px_3px_rgba(0,0,0,0.15)]">
         <form className="w-[95%] h-[95%] flex flex-col gap-4">
           <input
             type="text"
             for="country"
             placeholder="Country"
-            className="text-black w-full h-[55px] outline-none border-2 pl-2 border-black rounded-[5px] placeholder:text-black"
+            className="text-black w-full h-[40px] outline-none border-2 pl-2 border-slate-300 rounded-[5px] placeholder:text-black"
           />
-          <p className="text-[20px] font-normal leading-[24px]">Dates</p>
-          <div className="flex gap-3">
-            <span className="flex flex-col gap-2">
+          <p className="text-[19px] font-medium leading-[24px]">Dates</p>
+          <div className="flex justify-between">
+            <span className="flex flex-col gap-2 w-[45%]">
               <label>Start date</label>
               <input
                 type="date"
-                className="w-[160px] h-[43px] border-2 border-black outline-none rounded-[5px]"
+                className="w-[100%] h-[40px] border-2 border-slate-300 outline-none rounded-[5px]"
                 placeholder="none"
               />
             </span>
-            <span className="flex flex-col gap-2 ">
+            <span className="flex flex-col gap-2 w-[45%]">
               <label>End date</label>
               <input
                 type="date"
-                className="w-[160px] h-[43px] border-2 border-black outline-none rounded-[5px]"
+                className="w-[100%] h-[40px] border-2 border-slate-300 outline-none rounded-[5px]"
                 placeholder="none"
               />
             </span>
           </div>
-          <span className="border-b-2 border-black flex flex-col gap-4 rounded-[5px] overflow-hidden">
-            <label className="text-[20px] font-normal leading-[24px]">
+          <span className="flex flex-col gap-4">
+            <label className="text-[19px] font-medium leading-[24px]">
               Languages
             </label>
             <input
               type="text"
               placeholder="Languages"
-              className="outline-none w-[345px] h-[45px] pl-2 placeholder:text-black rounded-[5px]"
+              className="text-black w-full h-[40px] outline-none border-2 pl-2 border-slate-300 rounded-[5px] placeholder:text-black"
             />
           </span>
           <span className="flex flex-col gap-4">
-            <label className="text-[20px] font-normal leading-[24px]">
+            <label className="text-[19px] font-medium leading-[24px]">
               Ages
             </label>
-            <span className="flex gap-2">
+            <span className="flex justify-between">
               <input
                 type="text"
                 placeholder="Ages from"
-                className="outline-none w-[170px] h-[45px] pl-2 placeholder:text-black rounded-[5px] border-b-2 border-black"
+                className="w-[45%] h-[40px] border-2 border-slate-300 outline-none rounded-[5px] placeholder:text-black pl-[5px]"
               />
               <input
                 type="text"
                 placeholder="Ages to"
-                className="outline-none w-[170px] h-[45px] pl-2 placeholder:text-black rounded-[5px] border-b-2 border-black"
+                className="w-[45%] h-[40px] border-2 border-slate-300 outline-none rounded-[5px] placeholder:text-black pl-[5px]"
               />
             </span>
           </span>
           <span className="flex flex-col gap-4">
-            <label className="text-[20px] font-normal leading-[24px]">
+            <label className="text-[19px] font-medium leading-[24px]">
               Gender
             </label>
-            <span className="flex gap-2">
+            <span className="flex justify-around">
               <span className="flex gap-1">
                 <input
                   type="checkbox"
@@ -167,14 +166,14 @@ const MainTravel = () => {
           </span>
           <button
             type="submit"
-            className="w-[150px] h-[40px] border-black border-2 text-black rounded-[40px] mx-auto"
+            className="w-[150px] h-[40px] border-[#1774ff] border-2 text-[#1774ff] rounded-[40px] font-medium mx-auto mt-[10px] hover:bg-[#1774ff] hover:text-white transition-all"
           >
             Search...
           </button>
         </form>
       </div>
       {/* RIGHT SIDE */}
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-10 items-center mt-[50px] md:mt-0">
         {travelData.map((d) => {
           return (
             <Card

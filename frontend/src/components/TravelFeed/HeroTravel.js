@@ -3,7 +3,7 @@ import heroImg from "../../images/Feed/TravelFeed/heropic.png";
 const HeroTravel = () => {
   return (
     <div
-      className="w-full h-[380px] bg-red-300 flex flex-col gap-4 items-center justify-center text-white"
+      className="w-full bg-red-300 flex flex-col gap-4 items-center justify-center text-white py-[20px]"
       style={{
         backgroundImage: `url(${heroImg})`,
       }}
