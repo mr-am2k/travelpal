@@ -1,20 +1,26 @@
 package com.example.tpalbackend.controllers;
 
 import com.example.tpalbackend.payload.request.post.PostCreateRequest;
+import com.example.tpalbackend.payload.request.post.PostSearchRequest;
 import com.example.tpalbackend.payload.response.GlobalResponse;
 import com.example.tpalbackend.services.post.DefaultPostService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 @RequestMapping("/api/v1/post")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true")
+@Tag(name = "Post")
 public class PostController {
     private final DefaultPostService postService;
     @PostMapping
@@ -31,10 +37,11 @@ public class PostController {
         }
     }
     @GetMapping
-    public ResponseEntity<?> GetAll(){
+    @SecurityRequirement(name = "Bearer Authentication")
+    public ResponseEntity<?> getPosts(@ModelAttribute PostSearchRequest postSearchRequest){
         var response = new GlobalResponse();
 
-        response.setData(Optional.ofNullable(this.postService.getAll()));
+        response.setData(Optional.ofNullable(Collections.singletonList(this.postService.getPosts(postSearchRequest))));
 
         return ResponseEntity.ok().body(response);
     }

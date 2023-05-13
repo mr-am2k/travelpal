@@ -15,6 +15,7 @@ import com.example.tpalbackend.services.blog.DefaultBlogService;
 import com.example.tpalbackend.services.post.DefaultPostService;
 import com.example.tpalbackend.services.post.PostService;
 import com.example.tpalbackend.utils.HelperMock;
+import com.example.tpalbackend.utils.UserGender;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -26,6 +27,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -53,7 +55,7 @@ public class PostTest {
         newRequest.setDescription("Spain");
         newRequest.setDepartureDate(LocalDateTime.now().toLocalDate());
         newRequest.setReturnDate(LocalDateTime.now().toLocalDate());
-        var createdPost = new PostEntity("new title!","new description!","Bosnia and Herzegovina","Spain",LocalDateTime.now().toLocalDate(),LocalDateTime.now().toLocalDate(), null);
+        var createdPost = new PostEntity("new title!","new description!","Bosnia and Herzegovina","Spain",LocalDateTime.now().toLocalDate(),LocalDateTime.now().toLocalDate(), 1, 100, List.of("English"), List.of(UserGender.MALE), null);
         HelperMock.mockAuthentication(userRepository);
         Mockito.when(postService.createPost(newRequest)).thenReturn(createdPost);
         var createdPostResponse = postService.createPost(newRequest);

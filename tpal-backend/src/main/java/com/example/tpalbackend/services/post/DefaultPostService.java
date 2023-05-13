@@ -6,9 +6,15 @@ import com.example.tpalbackend.entities.UserEntity;
 import com.example.tpalbackend.middleware.exceptions.PostByIdNotFound;
 import com.example.tpalbackend.middleware.exceptions.UserNotFoundByIdException;
 import com.example.tpalbackend.payload.request.post.PostCreateRequest;
+import com.example.tpalbackend.payload.request.post.PostSearchRequest;
 import com.example.tpalbackend.repositories.post.PostJpaRepository;
 import com.example.tpalbackend.repositories.user.UserJpaRepository;
+import com.example.tpalbackend.utils.filter.post.PostFilter;
+import com.example.tpalbackend.utils.filter.post.PostSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +31,38 @@ public class DefaultPostService implements PostService{
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity appUser = this.userRepository.findByUsername(auth);
         if(appUser == null) throw new UserNotFoundByIdException("User not found.");
-        var createdPost = new PostEntity(post.getTitle(),post.getDescription(),post.getPlaceOfDeparture(),post.getDestination(),post.getDepartureDate(),post.getReturnDate(),appUser);
+        var createdPost = new PostEntity(
+                post.getTitle(),
+                post.getDescription(),
+                post.getPlaceOfDeparture(),
+                post.getDestination(),
+                post.getDepartureDate(),
+                post.getReturnDate(),
+                post.getMinAge(),
+                post.getMaxAge(),
+                post.getLanguages(),
+                post.getGenders(),
+                appUser);
         return this.postRepository.save(createdPost);
 
     }
     @Override
-    public List<PostEntity> getAll() {
-        return this.postRepository.findAll();
+    public Page<PostEntity> getPosts(PostSearchRequest postSearchRequest) {
+        final Pageable page = PageRequest.of(postSearchRequest.getPageNumber(), 10);
+
+        final PostFilter postFilter = PostFilter.builder()
+                .destination(postSearchRequest.getDestination())
+                .startDate(postSearchRequest.getStartDate())
+                .endDate(postSearchRequest.getEndDate())
+                .languages(postSearchRequest.getLanguages())
+                .maxAge(postSearchRequest.getMaxAge())
+                .minAge(postSearchRequest.getMinAge())
+                .genders(postSearchRequest.getGenders())
+                .build();
+
+        final PostSpecification postSpecification = new PostSpecification(postFilter);
+
+        return this.postRepository.findAll(postSpecification.toFilterSpecification(), page);
     }
 
     @Override
