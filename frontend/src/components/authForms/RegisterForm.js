@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHttp } from "../../customHooks/useHttp";
+
+import countries from '../../utils/countries.json'
+
 export const RegisterForm = () => {
   const [responseMsg, setResponseMsg] = useState("");
   const [user, setUser] = useState({
@@ -34,6 +37,7 @@ export const RegisterForm = () => {
   };
   const setCountry = (e) => {
     setResponseMsg("");
+    console.log(e.target.value)
     setUser((prevState) => ({ ...prevState, country: e.target.value }));
   };
   const setBirth = (e) => {
@@ -140,14 +144,16 @@ export const RegisterForm = () => {
         </div>
 
         <div className="flex flex-col w-[100%]">
-          <label className="text-[#1774FF] text-[18px]">Country</label>
-          <div className="h-[40px] flex flex-col">
-            <input
-              required
-              onChange={setCountry}
-              className="border-b-2 border-[#1774FF] bg-transparent outline-0 invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] transition-all"
-            />
-          </div>
+          <select
+            name="Country"
+            required
+            onChange={setCountry}
+          >
+            <option value="none" selected disabled hidden>
+              Country
+            </option>
+            {countries.map(country => (<option>{country.name}</option>))}
+          </select>
         </div>
         <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[17px] font-bold">
           Register
