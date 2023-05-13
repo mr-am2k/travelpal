@@ -3,12 +3,14 @@ import Stars from "../images/Stars.png";
 import UserProfileIcons from "../components/UserProfileIcons";
 import { useContext } from "react";
 import { MyContext } from "../context/context";
+
 import place1 from "../images/placeIcons/place1.png";
 import place2 from "../images/placeIcons/place2.png";
 import place3 from "../images/placeIcons/place3.png";
 import place4 from "../images/placeIcons/place4.png";
 const ProfilePage = (props) => {
   const ctx = useContext(MyContext);
+
   return (
     <>
       <Navbar />
