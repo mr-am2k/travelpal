@@ -130,12 +130,13 @@ const MainTravel = () => {
             <label className="text-[19px] font-medium leading-[24px]">
               Ages
             </label>
-            <span className="flex justify-between">
+            <span className="flex justify-between items-center">
               <input
                 type="text"
                 placeholder="Ages from"
                 className="w-[45%] h-[40px] border-2 border-slate-300 outline-none rounded-[5px] placeholder:text-black pl-[5px]"
               />
+              <p>-</p>
               <input
                 type="text"
                 placeholder="Ages to"
