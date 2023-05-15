@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import Navbar from "../components/Navbar";
 import Main from "../components/Post/Main";
 import Footer from "../components/Global/Footer";
+
 const Post = () => {
   const params = useParams();
   console.log(+params.id);
