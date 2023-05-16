@@ -32,14 +32,14 @@ const TravelFeed = () => {
           <path
             d="M43 10L43 74"
             stroke="#1774FF"
-            stroke-width="20"
-            stroke-linecap="round"
+            strokeWidth="20"
+            strokeLinecap="round"
           />
           <path
             d="M10.9844 41.2504L74.9839 41"
             stroke="#1774FF"
-            stroke-width="20"
-            stroke-linecap="round"
+            strokeWidth="20"
+            strokeLinecap="round"
           />
         </svg>
       </button>

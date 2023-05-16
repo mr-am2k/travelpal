@@ -1,4 +1,4 @@
-import { PostForm } from "../authForms/PostForm";
+import { PostForm } from "../Forms/PostForm";
 
 export const PostModal = (props) => {
   return (

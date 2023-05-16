@@ -93,7 +93,6 @@ const MainTravel = () => {
         <form className="w-[95%] h-[95%] flex flex-col gap-4">
           <input
             type="text"
-            for="country"
             placeholder="Country"
             className="text-black w-full h-[40px] outline-none border-2 pl-2 border-slate-300 rounded-[5px] placeholder:text-black"
           />
@@ -178,6 +177,7 @@ const MainTravel = () => {
         {travelData.map((d) => {
           return (
             <Card
+              key={d.id}
               id={d.id}
               fullName={d.fullName}
               age={d.age}

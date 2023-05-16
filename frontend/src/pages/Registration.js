@@ -1,7 +1,7 @@
 import React from "react";
 import img from "../images//Login/loginimage.png";
 import logo from "../images/Login/logo.png";
-import { RegisterForm } from "../components/authForms/RegisterForm";
+import { RegisterForm } from "../components/Forms/RegisterForm";
 const Registration = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center">

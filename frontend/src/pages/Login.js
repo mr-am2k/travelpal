@@ -2,7 +2,7 @@ import React from "react";
 import img from "../images//Login/loginimage.png";
 import logo from "../images/Login/logo.png";
 import { Link } from "react-router-dom";
-import { LoginForm } from "../components/authForms/LoginForm";
+import { LoginForm } from "../components/Forms/LoginForm";
 
 const Login = () => {
   return (
