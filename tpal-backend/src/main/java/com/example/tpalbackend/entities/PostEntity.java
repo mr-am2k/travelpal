@@ -55,7 +55,6 @@ public class PostEntity {
     private List<UserGender> genders;
 
     @ManyToOne
-    @JsonIgnore
     private UserEntity user;
 
     public PostEntity(

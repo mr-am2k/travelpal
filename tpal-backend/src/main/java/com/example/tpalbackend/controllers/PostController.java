@@ -24,6 +24,7 @@ import java.util.UUID;
 public class PostController {
     private final DefaultPostService postService;
     @PostMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<?> Post(@Valid @RequestBody PostCreateRequest post){
         var response = new GlobalResponse();
 
@@ -46,6 +47,7 @@ public class PostController {
         return ResponseEntity.ok().body(response);
     }
     @GetMapping("/{id}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<?> GetSingle(@PathVariable UUID id){
         var response = new GlobalResponse();
 

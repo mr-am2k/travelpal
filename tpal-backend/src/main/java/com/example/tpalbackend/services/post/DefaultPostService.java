@@ -44,7 +44,6 @@ public class DefaultPostService implements PostService{
                 post.getGenders(),
                 appUser);
         return this.postRepository.save(createdPost);
-
     }
     @Override
     public Page<PostEntity> getPosts(PostSearchRequest postSearchRequest) {
