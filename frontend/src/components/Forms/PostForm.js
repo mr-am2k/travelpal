@@ -6,7 +6,7 @@ export const PostForm = (props) => {
   const [travelPost, setTravelPost] = useState({
     title: "",
     description: "",
-    placeOfDerparture: "",
+    placeOfDeparture: "",
     destination: "",
     departureDate: "",
     returnDate: "",
@@ -22,7 +22,7 @@ export const PostForm = (props) => {
   const setPlaceOfDeparture = (departure) => {
     setTravelPost((prevState) => ({
       ...prevState,
-      placeOfDerparture: departure,
+      placeOfDeparture: departure,
     }));
   };
   const setDestination = (destination) => {
@@ -68,6 +68,11 @@ export const PostForm = (props) => {
       {successMsg && (
         <p className="px-5 rounded-md bg-green-400 text-white transition-all">
           {successMsg}
+        </p>
+      )}
+      {errorMsg && (
+        <p className="px-5 rounded-md bg-green-400 text-white transition-all">
+          {errorMsg}
         </p>
       )}
       <form

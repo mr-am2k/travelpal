@@ -3,7 +3,10 @@ import face1 from "../../images/Feed/feed1.png";
 import face2 from "../../images/Feed/feed2.png";
 import face4 from "../../images/Feed/feed4.png";
 import face5 from "../../images/Feed/feed5.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const MainTravel = () => {
+  const access_token = localStorage.getItem("access_token");
   const travelData = [
     {
       id: 0,
@@ -86,6 +89,29 @@ const MainTravel = () => {
       image: face4,
     },
   ];
+  const [travelPosts, setTravelPosts] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const getPosts = async (pageNumber) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/v1/post?pageNumber=${pageNumber}`,
+        {
+          body: {},
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      setTravelPosts(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  useEffect(() => {
+    getPosts(1);
+  }, []);
+  console.log(travelPosts);
   return (
     <div className="w-[90%] max-w-[1980px] flex flex-col md:flex-row justify-around items-center md:items-start max-h-full mx-auto my-10">
       {/* LEFT SIDE */}
