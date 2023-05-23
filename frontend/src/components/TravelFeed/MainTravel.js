@@ -7,110 +7,52 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 const MainTravel = () => {
   const access_token = localStorage.getItem("access_token");
-  const travelData = [
-    {
-      id: 0,
-      fullName: "Jack Hoffberg",
-      age: 28,
-      destination: "Bali, Indonesia",
-      date: "Dec 2022 - Jan 2022",
-      description:
-        "I am interested in meeting people who think they are different and unique, I would love to know you while sharing activates together.",
-      image: face1,
-    },
-    {
-      id: 1,
-      fullName: "Zara Youani",
-      age: 32,
-      destination: "Cambodia",
-      date: "Nov 2022 - Jan 2022",
-      description:
-        "Hi ! My name is Melanie and i'm a fifth-year labor law student from Paris. I love to eat, and discover new cultures through food. Traveling is the best... show more",
-      image: face2,
-    },
-    {
-      id: 2,
-      fullName: "Muamer Hodžić",
-      age: 31,
-      destination: "Istanbul, Turkey",
-      date: "Dec 2022 - Jan 2022",
-      description:
-        "Wanna improve myturkish during a stay in Turkey. If you're interested in meeting each other or travel together it would be great fun. See you.",
-      image: face5,
-    },
-    {
-      id: 3,
-      fullName: "Lara Howie",
-      age: 26,
-      destination: "Bali, Indonesia",
-      date: "Dec 2022 - Jan 2022",
-      description:
-        "I am interested in meeting people who think they are different and unique, I would love to know you while sharing activates together.",
-      image: face4,
-    },
-    {
-      id: 4,
-      fullName: "Jack Hoffberg",
-      age: 28,
-      destination: "Bali, Indonesia",
-      date: "Dec 2022 - Jan 2022",
-      description:
-        "I am interested in meeting people who think they are different and unique, I would love to know you while sharing activates together.",
-      image: face1,
-    },
-    {
-      id: 5,
-      fullName: "Zara Youani",
-      age: 32,
-      destination: "Cambodia",
-      date: "Nov 2022 - Jan 2022",
-      description:
-        "Hi ! My name is Melanie and i'm a fifth-year labor law student from Paris. I love to eat, and discover new cultures through food. Traveling is the best... show more",
-      image: face2,
-    },
-    {
-      id: 6,
-      fullName: "Muamer Hodžić",
-      age: 31,
-      destination: "Istanbul, Turkey",
-      date: "Dec 2022 - Jan 2022",
-      description:
-        "Wanna improve myturkish during a stay in Turkey. If you're interested in meeting each other or travel together it would be great fun. See you.",
-      image: face5,
-    },
-    {
-      id: 7,
-      fullName: "Lara Howie",
-      age: 26,
-      destination: "Bali, Indonesia",
-      date: "Dec 2022 - Jan 2022",
-      description:
-        "I am interested in meeting people who think they are different and unique, I would love to know you while sharing activates together.",
-      image: face4,
-    },
-  ];
   const [travelPosts, setTravelPosts] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
-
-  const getPosts = async (pageNumber) => {
+  const [lastPage, setLastPage] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [filterParams, setFilterParams] = useState({
+    pageNumber: 0,
+    destination: "",
+    //startDate: "",
+    //endDate: "",
+  });
+  const queryString = Object.keys(filterParams)
+    .map((key) => {
+      return (
+        encodeURIComponent(key) + "=" + encodeURIComponent(filterParams[key])
+      );
+    })
+    .join("&");
+  console.log(queryString);
+  const getPosts = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/v1/post?pageNumber=${pageNumber}`,
+        `http://localhost:8080/api/v1/post?${queryString}`,
         {
-          body: {},
           headers: {
             Authorization: `Bearer ${access_token}`,
           },
         }
       );
-      setTravelPosts(response.data);
+      setTravelPosts((prevState) => [
+        ...prevState,
+        ...response.data?.data[0].content,
+      ]);
+      setLastPage(response.data?.data[0].last);
+      if (response.data?.data[0].last === false) {
+        setPageNumber((prevState) => prevState + 1);
+      }
     } catch (e) {
       console.log(e);
     }
   };
+  const loadMore = () => {
+    getPosts(pageNumber);
+  };
   useEffect(() => {
-    getPosts(1);
+    getPosts(0);
   }, []);
+  console.log(travelPosts, "  ", lastPage);
   console.log(travelPosts);
   return (
     <div className="w-[90%] max-w-[1980px] flex flex-col md:flex-row justify-around items-center md:items-start max-h-full mx-auto my-10">
@@ -200,20 +142,28 @@ const MainTravel = () => {
       </div>
       {/* RIGHT SIDE */}
       <div className="flex flex-col gap-10 items-center mt-[50px] md:mt-0">
-        {travelData.map((d) => {
+        {travelPosts?.map((d) => {
           return (
             <Card
               key={d.id}
               id={d.id}
-              fullName={d.fullName}
-              age={d.age}
+              fullName={`${d.user.firstName} ${d.user.lastName}`}
+              age={""}
               destination={d.destination}
-              date={d.date}
+              date={`${d.departureDate} - ${d.returnDate}`}
               description={d.description}
-              image={d.image}
+              image={d.user.imageUrl}
             />
           );
         })}
+        {!lastPage && (
+          <h2
+            className="cursor-pointer hover:text-[#1774ff]"
+            onClick={() => loadMore()}
+          >
+            Load more...
+          </h2>
+        )}
       </div>
     </div>
   );
