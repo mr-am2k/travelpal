@@ -11,7 +11,7 @@ const MainTravel = () => {
   const [lastPage, setLastPage] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const [filterParams, setFilterParams] = useState({
-    pageNumber: 0,
+    pageNumber: pageNumber,
     destination: "",
     //startDate: "",
     //endDate: "",
@@ -24,10 +24,10 @@ const MainTravel = () => {
     })
     .join("&");
   console.log(queryString);
-  const getPosts = async () => {
+  const getPosts = async (pageNumber) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/v1/post?${queryString}`,
+        `http://localhost:8080/api/v1/post?pageNumber=${pageNumber}`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -38,6 +38,26 @@ const MainTravel = () => {
         ...prevState,
         ...response.data?.data[0].content,
       ]);
+      setLastPage(response.data?.data[0].last);
+      if (response.data?.data[0].last === false) {
+        setPageNumber((prevState) => prevState + 1);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const filterPosts = async () => {
+    setPageNumber(0);
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/v1/post?${queryString}`,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      setTravelPosts(response.data?.data[0].content);
       setLastPage(response.data?.data[0].last);
       if (response.data?.data[0].last === false) {
         setPageNumber((prevState) => prevState + 1);
