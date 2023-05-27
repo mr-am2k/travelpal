@@ -24,7 +24,6 @@ export const LoginForm = () => {
       localStorage.setItem("access_token", response.data.accessToken);
     } catch (e) {
       setResponseMsg(e.response.data.message);
-      console.log(e.response.data.message);
     }
 
     try {
