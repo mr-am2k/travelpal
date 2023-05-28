@@ -51,7 +51,7 @@ const Header = () => {
         {/* Join now button */}
         <div className="h-full ml-auto flex items-center justify-end gap-6">
           <button className="text-[16px] font-medium">
-            <Link to="/login">Login</Link>
+            <Link to="/login">Log in</Link>
           </button>
           <button className="w-[120px] font-bold border-[#1774FF] rounded-[25px] border-2 flex items-end justify-center text-[14px] leading-[12px] text-[#1774ff] px-2 py-4 hover:bg-[#1774FF] hover:text-white">
             <Link to="/registration">Join now</Link>

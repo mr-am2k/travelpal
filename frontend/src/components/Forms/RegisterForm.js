@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHttp } from "../../customHooks/useHttp";
 
-import countries from '../../utils/countries.json'
+import countries from "../../utils/countries.json";
 
 export const RegisterForm = () => {
   const [responseMsg, setResponseMsg] = useState("");
@@ -37,7 +37,7 @@ export const RegisterForm = () => {
   };
   const setCountry = (e) => {
     setResponseMsg("");
-    console.log(e.target.value)
+    console.log(e.target.value);
     setUser((prevState) => ({ ...prevState, country: e.target.value }));
   };
   const setBirth = (e) => {
@@ -123,36 +123,39 @@ export const RegisterForm = () => {
         </div>
 
         <div className="flex w-[100%] items-center justify-between pb-[10px]">
-          <input
-            type="date"
-            className="text-[#1774FF] w-[140px] text-[18px]"
-            onChange={setBirth}
-          />
-
-          <select
-            name="Gender"
-            required
-            className="p-0 m-0 w-[30%] text-[#1774FF]"
-            onChange={setGender}
-          >
-            <option value="none" selected disabled hidden>
-              GN
-            </option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
+          <div className="flex flex-col gap-2 w-full">
+            <label className="text-[#1774FF] text-[18px]">Date of Birth</label>
+            <div className="flex w-[100%] justify-between">
+              <input
+                type="date"
+                className=" w-[140px] text-[18px]"
+                onChange={setBirth}
+              />
+              <select
+                name="Gender"
+                required
+                className="p-0 m-0 w-[30%] text-[#1774FF]"
+                onChange={setGender}
+              >
+                <option value="none" selected disabled hidden>
+                  GN
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col w-[100%]">
-          <select
-            name="Country"
-            required
-            onChange={setCountry}
-          >
+          <label className="text-[#1774FF] text-[18px]">Country</label>
+          <select name="Country" required onChange={setCountry}>
             <option value="none" selected disabled hidden>
               Country
             </option>
-            {countries.map(country => (<option>{country.name}</option>))}
+            {countries.map((country) => (
+              <option>{country.name}</option>
+            ))}
           </select>
         </div>
         <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[17px] font-bold">
