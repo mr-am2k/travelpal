@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useHttp } from "../../customHooks/useHttp";
 
 import countries from "../../utils/countries.json";
 
 export const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const [responseMsg, setResponseMsg] = useState("");
   const [user, setUser] = useState({
     name: "",
@@ -63,6 +65,10 @@ export const RegisterForm = () => {
       country: user.country,
     };
     fetchData(requestUser);
+
+    if (data) {
+      navigate('/login')
+    }
 
     setResponseMsg(data.message);
   };
