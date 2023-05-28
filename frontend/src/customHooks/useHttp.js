@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 export const useHttp = (url, method) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);

@@ -8,11 +8,13 @@ import Footer from "../components/Global/Footer";
 import { MyContext } from "../context/context";
 import { useContext } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 const Home = () => {
   const cx = useContext(MyContext);
   const navigate = useNavigate();
   console.log(cx);
   useEffect(() => {
+    toast("Successfully registered!");
     if (cx.loggedIn) navigate("/userfeed");
   });
   return (
