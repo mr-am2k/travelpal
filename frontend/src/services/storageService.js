@@ -1,18 +1,18 @@
-import { storage } from '../firebase/storage';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from "../firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-import { v4 } from 'uuid';
+import { v4 } from "uuid";
 
 const uploadFile = async (folder, file) => {
   const fileRef = ref(storage, `${folder}/${file.name + v4()}`);
   const snapshot = await uploadBytes(fileRef, file);
   const url = await getDownloadURL(snapshot.ref);
 
-  return url;
+  return url.toString();
 };
 
 const uploadFiles = async (folder, files) => {
-  const uploadPromises = files.map(async files => {
+  const uploadPromises = files.map(async (files) => {
     const uploadFiles = await uploadFile(folder, files);
     return uploadFiles;
   });

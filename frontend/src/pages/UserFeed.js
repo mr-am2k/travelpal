@@ -6,11 +6,14 @@ import profilePic1 from "../images/Feed/feed1.png";
 import profilePic2 from "../images/Feed/feed2.png";
 import profilePic3 from "../images/Feed/feed3.png";
 import profilePic4 from "../images/Feed/feed4.png";
+import { BlogModal } from "../components/BlogModal";
 const UserFeed = () => {
   const [filterActive, setFilterActive] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       <Navbar />
+      {showModal && <BlogModal setModal={setShowModal} />}
       <div className="flex lg:flex-row flex-col items-center lg:items-start w-[100%]">
         <div className="flex flex-col w-[100%] md:w-[75%] items-center">
           <div className="w-[90%] md:w-[700px] flex justify-between pt-[50px]">
@@ -121,6 +124,31 @@ const UserFeed = () => {
               image={profilePic3}
             />
           </div>
+          <button
+            onClick={() => setShowModal(true)}
+            className="fixed bottom-10 right-10 w-[35px] h-[35px] hover:scale-110 transform-all"
+          >
+            <svg
+              width="35"
+              height="35"
+              viewBox="0 0 85 84"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M43 10L43 74"
+                stroke="#1774FF"
+                strokeWidth="20"
+                strokeLinecap="round"
+              />
+              <path
+                d="M10.9844 41.2504L74.9839 41"
+                stroke="#1774FF"
+                strokeWidth="20"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </>
