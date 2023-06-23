@@ -42,15 +42,11 @@ export const PostForm = (props) => {
     e.preventDefault();
     if (access_token) {
       try {
-        const response = await axios.post(
-          `http://localhost:8080/api/v1/post`,
-          travelPost,
-          {
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-            },
-          }
-        );
+        const response = await axios.post(`http://localhost:8080/api/v1/post`, travelPost, {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        });
         setSuccessMsg("Succesfully added new post!");
         setTimeout(() => {
           setSuccessMsg(null);
@@ -66,24 +62,19 @@ export const PostForm = (props) => {
   return (
     <>
       {successMsg && (
-        <p className="px-5 rounded-md bg-green-400 text-white transition-all">
+        <p id="success_msg" className="px-5 rounded-md bg-green-400 text-white transition-all">
           {successMsg}
         </p>
       )}
       {errorMsg && (
-        <p className="px-5 rounded-md bg-green-400 text-white transition-all">
-          {errorMsg}
-        </p>
+        <p className="px-5 rounded-md bg-green-400 text-white transition-all">{errorMsg}</p>
       )}
       <form
         onSubmit={(e) => onFormSubmit(e)}
         className="flex flex-col items-center w-[80%] py-[30px]"
       >
         <div className="mb-6 w-full">
-          <label
-            for="title"
-            class="block mb-2 text-[18px] font-medium text-gray-600"
-          >
+          <label for="title" class="block mb-2 text-[18px] font-medium text-gray-600">
             Title
           </label>
           <input
@@ -97,10 +88,7 @@ export const PostForm = (props) => {
           />
         </div>
         <div className="mb-6 w-full">
-          <label
-            for="description"
-            class="block mb-2 text-[18px] font-medium text-gray-600"
-          >
+          <label for="description" class="block mb-2 text-[18px] font-medium text-gray-600">
             Description
           </label>
           <input
@@ -115,10 +103,7 @@ export const PostForm = (props) => {
         </div>
         <div className="flex justify-between w-[100%]">
           <div className="mb-6 w-[40%]">
-            <label
-              for="departure"
-              class="block mb-2 text-[18px] font-medium text-gray-600"
-            >
+            <label for="departure" class="block mb-2 text-[18px] font-medium text-gray-600">
               Departure
             </label>
             <select
@@ -138,10 +123,7 @@ export const PostForm = (props) => {
             </select>
           </div>
           <div className="mb-6 w-[40%]">
-            <label
-              for="destination"
-              class="block mb-2 text-[18px] font-medium text-gray-600"
-            >
+            <label for="destination" class="block mb-2 text-[18px] font-medium text-gray-600">
               Destination
             </label>
             <select
@@ -163,10 +145,7 @@ export const PostForm = (props) => {
         </div>
         <div className="flex justify-between w-[100%]">
           <div className="mb-6 w-[40%]">
-            <label
-              for="departure_date"
-              class="block mb-2 text-[18px] font-medium text-gray-600"
-            >
+            <label for="departure_date" class="block mb-2 text-[18px] font-medium text-gray-600">
               Departure date
             </label>
             <input
@@ -180,10 +159,7 @@ export const PostForm = (props) => {
             />
           </div>
           <div className="mb-6 w-[40%]">
-            <label
-              for="return_date"
-              class="block mb-2 text-[18px] font-medium text-gray-600"
-            >
+            <label for="return_date" class="block mb-2 text-[18px] font-medium text-gray-600">
               Return date
             </label>
             <input
@@ -200,6 +176,7 @@ export const PostForm = (props) => {
 
         <button
           type="submit"
+          id="submit_button"
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-[200px] px-5 py-2.5 mt-5 text-center"
         >
           Add post

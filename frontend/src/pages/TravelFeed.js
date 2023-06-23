@@ -12,13 +12,14 @@ const TravelFeed = () => {
       <HeroTravel />
       <div className="w-[80%] mx-auto my-10 text-[20px] leading-[24px] font-normal text-center">
         <p>
-          Thousands of Travelpal members are looking for a travel partner. New
-          travel-mates added daily.
+          Thousands of Travelpal members are looking for a travel partner. New travel-mates added
+          daily.
         </p>
       </div>
       <MainTravel />
       {showModal && <PostModal setModal={setShowModal} />}
       <button
+        id="open_modal"
         onClick={() => setShowModal(true)}
         className="fixed bottom-10 right-10 w-[35px] h-[35px] hover:scale-110 transform-all"
       >
@@ -29,12 +30,7 @@ const TravelFeed = () => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M43 10L43 74"
-            stroke="#1774FF"
-            strokeWidth="20"
-            strokeLinecap="round"
-          />
+          <path d="M43 10L43 74" stroke="#1774FF" strokeWidth="20" strokeLinecap="round" />
           <path
             d="M10.9844 41.2504L74.9839 41"
             stroke="#1774FF"

@@ -2,7 +2,10 @@ import { PostForm } from "../Forms/PostForm";
 
 export const PostModal = (props) => {
   return (
-    <div className="fixed top-0 z-50 w-full h-screen bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg">
+    <div
+      id="post_modal"
+      className="fixed top-0 z-50 w-full h-screen bg-white bg-opacity-20 backdrop-blur-md rounded drop-shadow-lg"
+    >
       <div className="flex flex-col justify-center items-center min-w-[300px] w-[80%] bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg border-2 border-[#1774FF]">
         <div className="w-full flex justify-end">
           <div
