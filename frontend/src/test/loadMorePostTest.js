@@ -12,9 +12,6 @@ const { Builder, By, until } = require("selenium-webdriver");
     const loginButton = await driver.findElement(By.id("login_button"));
 
     await loginButton.click();
-    await loginButton.click();
-    await loginButton.click();
-    await loginButton.click();
 
     await driver.wait(until.urlIs("http://localhost:3000/userfeed"), 8000);
     await driver.get("http://localhost:3000/travelfeed");
