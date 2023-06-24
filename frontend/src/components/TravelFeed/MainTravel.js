@@ -18,9 +18,7 @@ const MainTravel = () => {
   });
   const queryString = Object.keys(filterParams)
     .map((key) => {
-      return (
-        encodeURIComponent(key) + "=" + encodeURIComponent(filterParams[key])
-      );
+      return encodeURIComponent(key) + "=" + encodeURIComponent(filterParams[key]);
     })
     .join("&");
   console.log(queryString);
@@ -34,10 +32,7 @@ const MainTravel = () => {
           },
         }
       );
-      setTravelPosts((prevState) => [
-        ...prevState,
-        ...response.data?.data[0].content,
-      ]);
+      setTravelPosts((prevState) => [...prevState, ...response.data?.data[0].content]);
       setLastPage(response.data?.data[0].last);
       if (response.data?.data[0].last === false) {
         setPageNumber((prevState) => prevState + 1);
@@ -49,14 +44,11 @@ const MainTravel = () => {
   const filterPosts = async () => {
     setPageNumber(0);
     try {
-      const response = await axios.get(
-        `http://localhost:8080/api/v1/post?${queryString}`,
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      );
+      const response = await axios.get(`http://localhost:8080/api/v1/post?${queryString}`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
       setTravelPosts(response.data?.data[0].content);
       setLastPage(response.data?.data[0].last);
       if (response.data?.data[0].last === false) {
@@ -104,9 +96,7 @@ const MainTravel = () => {
             </span>
           </div>
           <span className="flex flex-col gap-4">
-            <label className="text-[19px] font-medium leading-[24px]">
-              Languages
-            </label>
+            <label className="text-[19px] font-medium leading-[24px]">Languages</label>
             <input
               type="text"
               placeholder="Languages"
@@ -114,9 +104,7 @@ const MainTravel = () => {
             />
           </span>
           <span className="flex flex-col gap-4">
-            <label className="text-[19px] font-medium leading-[24px]">
-              Ages
-            </label>
+            <label className="text-[19px] font-medium leading-[24px]">Ages</label>
             <span className="flex justify-between items-center">
               <input
                 type="text"
@@ -132,22 +120,14 @@ const MainTravel = () => {
             </span>
           </span>
           <span className="flex flex-col gap-4">
-            <label className="text-[19px] font-medium leading-[24px]">
-              Gender
-            </label>
+            <label className="text-[19px] font-medium leading-[24px]">Gender</label>
             <span className="flex justify-around">
               <span className="flex gap-1">
-                <input
-                  type="checkbox"
-                  className="w-[24px] h-[24px] border-1 border-black"
-                />
+                <input type="checkbox" className="w-[24px] h-[24px] border-1 border-black" />
                 <label>Male</label>
               </span>
               <span className="flex gap-1">
-                <input
-                  type="checkbox"
-                  className="w-[24px] h-[24px] border-1 border-black"
-                />
+                <input type="checkbox" className="w-[24px] h-[24px] border-1 border-black" />
                 <label>Female</label>
               </span>
             </span>
@@ -177,12 +157,13 @@ const MainTravel = () => {
           );
         })}
         {!lastPage && (
-          <h2
+          <button
+            id="post_load_more_button"
             className="cursor-pointer hover:text-[#1774ff]"
             onClick={() => loadMore()}
           >
             Load more...
-          </h2>
+          </button>
         )}
       </div>
     </div>

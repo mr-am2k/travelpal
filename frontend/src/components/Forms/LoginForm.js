@@ -13,13 +13,10 @@ export const LoginForm = () => {
     event.preventDefault();
     const access_token = localStorage.getItem("access_token");
     try {
-      const response = await axios.post(
-        `http://localhost:8080/api/v1/auth/login`,
-        {
-          username: username,
-          password: password,
-        }
-      );
+      const response = await axios.post(`http://localhost:8080/api/v1/auth/login`, {
+        username: username,
+        password: password,
+      });
       localStorage.setItem("refresh_token", response.data.refreshToken);
       localStorage.setItem("access_token", response.data.accessToken);
     } catch (e) {
@@ -27,14 +24,11 @@ export const LoginForm = () => {
     }
 
     try {
-      const response = await axios.get(
-        `http://localhost:8080/api/v1/users/user`,
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      );
+      const response = await axios.get(`http://localhost:8080/api/v1/users/user`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
       cx.setUser(response.data);
       cx.setLoggedIn(true);
       navigate("/userfeed");
@@ -46,9 +40,7 @@ export const LoginForm = () => {
   return (
     <>
       {responseMsg ? (
-        <h2 className="text-[12px] text-orange-600 font-bold mt-[-5px]">
-          {responseMsg}
-        </h2>
+        <h2 className="text-[12px] text-orange-600 font-bold mt-[-5px]">{responseMsg}</h2>
       ) : (
         ""
       )}
@@ -61,6 +53,7 @@ export const LoginForm = () => {
           <div className="h-[40px] flex flex-col">
             <input
               required
+              id="login_username"
               className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] w-[100%] transition-all"
               value={username}
               onChange={(e) => {
@@ -74,6 +67,7 @@ export const LoginForm = () => {
           <div className="h-[40px] flex flex-col">
             <input
               required
+              id="login_password"
               className="border-b-2 outline-0 border-[#1774FF] bg-transparent invalid:h-[15px] invalid:text-[15px] h-[30px] focus:h-[30px] text-[17px] focus:text-[17px] transition-all"
               value={password}
               onChange={(e) => {
@@ -83,7 +77,10 @@ export const LoginForm = () => {
             />
           </div>
         </div>
-        <button className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[16px] font-bold">
+        <button
+          id="login_button"
+          className="hover:bg-[#1b5349] text-white bg-[#1774FF] w-[150px] h-[40px] border-2 border-[#1774FF] rounded-3xl mt-[10px] text-[16px] font-bold"
+        >
           Log in
         </button>
       </form>
